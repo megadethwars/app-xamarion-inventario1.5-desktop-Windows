@@ -107,6 +107,7 @@
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\nuevofondo.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-200.png" />
     <Content Include="Assets\SmallTile.scale-400.png" />
@@ -128,12 +129,29 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\tache.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Assets\image1.jpeg" />
+    <Content Include="baceptar.png" />
+    <Content Include="bactualizar.png" />
+    <Content Include="bavanzada.png" />
+    <Content Include="bcancelar.png" />
+    <Content Include="beliminar.png" />
+    <Content Include="bfoto.png" />
+    <Content Include="bingresar.png" />
+    <Content Include="bopciones.png" />
+    <Content Include="bscanner.png" />
+    <Content Include="iconoajustes.png" />
+    <Content Include="iconoempleados.png" />
+    <Content Include="iconohistorial.png" />
+    <Content Include="iconoinventario.png" />
+    <Content Include="iconoperfil.png" />
+    <Content Include="iconoreporte.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="scale-100\image1.jpeg" />
+    <Content Include="scale-100\nuevofondo.png" />
+    <Content Include="scale-100\tache.png" />
+    <Content Include="tache.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -176,6 +194,12 @@
       <Project>{71D24A1D-282F-465B-B720-49DF103DEF45}</Project>
       <Name>Inventario2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Montserrat-Light.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Montserrat-Bold.ttf" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -91,7 +91,7 @@
                 HeightRequest="87"
 				Clicked="IniciarSesion"
                 TextColor="Red"
-                ImageSource="baceptar"
+                ImageSource="baceptar.png"
 				HorizontalOptions="End"
 				FontAttributes="Bold"
 				StyleId="Ok"/>
