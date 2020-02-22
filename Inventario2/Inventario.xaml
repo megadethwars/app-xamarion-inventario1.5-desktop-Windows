@@ -25,6 +25,7 @@
                     Padding="59,0,59,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
+                        <Grid.RowDefinitions Height="250"/>
                         <Image Aspect="AspectFit" Source="tache.png" HorizontalOptions="End" HeightRequest="60" WidthRequest="60"/>
                         <Label
                             VerticalOptions="Center"
@@ -48,17 +49,6 @@
                     TextChanged="search_TextChanged"
                     TextColor="White"
 			        SearchButtonPressed="SearchBar" />
-
-                <!--<Grid
-                    HorizontalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="87"/>
-                    </Grid.RowDefinitions>-->
-
                 <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="StartAndExpand">
@@ -76,8 +66,7 @@
                             TextColor="Red"
                             FontFamily="Montserrat-Bold"
                             WidthRequest="140"
-                                HeightRequest="40"
-                                
+                            HeightRequest="40"
                             BackgroundColor="Transparent"
                             SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
 
@@ -93,122 +82,136 @@
                         </Picker>
                     </StackLayout>
                 </StackLayout>
-
                 <ScrollView Orientation="Horizontal">
                     <StackLayout>
-                <Grid
-	         >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="120"/>
-                    </Grid.ColumnDefinitions>
+                            <Label
+                                Text="PRODUCTO:" 
+				                FontAttributes="Bold"
+                                TextColor="White"
+                                Grid.Column="0"/>
+                            <Label
+                                Text="MARCA:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="1"/>
+                            <Label
+                                Text="CODIGO QR:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="2"/>
+                            <Label
+                                Text="MODELO:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="3"/>
+                            <Label
+                                Text="SERIE:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="4"/>
+                            <Label
+                                Text="ORIGEN:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="5"/>
+                            <Label
+                                Text="ACCESORIO DE:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="6"/>
+                            <Label
+                                Text="LUGAR:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="7"/>
+                        </Grid>
 
-                    <Label
-                Text="PRODUCTO:" 
-				FontAttributes="Bold"
-                TextColor="White"
-                Grid.Column="0"/>
-
-                    <Label
-                Text="MARCA:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="1"/>
-                
-                
-                <Label
-                Text="CODIGO QR:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="2"/>
-                    <Label
-                Text="MODELO:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="3"/>
-                    <Label
-                Text="SERIE:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="4"/>
-                    <Label
-                Text="ORIGEN:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="5"/>
-                    <Label
-                Text="ACCESORIO DE:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="6"/>
-                    <Label
-                Text="LUGAR:" 
-                TextColor="White"
-				FontAttributes="Bold"
-                Grid.Column="7"/>
-                </Grid>
-
-                <ScrollView
-			HorizontalOptions="FillAndExpand"
-                    
-            VerticalOptions="FillAndExpand">
-                    <StackLayout VerticalOptions="FillAndExpand">
-                        <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="120"/>
-
-                                                </Grid.ColumnDefinitions>
-
-                                                <Label Text="{Binding nombre}" TextColor="White" Grid.Column="0"/>
-                                                <Label Text="{Binding marca}" TextColor="White"
-                                               Grid.Column="1"/>
-                                                <Label Text="{Binding codigo}" TextColor="White" Grid.Column="2"/>
-                                                <Label Text="{Binding modelo}" TextColor="White" Grid.Column="3"/>
-                                                <Label Text="{Binding serie}" TextColor="White" Grid.Column="4"/>
-                                                <Label Text="{Binding origen}" TextColor="White" Grid.Column="5"/>
-                                                <Label Text="{Binding pertenece}" TextColor="White" Grid.Column="6"/>
-                                                <Label Text="{Binding lugar}" TextColor="White" Grid.Column="7"/>
-
-                                            </Grid>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                        <ScrollView
+			                HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <StackLayout VerticalOptions="FillAndExpand">
+                                <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="120"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label 
+                                                            Text="{Binding nombre}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="0"/>
+                                                        <Label 
+                                                            Text="{Binding marca}" 
+                                                            TextColor="White"  
+                                                            Grid.Column="1"/>
+                                                        <Label 
+                                                            Text="{Binding codigo}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="2"/>
+                                                        <Label 
+                                                            Text="{Binding modelo}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="3"/>
+                                                        <Label 
+                                                            Text="{Binding serie}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="4"/>
+                                                        <Label 
+                                                            Text="{Binding origen}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="5"/>
+                                                        <Label 
+                                                            Text="{Binding pertenece}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="6"/>
+                                                        <Label 
+                                                            Text="{Binding lugar}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="7"/>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </ScrollView>
                     </StackLayout>
                 </ScrollView>
-                        </StackLayout>
-                    </ScrollView>
-
                 <Button
-			WidthRequest="150"
-                HeightRequest="87"
-			Clicked="MenuOp"
-			HorizontalOptions="Start"
-            TextColor="Red"
-            ImageSource="bopciones.png"
-			FontAttributes="Bold"
-			StyleId="Ok"/>
+			        WidthRequest="150"
+                    HeightRequest="87"
+			        Clicked="MenuOp"
+			        HorizontalOptions="Start"
+                    TextColor="Red"
+                    ImageSource="bopciones.png"
+			        FontAttributes="Bold"
+			        StyleId="Ok"/>
             </StackLayout>
         </StackLayout>
     </AbsoluteLayout>

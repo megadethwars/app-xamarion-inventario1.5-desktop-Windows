@@ -13,35 +13,36 @@
         <ToolbarItem Text="                " />
         
     </ContentPage.ToolbarItems>
-    <AbsoluteLayout VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
-        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="Fill"/>
+    <AbsoluteLayout 
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+        <Image 
+            AbsoluteLayout.LayoutFlags="All" 
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
-		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            
-                <StackLayout
-                    Padding="95,10,95,10">
-                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
-                        <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png"
-                               HorizontalOptions="End"
-                               WidthRequest="45"
-                               HeightRequest="45"/>
-                        <Label
-                            VerticalOptions="Center"
-                            FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="30"
-			                HorizontalOptions="Center"
-			                Text="EMPLEADOS" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
-
-                    </Grid>
-
-
-                </StackLayout>
+		    AbsoluteLayout.LayoutFlags="All" 
+            AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout
+                Padding="95,10,95,10">
+                <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions Width = "100"/>
+                    <Grid.RowDefinitions Height="250"/>
+                    <Image Source="tache.png"
+                        HorizontalOptions="End"
+                        WidthRequest="45"
+                        HeightRequest="45"/>
+                    <Label
+                        VerticalOptions="Center"
+                        FontFamily="Montserrat-Bold"
+                        TextColor="White"
+                        FontSize="30"
+			            HorizontalOptions="Center"
+			            Text="EMPLEADOS" 
+			            FontAttributes="Bold"
+			            StyleId="Titulo"/>
+                </Grid>
+            </StackLayout>
             <StackLayout
 		        Padding="35,10,35,10">
                 <SearchBar
@@ -53,34 +54,29 @@
                     Placeholder="Buscar por nombre o ID"
                     CancelButtonColor="Red"
                     SearchButtonPressed="SearchBarEmp" />
-
                 <Grid
-	             ColumnSpacing="5">
-
+    	             ColumnSpacing="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="150"/>
-                        
                     </Grid.ColumnDefinitions>
-
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
                     <Label
-                     Text="Usuario:" 
-                    TextColor="White"
-				     FontAttributes="Bold"
-                     Grid.Column="0"/>
-
+                        Text="Usuario:" 
+                        TextColor="White"
+				        FontAttributes="Bold"
+                        Grid.Column="0"/>
                     <Label
-                    TextColor="White"
-                     Text="Tipo de Usuario:" 
-				     FontAttributes="Bold"
-                     Grid.Column="1"/>
-
-                    
-
+                        TextColor="White"
+                        Text="Tipo de Usuario:" 
+				        FontAttributes="Bold"
+                        Grid.Column="1"/>
                 </Grid>
                 <ScrollView
-            VerticalOptions="FillAndExpand"			
-            HorizontalOptions="FillAndExpand">
+                    VerticalOptions="FillAndExpand"			
+                    HorizontalOptions="FillAndExpand">
                     <StackLayout VerticalOptions="FillAndExpand">
                         <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" >
                             <ListView.ItemTemplate>
@@ -91,14 +87,15 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="100"/>
                                                     <ColumnDefinition Width="150"/>
-                                                    
-
                                                 </Grid.ColumnDefinitions>
-
-                                                <Label Text="{Binding nombre}" TextColor="White" Grid.Column="0"/>
-                                                <Label Text="{Binding tipoUsuario}" TextColor="White" Grid.Column="1"/>
-                                                
-
+                                                <Label 
+                                                    Text="{Binding nombre}" 
+                                                    TextColor="White" 
+                                                    Grid.Column="0"/>
+                                                <Label 
+                                                    Text="{Binding tipoUsuario}" 
+                                                    TextColor="White" 
+                                                    Grid.Column="1"/>
                                             </Grid>
                                         </StackLayout>
                                     </ViewCell>
@@ -107,7 +104,6 @@
                         </ListView>
                     </StackLayout>
                 </ScrollView>
-
                 <Button
                     TextColor="Red"
                     HorizontalOptions="Start"
