@@ -20,10 +20,11 @@
                Source="nuevofondo.png" Aspect="AspectFill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
             <StackLayout
-		Padding="70,10,70,50">
+		Padding="80,10,70,50">
                 <StackLayout
-            Padding="93,20,93,20">
+            Padding="400,20,400,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png"
@@ -44,14 +45,14 @@
 
 
                 </StackLayout>
-                <ScrollView>
+                
                     <StackLayout>
                         <StackLayout           
 			            Orientation="Horizontal">
                             <Label
                          FontFamily="Montserrat-Bold"
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                         CharacterSpacing="4"
 				        Text="NOMBRE DEL PRODUCTO:"
 				        FontAttributes="Bold"/>
@@ -61,7 +62,7 @@
                          FontFamily="Montserrat-Light"
                        
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                 
 				        x:Name="nameProd"
                         StyleId="informacion"/>
@@ -73,7 +74,7 @@
                             <Label
                          FontFamily="Montserrat-Bold"
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                         CharacterSpacing="4"
 				        Text="MARCA:"
 				        FontAttributes="Bold"/>
@@ -83,7 +84,7 @@
                          FontFamily="Montserrat-Light"
                        
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                 
 				        x:Name="marcatxt"
                         StyleId="informacion"/>
@@ -95,7 +96,7 @@
                             <Label
                          FontFamily="Montserrat-Bold"
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                         CharacterSpacing="4"
 				        Text="MODELO:"
 				        FontAttributes="Bold"/>
@@ -105,7 +106,7 @@
                          FontFamily="Montserrat-Light"
                        
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                 
 				        x:Name="modeltxt"
                         StyleId="informacion"/>
@@ -117,7 +118,7 @@
                             <Label
                          FontFamily="Montserrat-Bold"
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                         CharacterSpacing="4"
 				        Text="CANTIDAD:"
 				        FontAttributes="Bold"/>
@@ -127,7 +128,7 @@
                          FontFamily="Montserrat-Light"
                        
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                 
 				        x:Name="cantidadtxt"
                         StyleId="informacion"/>
@@ -139,7 +140,7 @@
                             <Label
                          FontFamily="Montserrat-Bold"
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                         CharacterSpacing="4"
 				        Text="OBSERVACION:"
 				        FontAttributes="Bold"/>
@@ -149,7 +150,7 @@
                          FontFamily="Montserrat-Light"
                        
                         TextColor="White"
-                        FontSize="Large"
+                        FontSize="Default"
                 
 				        x:Name="observtxt"
                         StyleId="informacion"/>
@@ -161,7 +162,7 @@
                        CharacterSpacing="2"
                        FontFamily="Montserrat-Bold"
                        FontAttributes="Bold"
-                       FontSize="Large"
+                       FontSize="Default"
                            TextColor="White"/>
                         </StackLayout>
                         <StackLayout Padding="40,0,20,10">
@@ -177,7 +178,7 @@
                        CharacterSpacing="2"
                        FontFamily="Montserrat-Bold"
                        FontAttributes="Bold"
-                       FontSize="Large"
+                       FontSize="Default"
                            TextColor="White"/>
                         </StackLayout>
                         <StackLayout Padding="40,0,20,10">
@@ -224,15 +225,16 @@
                             
                         </StackLayout>
                         <Button ImageSource="bactualizar.png"
-                                HeightRequest="87"
-                        
-                                WidthRequest="120"
+                                HeightRequest="92"
+                        BackgroundColor="Transparent"
+                                WidthRequest="180"
                             Clicked="Button_Clicked"/>
 
 
                     </StackLayout>
-                </ScrollView>
+                
             </StackLayout>
+            </ScrollView>
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage> 

@@ -21,9 +21,10 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="37,40,37,10">
+            <ScrollView>
+            <StackLayout Padding="80,10,70,110">
                 <StackLayout
-            Padding="0,20,0,30">
+            Padding="440,20,440,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -47,7 +48,7 @@
                CharacterSpacing="2"
                FontFamily="Montserrat-Bold"
                FontAttributes="Bold"
-               FontSize="Large"
+               FontSize="Default"
                    TextColor="White"/>
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
@@ -62,7 +63,7 @@
                 CharacterSpacing="2"
                FontFamily="Montserrat-Bold"
                FontAttributes="Bold"
-               FontSize="Large"
+               FontSize="Default"
                    TextColor="White"/>
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
@@ -78,7 +79,7 @@
                     CharacterSpacing="2"
                FontFamily="Montserrat-Bold"
                FontAttributes="Bold"
-               FontSize="Large"
+               FontSize="Default"
                    />
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
@@ -95,7 +96,7 @@
                     CharacterSpacing="2"
                FontFamily="Montserrat-Bold"
                FontAttributes="Bold"
-               FontSize="Large"/>
+               FontSize="Default"/>
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
                     <Entry Text="" x:Name="InProd"
@@ -110,7 +111,7 @@
                    CharacterSpacing="2"
                FontFamily="Montserrat-Bold"
                FontAttributes="Bold"
-               FontSize="Large"/>
+               FontSize="Default"/>
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
                     <Entry Text="" x:Name="InModel"
@@ -125,7 +126,7 @@
                    CharacterSpacing="2"
                FontFamily="Montserrat-Bold"
                FontAttributes="Bold"
-               FontSize="Large"/>
+               FontSize="Default"/>
                     
                  
                 </StackLayout>
@@ -141,8 +142,18 @@
 
 
 
-                    <Button TextColor="Red" ImageSource="baceptar.png" Grid.Column="1" WidthRequest="150" Clicked="OnAccept"></Button>
-                    <Button ImageSource="bcancelar.png" TextColor="Red" Grid.Column="2" WidthRequest="150" Clicked="OnCancel"></Button>
+                    <Button TextColor="Red" 
+                            ImageSource="baceptar.png" 
+                            Grid.Column="1" 
+                            BackgroundColor="Transparent"
+                            WidthRequest="180" 
+                            Clicked="OnAccept"></Button>
+                    <Button ImageSource="bcancelar.png" 
+                            BackgroundColor="Transparent"
+                            TextColor="Red"
+                            Grid.Column="2" 
+                            WidthRequest="180" 
+                            Clicked="OnCancel"></Button>
                 </StackLayout>
 
                 <!--
@@ -168,6 +179,9 @@
             -->
 
             </StackLayout>
+                
+            </ScrollView>
         </StackLayout>
+            
     </AbsoluteLayout>
 </ContentPage>

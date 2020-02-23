@@ -23,8 +23,11 @@
         <StackLayout
 		    AbsoluteLayout.LayoutFlags="All" 
             AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout
-                Padding="95,10,95,10">
+            <ScrollView>
+                <StackLayout
+		        Padding="80,10,70,20">
+                    <StackLayout
+                Padding="400,0,400,10">
                 <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions Width = "100"/>
                     <Grid.RowDefinitions Height="250"/>
@@ -42,9 +45,9 @@
 			            FontAttributes="Bold"
 			            StyleId="Titulo"/>
                 </Grid>
+                
             </StackLayout>
-            <StackLayout
-		        Padding="35,10,35,10">
+            
                 <SearchBar
                     TextChanged="search_TextChanged"
                     BackgroundColor="Gray"
@@ -59,7 +62,10 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
@@ -73,11 +79,27 @@
                         Text="Tipo de Usuario:" 
 				        FontAttributes="Bold"
                         Grid.Column="1"/>
-                </Grid>
+                    <Label
+                        TextColor="White"
+                        Text="Telefono:" 
+				        FontAttributes="Bold"
+                        Grid.Column="2"/>
+                    <Label
+                        TextColor="White"
+                        Text="Correo:" 
+				        FontAttributes="Bold"
+                        Grid.Column="3"/>
+                    <Label
+                        TextColor="White"
+                        Text="Fecha de Alta:" 
+				        FontAttributes="Bold"
+                        Grid.Column="4"/>
+                    </Grid>
                 <ScrollView
                     VerticalOptions="FillAndExpand"			
                     HorizontalOptions="FillAndExpand">
-                    <StackLayout VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="FillAndExpand"
+                                 Padding="0,0,0,100">
                         <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -87,7 +109,10 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="100"/>
                                                     <ColumnDefinition Width="150"/>
-                                                </Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="150"/>
+                                                    </Grid.ColumnDefinitions>
                                                 <Label 
                                                     Text="{Binding nombre}" 
                                                     TextColor="White" 
@@ -96,7 +121,19 @@
                                                     Text="{Binding tipoUsuario}" 
                                                     TextColor="White" 
                                                     Grid.Column="1"/>
-                                            </Grid>
+                                                <Label 
+                                                    Text="{Binding telefono}" 
+                                                    TextColor="White" 
+                                                    Grid.Column="2"/>
+                                                <Label 
+                                                    Text="{Binding correo}" 
+                                                    TextColor="White" 
+                                                    Grid.Column="3"/>
+                                                <Label 
+                                                    Text="{Binding fechaContratacion}" 
+                                                    TextColor="White" 
+                                                    Grid.Column="4"/>
+                                                </Grid>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -105,15 +142,16 @@
                     </StackLayout>
                 </ScrollView>
                 <Button
-                    TextColor="Red"
+                    BackgroundColor="Transparent"
                     HorizontalOptions="Start"
                     ImageSource="bingresar.png"
                     FontAttributes="Bold"
-                    WidthRequest="150"
-                    HeightRequest="87"
+                    WidthRequest="180"
+                    HeightRequest="95"
                     StyleId="Ok"
                     Clicked="AgregarEmp"/>
             </StackLayout>
+            </ScrollView>
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage>

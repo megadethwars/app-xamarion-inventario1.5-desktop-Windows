@@ -19,9 +19,10 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="37,20,37,40">
+            <ScrollView>
+            <StackLayout Padding="80,10,70,40">
                 <StackLayout
-            Padding="88,20,88,30">
+            Padding="450,20,450,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="55" WidthRequest="55"/>
@@ -43,11 +44,13 @@
 	         ColumnSpacing="10">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        
-                    </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+
+                        </Grid.ColumnDefinitions>
 
                     <Label
                         FontFamily="Montserrat-Bold"
@@ -62,8 +65,26 @@
                 Text="Marca:" 
 				FontAttributes="Bold"
                 Grid.Column="1"/>
-                    
-                </Grid>
+                        <Label
+                        FontFamily="Montserrat-Bold"
+                TextColor="White"
+                Text="Modelo:" 
+				FontAttributes="Bold"
+                Grid.Column="2"/>
+                        <Label
+                        FontFamily="Montserrat-Bold"
+                TextColor="White"
+                Text="Accesorio de:" 
+				FontAttributes="Bold"
+                Grid.Column="3"/>
+                        <Label
+                        FontFamily="Montserrat-Bold"
+                TextColor="White"
+                Text="Codigo QR:" 
+				FontAttributes="Bold"
+                Grid.Column="4"/>
+
+                    </Grid >
 
                 <ScrollView>
                     <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
@@ -71,20 +92,26 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal">
-                                        <Grid>
+                                        <Grid ColumnSpacing="10">
                                             <Grid.ColumnDefinitions>
 
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
-                                                
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="160"/>
 
-                                            </Grid.ColumnDefinitions>
+
+                                                </Grid.ColumnDefinitions>
 
                                             <Label  Text="{Binding producto}" TextColor="White" Grid.Column="0"/>
                                             <Label Text="{Binding marca}" TextColor="White" Grid.Column="1"/>
-                                            
-                                            <Button ImageSource="beliminar.png" HeightRequest="70" Clicked="Button_Clicked" Grid.Column="2"/>
+                                                <Label Text="{Binding modelo}" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding pertenece}" TextColor="White" Grid.Column="3"/>
+                                                <Label Text="{Binding codigo}" TextColor="White" Grid.Column="4"/>
+
+                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="Button_Clicked" Grid.Column="5"/>
 
                                         </Grid>
                                     </StackLayout>
@@ -97,12 +124,14 @@
                 <Button
             x:Name="acept"
             TextColor="Red"
+                    BackgroundColor="Transparent"
             HorizontalOptions="End"
             VerticalOptions="End"
 			ImageSource="baceptar.png"
 			Clicked="acept_Clicked"
 			/>
             </StackLayout>
+            </ScrollView>
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage>

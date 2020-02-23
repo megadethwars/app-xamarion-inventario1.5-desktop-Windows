@@ -21,9 +21,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
             <StackLayout
-		        Padding="37,5,35,50">
+		        Padding="80,5,70,80">
                 <StackLayout
-                    Padding="53,0,53,5">
+                    Padding="400,0,400,5">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
                         <Grid.RowDefinitions >
@@ -44,9 +44,9 @@
                 </StackLayout>
 
                 <Button
-                    WidthRequest="200"
-                    HeightRequest="87"
-                    TextColor="Red"
+                    WidthRequest="305"
+                    HeightRequest="92"
+                    BackgroundColor="Transparent"
                     HorizontalOptions="Center"
                     FontAttributes="Bold"
                     ImageSource="bavanzada.png"
@@ -64,10 +64,10 @@
                 <Button
 			HorizontalOptions="Center"
             FontAttributes="Bold"
-            TextColor="Red"
+            BackgroundColor="Transparent"
             ImageSource="bscanner.png"
-			WidthRequest="150"
-                HeightRequest="87"
+			WidthRequest="180"
+                HeightRequest="92"
 			Clicked="Button_Clicked" />
                 <!--
         <StackLayout
@@ -104,8 +104,11 @@
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
-                        
-                        
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
@@ -130,9 +133,36 @@
                 TextColor="White"
                 Grid.Column="2"
 				/>
-                    
-                   
-
+                    <Label
+                Text="Codigo" 
+				FontAttributes="Bold"
+                TextColor="White"
+                Grid.Column="3"
+				/>
+                    <Label
+                Text="Marca" 
+				FontAttributes="Bold"
+                TextColor="White"
+                Grid.Column="4"
+				/>
+                    <Label
+                Text="Modelo" 
+				FontAttributes="Bold"
+                TextColor="White"
+                Grid.Column="5"
+				/>
+                    <Label
+                Text="Lugar" 
+				FontAttributes="Bold"
+                TextColor="White"
+                Grid.Column="6"
+				/>
+                    <Label
+                Text="Fecha" 
+				FontAttributes="Bold"
+                TextColor="White"
+                Grid.Column="7"
+				/>
                 </Grid>
 
 
@@ -150,6 +180,11 @@
                                                     <ColumnDefinition Width="100" />
                                                     <ColumnDefinition Width="100"/>
                                                     <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
                                                     
                                                     
                                                 </Grid.ColumnDefinitions>
@@ -157,6 +192,11 @@
                                                 <Label Text="{Binding usuario}" BackgroundColor="Gray" TextColor="White" Grid.Column="0"/>
                                                 <Label Text="{Binding producto}" BackgroundColor="Gray" TextColor="White" Grid.Column="1"/>
                                                 <Label Text="{Binding movimiento}" BackgroundColor="Gray" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding codigo}" BackgroundColor="Gray" TextColor="White" Grid.Column="3"/>
+                                                <Label Text="{Binding marca}" BackgroundColor="Gray" TextColor="White" Grid.Column="4"/>
+                                                <Label Text="{Binding modelo}" BackgroundColor="Gray" TextColor="White" Grid.Column="5"/>
+                                                <Label Text="{Binding lugar}" BackgroundColor="Gray" TextColor="White" Grid.Column="6"/>
+                                                <Label Text="{Binding fecha}" BackgroundColor="Gray" TextColor="White" Grid.Column="7"/>
                                                 
                                                 
 

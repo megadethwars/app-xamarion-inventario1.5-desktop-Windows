@@ -23,7 +23,7 @@
             <StackLayout
 		Padding="60,20,60,20">
                 <StackLayout
-            Padding="0,20,0,200">
+            Padding="400,20,400,200">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -68,6 +68,7 @@
                        Placeholder="Ingrese la Contraseña"/>
                         
                         <Button Clicked="Button_Clicked"
+                                BackgroundColor="Transparent"
                         TextColor="Red"
                         ImageSource="baceptar.png"></Button>
                     </StackLayout>

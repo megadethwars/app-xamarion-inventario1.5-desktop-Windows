@@ -23,9 +23,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
             <StackLayout
-                Padding="35,20,40,10">
+                Padding="35,10,40,10">
                 <StackLayout
-                    Padding="87,0,87,0">
+                    Padding="590,0,590,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>  
@@ -40,7 +40,7 @@
 			                StyleId="Titulo"/>
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="0,50,0,30"
+                <StackLayout Padding="0,0,0,30"
                              VerticalOptions="CenterAndExpand">
                 <Grid
                     ColumnSpacing="30"
@@ -48,7 +48,7 @@
                     HorizontalOptions="Center"
                     VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="140"/>
 
                     </Grid.RowDefinitions>
 
@@ -83,7 +83,7 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
 
                     </Grid.RowDefinitions>
 
@@ -97,7 +97,7 @@
                HorizontalOptions="Center"
                 Text="MI PERFIL"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Default"
                 FontFamily="{StaticResource BoldFont}"
                 TextColor="Red"
                 Grid.Column="0"
@@ -106,7 +106,7 @@
                 HorizontalOptions="Center"
                 Text="INVENTARIO"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Default"
                 FontFamily="Montserrat-Bold"
                 TextColor="Red"
                 Grid.Column="1"
@@ -118,7 +118,7 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="140"/>
 
                     </Grid.RowDefinitions>
 
@@ -152,7 +152,7 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
 
                     </Grid.RowDefinitions>
 
@@ -167,7 +167,7 @@
                 HorizontalOptions="Center"
                 Text="HISTORIAL"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Default"
                 FontFamily="Montserrat-Bold"
                 TextColor="Red"
                 Grid.Column="0"
@@ -177,7 +177,7 @@
                 HorizontalOptions="Center"
                 Text="EMPLEADOS"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Default"
                 FontFamily="Montserrat-Bold"
                 TextColor="Red"
                 Grid.Column="1"
@@ -189,7 +189,7 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="140"/>
 
                     </Grid.RowDefinitions>
 
@@ -222,7 +222,7 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
 
                     </Grid.RowDefinitions>
 
@@ -238,7 +238,7 @@
                 HorizontalOptions="Center"
                 Text="REPORTE"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Default"
                 FontFamily="Montserrat-Bold"
                 TextColor="Red"
                 Grid.Column="0"
@@ -249,7 +249,7 @@
                 HorizontalOptions="Center"
                 Text="AJUSTES"
                 FontAttributes="Bold"
-                FontSize="Large"
+                FontSize="Default"
                 FontFamily="Montserrat-Bold"
                 TextColor="Red"
                 Grid.Column="1"

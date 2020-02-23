@@ -19,44 +19,50 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
             <StackLayout
-		        Padding="20,20,20,20">
+		        Padding="80,0,70,10">
                 <StackLayout
-                    Padding="59,0,59,0">
+                    Padding="500,10,500,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
-                        <Grid.RowDefinitions Height="250"/>
-                        <Image Aspect="AspectFit" Source="tache.png" HorizontalOptions="End" HeightRequest="60" WidthRequest="60"/>
+                        
+                        <Image Aspect="AspectFit" Source="tache.png" 
+                               HorizontalOptions="End" 
+                               HeightRequest="60" 
+                               WidthRequest="60"/>
                         <Label
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
                             TextColor="White"
-                            FontSize="30"
-			                HorizontalOptions="Start"
+                            FontSize="Large"
+			                
 			                Text="INVENTARIO" 
 			                FontAttributes="Bold"
 			                StyleId="Titulo"/>
 
                     </Grid>
                 </StackLayout>
-
-                <SearchBar
-                    x:Name="search"
-			        Placeholder="Buscar"
-			        CancelButtonColor="Red"
-                    BackgroundColor="Gray"
-                    PlaceholderColor="White"
-                    TextChanged="search_TextChanged"
-                    TextColor="White"
-			        SearchButtonPressed="SearchBar" />
+                <StackLayout Padding="0,0,0,0">
+                    <SearchBar
+                        x:Name="search"
+			            Placeholder="Buscar"
+			            CancelButtonColor="Red"
+                        BackgroundColor="Gray"
+                        PlaceholderColor="White"
+                        TextChanged="search_TextChanged"
+                        TextColor="White"
+			            SearchButtonPressed="SearchBar" />
+                </StackLayout>
                 <StackLayout
                     Orientation="Horizontal"
-                    HorizontalOptions="StartAndExpand">
+                    HorizontalOptions="CenterAndExpand">
                     <Button
                         FontAttributes="Bold"
-			            Text="Escanear"
+			            
                         WidthRequest="200"
-                        TextColor="Red"
+                        
+                        BackgroundColor="Transparent"
                         ImageSource="bscanner.png"
 			            Clicked="Scan"/>
                     <StackLayout Padding="0,9,50,8">
@@ -65,8 +71,8 @@
                             Title="TIPO DE BUSQUEDA"
                             TextColor="Red"
                             FontFamily="Montserrat-Bold"
-                            WidthRequest="140"
-                            HeightRequest="40"
+                            WidthRequest="170"
+                            HeightRequest="55"
                             BackgroundColor="Transparent"
                             SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
 
@@ -204,15 +210,16 @@
                     </StackLayout>
                 </ScrollView>
                 <Button
-			        WidthRequest="150"
-                    HeightRequest="87"
+			        WidthRequest="180"
+                    HeightRequest="92"
 			        Clicked="MenuOp"
 			        HorizontalOptions="Start"
-                    TextColor="Red"
+                    BackgroundColor="Transparent"
                     ImageSource="bopciones.png"
-			        FontAttributes="Bold"
+			        
 			        StyleId="Ok"/>
             </StackLayout>
+            </ScrollView>
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage>

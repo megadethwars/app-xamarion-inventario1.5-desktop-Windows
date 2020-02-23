@@ -22,11 +22,11 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            
+            <ScrollView>
                 <StackLayout
-		            Padding="35,10,35,50">
+		            Padding="80,10,70,50">
                     <StackLayout
-                        Padding="0,20,0,20">
+                        Padding="420,20,420,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png"
@@ -52,10 +52,10 @@
     
         
 
-        <ScrollView>
-            <StackLayout Padding="0,20,0,20">
+        
+            
                 <StackLayout 
-			        Orientation="Horizontal">
+			         HorizontalOptions="FillAndExpand">
 
                     
                     <SearchBar x:Name="nombreID"
@@ -73,6 +73,7 @@
 
                 <Button
 			        HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
 			        ImageSource="bscanner.png"
 			        FontAttributes="Bold"			       
 			        Clicked="Scan"/>
@@ -82,7 +83,7 @@
                             <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 				Text="NOMBRE DEL PRODUCTO:"
 				FontAttributes="Bold"/>
@@ -92,7 +93,7 @@
                  FontFamily="Montserrat-Light"
                        
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 
 				x:Name="lbNombre"
                 StyleId="informacion"/>
@@ -104,7 +105,7 @@
                             <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 				Text="MARCA:"
 				FontAttributes="Bold"/>
@@ -114,7 +115,7 @@
                  FontFamily="Montserrat-Light"
                        
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 
 				x:Name="lbMarca"
                 StyleId="informacion"/>
@@ -126,7 +127,7 @@
                             <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 				Text="SERIE:"
 				FontAttributes="Bold"/>
@@ -136,7 +137,7 @@
                  FontFamily="Montserrat-Light"
                        
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 
 				x:Name="lbSerie"
                 StyleId="informacion"/>
@@ -147,7 +148,7 @@
                             <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 				Text="MODELO:"
 				FontAttributes="Bold"/>
@@ -157,7 +158,7 @@
                  FontFamily="Montserrat-Light"
                        
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 
 				x:Name="lbModelo"
                 StyleId="informacion"/>
@@ -169,7 +170,7 @@
                             <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 				Text="ACCESORIO DE:"
 				FontAttributes="Bold"/>
@@ -179,7 +180,7 @@
                  FontFamily="Montserrat-Light"
                        
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 
 				x:Name="lbAccDe"
                 StyleId="informacion"/>
@@ -191,7 +192,7 @@
                 <Label
                     FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			        Text="Descripcion:" 
 			        FontAttributes="Bold"/>
@@ -205,6 +206,7 @@
 			        Placeholder="Indicar observaciones del producto." />
 
                 <Button
+                    BackgroundColor="Transparent"
 			        ImageSource="bfoto.png"
 			        x:Name="fotos1"
 			        HorizontalOptions="FillAndExpand"
@@ -225,19 +227,23 @@
 			        HorizontalOptions="Center">
 
                     <Button
+                        BackgroundColor="Transparent"
 				        ImageSource="bopciones.png"
 				        Clicked="Consultar_Reporte"
 				        HorizontalOptions="Start"
-                        WidthRequest="150"
+                        WidthRequest="180"
+                        HeightRequest="92"
 				        FontAttributes="Bold"
 				        StyleId="Ok"/>
 
 
                     <Button
+                        BackgroundColor="Transparent"
 				        ImageSource="baceptar.png"
 				        Clicked="Enviar_Reporte"
+                        HeightRequest="92"
 				        HorizontalOptions="End"
-                        WidthRequest="150"
+                        WidthRequest="180"
 				        FontAttributes="Bold"
 				        StyleId="Ok"/>
                 </StackLayout>
@@ -245,6 +251,5 @@
         </ScrollView>
     </StackLayout>
                
-            </StackLayout>
         </AbsoluteLayout>
 </ContentPage>

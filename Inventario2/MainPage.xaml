@@ -13,9 +13,9 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="35,20,35,50">
+            <StackLayout Padding="80,20,80,50">
                 <StackLayout
-                    Padding="17,20,17,170">
+                    Padding="480,20,476,170">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions />
                         <Image Source="tache.png"
@@ -87,14 +87,14 @@
             VerticalOptions="Center"
 			HorizontalOptions="End">
             <Button
-				WidthRequest="150"
-                HeightRequest="87"
+				HeightRequest="92"
+                WidthRequest="180"
 				Clicked="IniciarSesion"
-                TextColor="Red"
+                BackgroundColor="Transparent"
                 ImageSource="baceptar.png"
 				HorizontalOptions="End"
-				FontAttributes="Bold"
-				StyleId="Ok"/>
+				
+				/>
         </StackLayout>
             </StackLayout>
         </StackLayout>

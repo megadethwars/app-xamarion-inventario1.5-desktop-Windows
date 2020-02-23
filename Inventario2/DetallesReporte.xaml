@@ -21,10 +21,11 @@
                Source="nuevofondo.png" Aspect="AspectFill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
             <StackLayout
-		Padding="70,10,70,10">
+		Padding="80,10,70,10">
                 <StackLayout
-            Padding="93,20,93,20">
+            Padding="400,20,400,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -47,14 +48,14 @@
             FontFamily="Montserrat-Bold"
 		    Text="NOMBRE DEL PRODUCTO:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Padding="40,0,20,20">
                         <Label
             FontFamily="Montserrat-Light"
-                            FontSize="Large"
+                            FontSize="Default"
 			x:Name="nameProd"
             TextColor="White"
                 
@@ -66,14 +67,14 @@
             FontFamily="Montserrat-Bold"
 		    Text="ID CODIGO:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Padding="40,0,20,20">
                         <Label
             FontFamily="Montserrat-Light"
-                            FontSize="Large"
+                            FontSize="Default"
 			x:Name="idcodigo"
             TextColor="White"
                 
@@ -87,14 +88,14 @@
             FontFamily="Montserrat-Bold"
 		    Text="MARCA:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Padding="40,0,20,20">
                         <Label
             FontFamily="Montserrat-Light"
-                            FontSize="Large"
+                            FontSize="Default"
 			x:Name="idmarca"
             TextColor="White"
                 
@@ -107,14 +108,14 @@
             FontFamily="Montserrat-Bold"
 		    Text="MODELO:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Padding="40,0,20,20">
                         <Label
             FontFamily="Montserrat-Light"
-                            FontSize="Large"
+                            FontSize="Default"
 			x:Name="idmodelo"
             TextColor="White"
                 
@@ -127,14 +128,14 @@
             FontFamily="Montserrat-Bold"
 		    Text="SERIE:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Padding="40,0,20,20">
                         <Label
             FontFamily="Montserrat-Light"
-                            FontSize="Large"
+                            FontSize="Default"
 			x:Name="idSerie"
             TextColor="White"
                 
@@ -147,14 +148,14 @@
             FontFamily="Montserrat-Bold"
 		    Text="OBSERVACIONES:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Padding="40,0,20,20">
                         <Label
             FontFamily="Montserrat-Light"
-                            FontSize="Large"
+                            FontSize="Default"
 			x:Name="idobserv"
             TextColor="White"
                 
@@ -167,7 +168,7 @@
             FontFamily="Montserrat-Bold"
 		    Text="FOTO:"
             TextColor="White"
-                FontSize="Large"
+                FontSize="Default"
                 CharacterSpacing="4"
 			FontAttributes="Bold"/>
             </StackLayout>
@@ -176,13 +177,14 @@
             WidthRequest="200"
             HeightRequest="200"/>
         <Button
-            
+            BackgroundColor="Transparent"
             HorizontalOptions="Center"
             VerticalOptions="Center"
 			ImageSource="baceptar.png"
 			Clicked="OnAccept"
 			StyleId="Ok"/>
     </StackLayout>
-            </StackLayout>
+            </ScrollView>
+        </StackLayout>
         </AbsoluteLayout>
 </ContentPage>
