@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Plugin.FilePicker;
+using Syncfusion.XlsIO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +13,7 @@ namespace Inventario2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Inventario : ContentPage
     {
+        Plugin.FilePicker.Abstractions.FileData f;
         //string codigo;
         public List<InventDB> users;
         public string stringcode;
@@ -177,10 +179,20 @@ namespace Inventario2
         {
             Navigation.PushAsync(new Escanear(this));
         }
+        public async void Checar()
+        {
+            f = await CrossFilePicker.Current.PickFile();
+
+            if (f != null)
+            {
+                await DisplayAlert("Excel",f.FileName,"aceptar");
+
+            }
+        }
 
         private async void MenuOp(object sender, EventArgs e)
         { //Despegar menu de  3 opciones Ingresar, Retirar, Detalles
-            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida");
+            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida","Actualizar BD");
             switch (res)
             {
                 case "Agregar Nuevo Producto":
@@ -196,8 +208,12 @@ namespace Inventario2
                     //Abrir vista/pagina Retirar Producto
                     Navigation.PushAsync(new RetirarProducto(this));
                     break;
+                case "Actualizar BD":
+                    Checar();
+                    break;
 
-                
+
+
             }
         }
 
