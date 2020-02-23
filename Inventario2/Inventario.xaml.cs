@@ -181,13 +181,75 @@ namespace Inventario2
         }
         public async void Checar()
         {
+            
             f = await CrossFilePicker.Current.PickFile();
 
             if (f != null)
             {
-                await DisplayAlert("Excel",f.FileName,"aceptar");
+                var t = DisplayAlert("Excel",f.FileName,"aceptar");
+                
+                    ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true, IsVisible = true, IsEnabled = true };
+                    ExcelEngine excelEngine = new ExcelEngine();
+                    IApplication application = excelEngine.Excel;
+                    application.DefaultVersion = ExcelVersion.Excel2013;
 
+
+                    IWorkbook workbook = application.Workbooks.Open(f.GetStream());
+
+                    //Access first worksheet from the workbook.
+                    IWorksheet worksheet = workbook.Worksheets[1];
+                    List<InventDB> list = null;
+                    
+                    //Filas.
+                    for (int x = 2; x < 1514; x++)
+                    {
+                        //columnas
+
+                        var strs = worksheet.GetText(x, 2);
+                        list = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == strs).ToListAsync();
+                        if (list.Count != 0)
+                        {
+                            list[0].compra = worksheet.GetText(x, 8);
+                            list[0].costo = worksheet.GetText(x, 6);
+                            list[0].descompostura = worksheet.GetText(x, 11);
+                            list[0].marca = worksheet.GetText(x, 4);
+                            list[0].modelo = worksheet.GetText(x, 5);
+                            list[0].nombre = worksheet.GetText(x, 3);
+                            list[0].observaciones = worksheet.GetText(x, 9);
+                            list[0].origen = worksheet.GetText(x, 7);
+                            list[0].pertenece = worksheet.GetText(x, 10);
+                            list[0].lugar = "Almacen";
+                            list[0].serie = worksheet.GetText(x, 1);
+                            await App.MobileService.GetTable<InventDB>().UpdateAsync(list[0]);
+                        }
+                        else
+                        {
+                            var id = Guid.NewGuid().ToString();
+                            InventDB n = new InventDB
+                            {
+
+                                codigo = strs,
+                                serie = worksheet.GetText(x, 1),
+                                compra = worksheet.GetText(x, 8),
+                                costo = worksheet.GetText(x, 6),
+                                descompostura = worksheet.GetText(x, 11),
+                                marca = worksheet.GetText(x, 4),
+                                modelo = worksheet.GetText(x, 5),
+                                nombre = worksheet.GetText(x, 3),
+                                observaciones = worksheet.GetText(x, 9),
+                                origen = worksheet.GetText(x, 7),
+                                pertenece = worksheet.GetText(x, 10),
+                                ID = id,
+                                lugar = "Almacen"
+                            };
+                            await App.MobileService.GetTable<InventDB>().InsertAsync(n);
+                        }
+
+                    }
+                    activityIndicator.IsRunning = false;
+                
             }
+            
         }
 
         private async void MenuOp(object sender, EventArgs e)
