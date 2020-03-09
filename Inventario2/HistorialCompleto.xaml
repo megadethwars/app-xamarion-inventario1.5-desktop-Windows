@@ -21,9 +21,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
             <StackLayout
-		        Padding="80,5,70,80">
+		        Padding="210,5,210,80">
                 <StackLayout
-                    Padding="400,0,400,5">
+                    Padding="649,0,649,5">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
                         <Grid.RowDefinitions >
@@ -55,20 +55,13 @@
                 <SearchBar
                     x:Name="searchbar"
                     BackgroundColor="Gray"
-                    TextColor="White"
+                    TextColor="Black"
                     PlaceholderColor="White"
 			        Placeholder="Buscar por nombre o ID"
 			        CancelButtonColor="Red"
 			        SearchButtonPressed="Search_SearchButtonPressed" />
 
-                <Button
-			HorizontalOptions="Center"
-            FontAttributes="Bold"
-            BackgroundColor="Transparent"
-            ImageSource="bscanner.png"
-			WidthRequest="180"
-                HeightRequest="92"
-			Clicked="Button_Clicked" />
+               
                 <!--
         <StackLayout
             Orientation="Horizontal" HorizontalOptions="Center">
@@ -101,13 +94,13 @@
 	        >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
 
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -170,21 +163,21 @@
 			    VerticalOptions="FillAndExpand">
 			
                     <StackLayout Padding="0,0,0,10">
-                        <ListView x:Name="postListView"  ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
+                        <ListView x:Name="postListView"  ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" HeightRequest="570">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell >
                                         <StackLayout Orientation="Horizontal" BackgroundColor="Gray">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="100" />
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="180" />
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="180"/>
                                                     
                                                     
                                                 </Grid.ColumnDefinitions>

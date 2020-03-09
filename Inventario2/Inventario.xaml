@@ -21,9 +21,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
             <StackLayout
-		        Padding="80,0,70,10">
+		        Padding="210,0,210,10">
                 <StackLayout
-                    Padding="500,10,500,0">
+                    Padding="635,10,635,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
                         
@@ -51,27 +51,20 @@
                         BackgroundColor="Gray"
                         PlaceholderColor="White"
                         TextChanged="search_TextChanged"
-                        TextColor="White"
+                        TextColor="Black"
 			            SearchButtonPressed="SearchBar" />
                 </StackLayout>
                 <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="CenterAndExpand">
-                    <Button
-                        FontAttributes="Bold"
-			            
-                        WidthRequest="200"
-                        
-                        BackgroundColor="Transparent"
-                        ImageSource="bscanner.png"
-			            Clicked="Scan"/>
+                    
                     <StackLayout Padding="0,9,50,8">
                         <Picker x:Name="pickerBuscar"
                             TitleColor="Red"
                             Title="TIPO DE BUSQUEDA"
                             TextColor="Red"
                             FontFamily="Montserrat-Bold"
-                            WidthRequest="170"
+                            WidthRequest="200"
                             HeightRequest="55"
                             BackgroundColor="Transparent"
                             SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
@@ -92,14 +85,14 @@
                     <StackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="210"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -151,21 +144,21 @@
 			                HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
                             <StackLayout VerticalOptions="FillAndExpand">
-                                <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
+                                <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" HeightRequest="570">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal">
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
-                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Label 
                                                             Text="{Binding nombre}" 

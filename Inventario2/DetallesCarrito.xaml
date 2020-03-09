@@ -22,9 +22,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
             <StackLayout
-		Padding="80,10,70,50">
+		Padding="210,10,210,50">
                 <StackLayout
-            Padding="400,20,400,20">
+            Padding="525,20,525,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png"

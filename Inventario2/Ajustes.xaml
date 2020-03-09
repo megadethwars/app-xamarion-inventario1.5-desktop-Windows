@@ -23,9 +23,9 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		Padding="70,10,70,10">
+		Padding="210,10,210,10">
                 <StackLayout
-            Padding="230,20,230,20">
+            Padding="600,20,600,200">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -73,6 +73,7 @@
 			        IsToggled="True"
 				    Toggled="Copia"
                     Grid.Column="1"
+                    ThumbColor="Red"
                     Grid.Row="0"/>
 
                 <Label
@@ -91,6 +92,10 @@
 			        IsToggled="True"
 				    Toggled="Sincronizacion"
                     Grid.Column="1"
+                    ThumbColor="Red"
+                    
+                  
+                    
                     Grid.Row="1"/>
 
                 <Button

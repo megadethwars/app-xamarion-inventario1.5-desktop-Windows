@@ -22,9 +22,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
             <StackLayout
-		Padding="80,20,70,20">
+		Padding="210,20,210,20">
                 <StackLayout
-            Padding="460,20,460,30">
+            Padding="578,20,578,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -43,28 +43,19 @@
 
                 </StackLayout>
                 
-                    <StackLayout>
+                    <StackLayout Padding="0,0,0,70">
                         <SearchBar
                     x:Name="search"
                     BackgroundColor="Gray"
-                    PlaceholderColor="White"
-                    TextColor="White"
+                    PlaceholderColor="Black"
+                    TextColor="Black"
 			        Placeholder="Buscar por nombre o ID"
 			        CancelButtonColor="Red"
 			        SearchButtonPressed="SearchBar" />
 
-                        <Button
-			        HorizontalOptions="Center"
-                    TextColor="Red"
-                    ImageSource="bscanner.png"
-                     BackgroundColor="Transparent"
-                    WidthRequest="180"
-                HeightRequest="92"
-			        
-			        FontAttributes="Bold"
-			        Clicked="Scan"/>
+                    
 
-                        <StackLayout 
+                        <StackLayout Padding="0,50,0,0"
             
 			Orientation="Horizontal">
                             <Label

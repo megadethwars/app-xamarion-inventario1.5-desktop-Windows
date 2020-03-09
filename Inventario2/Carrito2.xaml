@@ -19,9 +19,9 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
-            <StackLayout Padding="80,20,70,30">
+            <StackLayout Padding="210,20,210,30">
                 <StackLayout
-            Padding="460,20,460,30">
+            Padding="663,20,663,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="60" WidthRequest="60" Grid.Column="0"/>
@@ -44,12 +44,12 @@
 	         ColumnSpacing="10">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                            <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="220"/>
                         </Grid.ColumnDefinitions>
 
                     <Label
@@ -92,21 +92,21 @@
                     </Grid>
 
                 <ScrollView>
-                    <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
-                        <ListView.ItemTemplate>
+                        <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" HeightRequest="660">
+                            <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal">
                                         <Grid ColumnSpacing="10">
                                             <Grid.ColumnDefinitions>
 
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                    <ColumnDefinition Width="160"/>
-                                                    <ColumnDefinition Width="160"/>
-                                                    <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                    <ColumnDefinition Width="220"/>
+                                                    <ColumnDefinition Width="220"/>
+                                                    <ColumnDefinition Width="220"/>
 
                                             </Grid.ColumnDefinitions>
 

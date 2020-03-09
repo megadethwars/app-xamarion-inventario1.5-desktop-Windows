@@ -22,9 +22,9 @@
             <ScrollView
             >
             <StackLayout
-		Padding="80,20,70,50">
+		Padding="210,20,210,50">
                 <StackLayout
-            Padding="400,20,400,30">
+            Padding="580,20,580,70">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "700"/>
                         <Image Source="tache.png"
@@ -47,12 +47,12 @@
         
             <StackLayout>
                 <StackLayout 
-			        HorizontalOptions="FillAndExpand">
+			        HorizontalOptions="FillAndExpand" Padding="0,0,0,50">
 
                                 <SearchBar x:Name="nombreID"
                     BackgroundColor="Gray"
-                    TextColor="White"
-                    PlaceholderColor="White"
+                    TextColor="Black"
+                    PlaceholderColor="Black"
 			        Placeholder="Buscar por nombre o ID"
 			        CancelButtonColor="Red"
 			        SearchButtonPressed="nombreID_SearchButtonPressed"
@@ -60,23 +60,18 @@
 
                             </StackLayout>
 
-                <Button
-                    BackgroundColor="Transparent"
-			        HorizontalOptions="Center"
-			        ImageSource="bscanner.png"
-			        FontAttributes="Bold"			       
-			        Clicked="Scan"/>
+                
 
 
                 <Grid
 	                    ColumnSpacing="10">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
 
                     </Grid.ColumnDefinitions>
 
@@ -122,18 +117,18 @@
 
 
                                 <StackLayout Padding="0,0,0,100">
-                        <ListView x:Name="postListView" BackgroundColor="Gray" ItemSelected="PostListView_ItemSelected">
+                        <ListView x:Name="postListView" BackgroundColor="Gray" ItemSelected="PostListView_ItemSelected" HeightRequest="570">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal">
                                             <Grid ColumnSpacing="10">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="150"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="200"/>
                                                 </Grid.ColumnDefinitions>
 
                                                 <Label Text="{Binding codigo}" TextColor="White" Grid.Column="0"/>

@@ -29,7 +29,7 @@ namespace Inventario2
             base.OnAppearing();
             search.Text = stringcode;
             tipoBusqueda = pickerBuscar.SelectedItem as String;
-            
+            search.Focus();
             if (cont == 1)
             {
                 var busqueda = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
@@ -271,7 +271,7 @@ namespace Inventario2
                     Navigation.PushAsync(new RetirarProducto(this));
                     break;
                 case "Actualizar BD":
-                    Checar();
+                    Navigation.PushAsync(new UpdateBD());
                     break;
 
 

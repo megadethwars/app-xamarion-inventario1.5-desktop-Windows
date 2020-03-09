@@ -13,9 +13,9 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="80,20,80,50">
+            <StackLayout Padding="210,20,210,50">
                 <StackLayout
-                    Padding="480,20,476,170">
+                    Padding="614,20,614,170">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions />
                         <Image Source="tache.png"

@@ -13,13 +13,13 @@
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
-            <StackLayout Padding="80,40,70,10">
+            <StackLayout Padding="210,40,210,10">
                 <StackLayout
-            Padding="400,10,400,10">
+            Padding="550,10,550,10">
                     <Grid ColumnSpacing="0"
                           HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>

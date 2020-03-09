@@ -20,9 +20,9 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
-            <StackLayout Padding="80,10,70,40">
+            <StackLayout Padding="210,10,210,40">
                 <StackLayout
-            Padding="450,20,450,30">
+            Padding="663,20,663,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="55" WidthRequest="55"/>
@@ -44,11 +44,11 @@
 	         ColumnSpacing="10">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
 
                         </Grid.ColumnDefinitions>
 
@@ -87,7 +87,7 @@
                     </Grid >
 
                 <ScrollView>
-                    <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
+                    <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" HeightRequest="660">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -95,12 +95,12 @@
                                         <Grid ColumnSpacing="10">
                                             <Grid.ColumnDefinitions>
 
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
-                                                <ColumnDefinition Width="160"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
+                                                <ColumnDefinition Width="220"/>
 
 
                                                 </Grid.ColumnDefinitions>

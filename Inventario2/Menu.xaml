@@ -23,9 +23,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
             <StackLayout
-                Padding="35,10,40,10">
+                Padding="40,10,40,10">
                 <StackLayout
-                    Padding="590,0,590,0">
+                    Padding="863,0,863,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>  
@@ -40,23 +40,24 @@
 			                StyleId="Titulo"/>
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="0,0,0,30"
-                             VerticalOptions="CenterAndExpand">
+                <StackLayout Padding="100,0,0,30"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="Center">
                 <Grid
-                    ColumnSpacing="30"
+                    ColumnSpacing="100"
                     RowSpacing="20"
                     HorizontalOptions="Center"
                     VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="210"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -78,20 +79,20 @@
 			    Grid.Column="1"/>
                 </Grid>
                 <Grid
-            ColumnSpacing="30"
+            ColumnSpacing="100"
             RowSpacing="0"
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
                     <Label
                HorizontalOptions="Center"
@@ -113,20 +114,20 @@
                 Grid.Row="0"/>
                 </Grid>
                 <Grid
-            ColumnSpacing="30"
+            ColumnSpacing="100"
             RowSpacing="20"
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="210"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -147,20 +148,20 @@
 			    Grid.Column="1"/>
                 </Grid>
                 <Grid
-            ColumnSpacing="30"
+            ColumnSpacing="100"
             RowSpacing="20"
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
 
                     <Label
@@ -184,20 +185,20 @@
                 Grid.Row="0"/>
                 </Grid>
                 <Grid
-            ColumnSpacing="30"
+            ColumnSpacing="100"
             RowSpacing="20"
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="210"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -217,20 +218,20 @@
                 Grid.Row="0"/>
                 </Grid>
                 <Grid
-            ColumnSpacing="30"
+            ColumnSpacing="100"
             RowSpacing="20"
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
 
                     <Label

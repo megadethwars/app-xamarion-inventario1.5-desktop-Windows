@@ -25,10 +25,10 @@
             AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
                 <StackLayout
-		        Padding="80,10,70,20">
+		        Padding="210,10,210,20">
                     <StackLayout
-                Padding="400,0,400,10">
-                <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                Padding="636,0,636,10">
+                        <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions Width = "100"/>
                     <Grid.RowDefinitions Height="250"/>
                     <Image Source="tache.png"
@@ -60,11 +60,11 @@
                 <Grid
     	             ColumnSpacing="5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -100,18 +100,18 @@
                     HorizontalOptions="FillAndExpand">
                     <StackLayout VerticalOptions="FillAndExpand"
                                  Padding="0,0,0,100">
-                        <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" >
+                        <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" HeightRequest="570" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal">
                                             <Grid ColumnSpacing="5">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="150"/>
-                                                    <ColumnDefinition Width="150"/>
-                                                    <ColumnDefinition Width="150"/>
-                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="250"/>
+                                                    <ColumnDefinition Width="200"/>
                                                     </Grid.ColumnDefinitions>
                                                 <Label 
                                                     Text="{Binding nombre}" 

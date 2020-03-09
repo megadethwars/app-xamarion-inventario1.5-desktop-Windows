@@ -23,9 +23,9 @@
     </ContentPage.Resources>-->
             <ScrollView>
                 <StackLayout
-		    Padding="80,20,70,20">
+		    Padding="210,20,210,70">
                     <StackLayout
-            Padding="400,20,400,20">
+            Padding="580,20,580,20">
                         <Grid ColumnSpacing="0" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions Width = "100"/>
                             <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -78,15 +78,7 @@
                    TextColor="White"/>
                     </StackLayout>
 
-                    <Button
-                TextColor="Red"
-                BackgroundColor="Transparent"
-			            HorizontalOptions="Center"
-			            ImageSource="bscanner.png"
-                        WidthRequest="180"
-                HeightRequest="92"
-			            FontAttributes="Bold"
-			            Clicked="Scan"/>
+                   
 
                     <StackLayout>
 

@@ -33,6 +33,7 @@ namespace Inventario2
 
         protected override void OnAppearing()
         {
+            search.Focus();
             base.OnAppearing();
             if (mv.Count>0)
             {
@@ -140,10 +141,13 @@ namespace Inventario2
             }
             else
                 await DisplayAlert("Buscando", " no encontrado", "OK");
+
+            search.Text = "";
         }
         private void SearchBar(object sender, EventArgs e)
         {
             busqueda();
+            
         }
 
         private void Scan(object sender, EventArgs e)

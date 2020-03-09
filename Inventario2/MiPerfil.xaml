@@ -22,9 +22,9 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout HorizontalOptions="Center"
-		Padding="90,10,90,10">
+		Padding="200,10,200,10">
                 <StackLayout
-            Padding="520,20,520,20">
+            Padding="670,20,670,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>

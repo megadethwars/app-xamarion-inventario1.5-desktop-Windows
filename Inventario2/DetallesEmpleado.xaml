@@ -23,9 +23,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
             <StackLayout
-		Padding="80,20,70,20">               
+		Padding="210,20,210,60">               
                 <StackLayout
-            Padding="400,20,400,30">
+            Padding="525,20,525,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
