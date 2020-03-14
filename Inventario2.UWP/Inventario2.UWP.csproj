@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>7D10A709FC137105016DE8788C714C5A8136DBFE</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1C746B0C6E7B5FBA08B08250D589C79240EACC30</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -114,6 +114,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\insesion.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
@@ -152,15 +153,18 @@
     <Content Include="bingresar.png" />
     <Content Include="bopciones.png" />
     <Content Include="bscanner.png" />
+    <Content Include="carrito.png" />
     <Content Include="iconoajustes.png" />
     <Content Include="iconoempleados.png" />
     <Content Include="iconohistorial.png" />
     <Content Include="iconoinventario.png" />
     <Content Include="iconoperfil.png" />
     <Content Include="iconoreporte.png" />
+    <Content Include="insesion.png" />
     <Content Include="menuu.png" />
     <Content Include="mun.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="scale-100\insesion.png" />
     <Content Include="scale-100\nuevofondo.png" />
     <Content Include="scale-100\tache.png" />
     <Content Include="tache.png" />
