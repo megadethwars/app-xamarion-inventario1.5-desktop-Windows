@@ -161,9 +161,12 @@
     <Content Include="iconoperfil.png" />
     <Content Include="iconoreporte.png" />
     <Content Include="insesion.png" />
+    <Content Include="Inventario2.sln" />
     <Content Include="menuu.png" />
     <Content Include="mun.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="prueba2.png" />
+    <Content Include="pruebapn.png" />
     <Content Include="scale-100\insesion.png" />
     <Content Include="scale-100\nuevofondo.png" />
     <Content Include="scale-100\tache.png" />
