@@ -69,7 +69,7 @@ namespace Inventario2
                 //DRAW THE MAIN TITLE
                 PdfFont Headfont = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
                 //Creates a text element to add the invoice number
-                PdfTextElement headelement = new PdfTextElement("AUDIO VIDEO STUDIOS ", Headfont);
+                PdfTextElement headelement = new PdfTextElement("AUDIO VIDEO SOLUTIONS ", Headfont);
                 headelement.Brush = PdfBrushes.Red;
                 PdfLayoutResult result = headelement.Draw(page, new PointF(graphics.ClientSize.Width - 350, graphics.ClientSize.Height - 740));
 

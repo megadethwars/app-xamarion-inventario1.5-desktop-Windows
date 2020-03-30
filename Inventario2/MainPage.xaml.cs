@@ -43,9 +43,12 @@ namespace Inventario2
                          {
                              if (usuarios[x].contrasena == passEntry.Text)
                              {
-                                 password = true;
-                                 await Navigation.PushAsync(new Menu(usuarios[x]));
-                                 break;
+                                password = true;
+
+                                   
+
+                                await Navigation.PushAsync(new Menu(usuarios[x]));
+                                break;
                              }
 
                          }
