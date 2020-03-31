@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-
+using Inventario2.Services;
+using Inventario2.Models;
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
@@ -31,33 +33,52 @@ namespace Inventario2
 
         private async void IniciarSesion(object sender, EventArgs e)
         {
-             Boolean password = false;
+            
              try
              {
                  if (nameEntry.Text != null && passEntry.Text != null)
                  {
-                     var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == nameEntry.Text).ToListAsync();
-                     if (usuarios.Count() != 0)
+                    //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == nameEntry.Text).ToListAsync();
+                    LoginUser logus = new LoginUser();
+                    logus.nombre = nameEntry.Text;
+                    logus.password = passEntry.Text;
+                    var status = await UserService.loginAsync(JsonConvert.SerializeObject(logus));
+
+                    if (status!=null)
                      {
-                         for (int x = 0; x < usuarios.Count(); x++)
-                         {
-                             if (usuarios[x].contrasena == passEntry.Text)
-                             {
-                                password = true;
 
-                                   
+                        if(status.statuscode == 404)
+                        {
+                            await DisplayAlert("Error", "Usuario no encontrado", "Aceptar");
 
-                                await Navigation.PushAsync(new Menu(usuarios[x]));
-                                break;
-                             }
+                            return;
+                        }
 
-                         }
-                         if (password == false)
-                             await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
+                        if(status.statuscode == 401)
+                        {
+                            await DisplayAlert("Error", "Usuario y/o contraseña incorrecto", "Aceptar");
+                        }
 
+                        if (status.statuscode == 500)
+                        {
+                            await DisplayAlert("Error", "error en el servidor(bad request)", "Aceptar");
+                            return;
+
+                        }
+
+                        if (status.statuscode==201 || status.statuscode ==200)
+                        {
+                            //query this user
+                            var usuarios = await UserService.getuserbyname(logus.nombre);
+                            logus.Dispose();                                              
+                            await Navigation.PushAsync(new Menu(null));
+                                    
+                                                           
+                        }
+                                           
                      }
                      else
-                         await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
+                         await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
                  }
                  else
                      await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
