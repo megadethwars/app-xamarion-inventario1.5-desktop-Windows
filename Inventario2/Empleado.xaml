@@ -118,7 +118,7 @@
                                                     TextColor="White" 
                                                     Grid.Column="0"/>
                                                 <Label 
-                                                    Text="{Binding tipoUsuario}" 
+                                                    Text="{Binding rol}" 
                                                     TextColor="White" 
                                                     Grid.Column="1"/>
                                                 <Label 
@@ -130,7 +130,7 @@
                                                     TextColor="White" 
                                                     Grid.Column="3"/>
                                                 <Label 
-                                                    Text="{Binding fechaContratacion}" 
+                                                    Text="{Binding fecha}" 
                                                     TextColor="White" 
                                                     Grid.Column="4"/>
                                                 </Grid>

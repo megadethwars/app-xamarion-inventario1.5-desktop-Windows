@@ -19,6 +19,8 @@ namespace Inventario2.Models
         public string rol { get; set; }
         public int statuscode { get; set; }
         public string message { get; set; }
+
+        public string foto { get; set; }
         public void Dispose()
         {
            

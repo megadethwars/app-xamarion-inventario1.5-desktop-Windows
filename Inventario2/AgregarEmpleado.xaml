@@ -183,11 +183,11 @@
                             TextColor="White"
                             TitleColor="White"
                             SelectedIndexChanged="PickerUser_SelectedIndexChanged">
-                        <Picker.Items>
+                        <!--<Picker.Items>
                             <x:String>Usuario</x:String>
                             <x:String>Administrador</x:String>
                             <x:String>Almacen</x:String>
-                        </Picker.Items>
+                        </Picker.Items>-->
                     </Picker>
                 </StackLayout>
                 <Button

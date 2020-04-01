@@ -70,8 +70,16 @@ namespace Inventario2
                         {
                             //query this user
                             var usuarios = await UserService.getuserbyname(logus.nombre);
+
+                            if (usuarios[0].statuscode == 500)
+                            {
+                                await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
+                                return;
+                            }
+
+
                             logus.Dispose();                                              
-                            await Navigation.PushAsync(new Menu(null));
+                            await Navigation.PushAsync(new Menu(usuarios[0]));
                                     
                                                            
                         }
@@ -83,8 +91,9 @@ namespace Inventario2
                  else
                      await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
              }
-             catch
+             catch(Exception ex)
              {
+                Console.WriteLine(ex.Message);
                  await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
              }
 

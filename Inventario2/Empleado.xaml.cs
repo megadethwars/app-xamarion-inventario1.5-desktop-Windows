@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using Inventario2.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Inventario2.Models;
+using Inventario2.Services;
 
 namespace Inventario2
 {
@@ -15,8 +16,8 @@ namespace Inventario2
     public partial class Empleado : ContentPage
     {
         public List<Usuario> users;
-        Usuario us;
-        public Empleado(Usuario u)
+        ModelUser us;
+        public Empleado(ModelUser u)
         {
             InitializeComponent();
             us = u;
@@ -25,9 +26,17 @@ namespace Inventario2
         {
             base.OnAppearing();
             
-            var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
-        
-            postListView.ItemsSource = usuarios;
+           // var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
+            var usuarios = await UserService.getusers();
+            if(usuarios[0].statuscode==200 || usuarios[0].statuscode == 201)
+            {
+                postListView.ItemsSource = usuarios;
+            }
+            else
+            {
+                await DisplayAlert("Buscando", "no encotntrados, error en servicio", "OK");
+            }
+            
         }
         private async void SearchBarEmp(object sender, EventArgs e)
         {
@@ -36,43 +45,95 @@ namespace Inventario2
 
             if (!isNumeric)
             {
-                //SQLiteConnection conn = new SQLiteConnection(App.DtabaseLocation);
-                //conn.CreateTable<InventDB>();
-                //var users1 = conn.Query<InventDB>("select * from InventDB where Nombre= ?", search.Text);
-                //conn.Close();
-                var users1 = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == search.Text).ToListAsync();
+               
+                //var users1 = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == search.Text).ToListAsync();
+                var users1 = await UserService.getuserbyname(search.Text);
+
+                if (users1==null)
+                {
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "Aceptar");
+                }
+
+
                 if (users1.Count != 0)
                 {
+                    if (users1[0].statuscode==404)
+                    {
+                        await DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
+                        return;
+                    }
+                    else if(users1[0].statuscode == 500)
+                    {
+                        await DisplayAlert("Buscando", "error interno del servicio", "Aceptar");
+                        return;
+                    }
+
                     //DisplayAlert("Buscando", "encontrado", "OK");
                     postListView.ItemsSource = users1;
                 }
                 else
                 {
-                    DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
-                    var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
-
-                    postListView.ItemsSource = usuarios;
+                    await DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
+                    
+                    var usuarios = await UserService.getusers();
+                    if (usuarios[0].statuscode == 200 || usuarios[0].statuscode == 201)
+                    {
+                        postListView.ItemsSource = usuarios;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Buscando", "no encotntrados, error en servicio", "OK");
+                        return;
+                    }
+                 
                 }
             }
             else
             {
 
-                var users1 = await App.MobileService.GetTable<Usuario>().Where(u => u.ID == search.Text).ToListAsync();
+                var users1 = await UserService.getuser(Int32.Parse(search.Text));
+
+                if (users1 == null)
+                {
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "Aceptar");
+                }
+
+
                 if (users1.Count != 0)
                 {
+                    if (users1[0].statuscode == 404)
+                    {
+                        await DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
+                        return;
+                    }
+                    else if (users1[0].statuscode == 500)
+                    {
+                        await DisplayAlert("Buscando", "error interno del servicio", "Aceptar");
+                        return;
+                    }
+
                     //DisplayAlert("Buscando", "encontrado", "OK");
                     postListView.ItemsSource = users1;
                 }
                 else
                 {
-                    DisplayAlert("Buscando", " no encontrado", "OK");
+                    await DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
 
-                    var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
+                    var usuarios = await UserService.getusers();
+                    if (usuarios[0].statuscode == 200 || usuarios[0].statuscode == 201)
+                    {
+                        postListView.ItemsSource = usuarios;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Buscando", "no encotntrados, error en servicio", "OK");
+                        return;
+                    }
 
-                    postListView.ItemsSource = usuarios;
                 }
             }
-            }
+
+         }
 
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -108,11 +169,7 @@ namespace Inventario2
 
         async void search_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            if (search.Text == "")
-            {
-                var usuario = await App.MobileService.GetTable<Usuario>().ToListAsync();
-                postListView.ItemsSource = usuario;
-            }
+            
         }
     }
 }

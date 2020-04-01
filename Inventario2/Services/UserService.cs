@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Inventario2.Services
 {
-    class UserService
+    public class UserService
     {
 
         public static string url = "http://127.0.0.1:5000/";
