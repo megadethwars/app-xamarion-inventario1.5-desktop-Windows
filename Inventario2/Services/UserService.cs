@@ -16,7 +16,7 @@ namespace Inventario2.Services
         public static async Task<StatusMessage> loginAsync(string objecto)
         {
 
-            var status = await HttpMethods.Post(url + "loginpre", objecto);
+            var status = await HttpMethods.Post(Global.url + "loginpre", objecto);
             return status;
             //devolver como tabla
         }
@@ -24,7 +24,7 @@ namespace Inventario2.Services
         public static async Task<StatusMessage> loginpreAsync(string objecto)
         {
 
-            var status = await HttpMethods.Post(url + "login", objecto);
+            var status = await HttpMethods.Post(Global.url + "login", objecto);
             return status;
             //devolver como tabla
         }
@@ -32,7 +32,7 @@ namespace Inventario2.Services
 
         public static async Task<List<ModelUser>> getusers()
         {
-            var status = await HttpMethods.get(url + "users");
+            var status = await HttpMethods.get(Global.url + "users");
             if (status.statuscode == 200 || status.statuscode == 201)
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
@@ -57,7 +57,7 @@ namespace Inventario2.Services
 
         public static async Task<List<ModelUser>> getuser(int id)
         {
-            var status = await HttpMethods.get(url + "users/" + $"{id}");
+            var status = await HttpMethods.get(Global.url + "users/" + $"{id}");
             if (status.statuscode == 200 || status.statuscode == 201)
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
@@ -81,7 +81,7 @@ namespace Inventario2.Services
 
         public static async Task<List<ModelUser>> getuserbyname(string id)
         {
-            var status = await HttpMethods.get(url + "userbyname/" + $"{id}");
+            var status = await HttpMethods.get(Global.url + "userbyname/" + $"{id}");
             if (status.statuscode == 200 || status.statuscode == 201)
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
@@ -106,14 +106,14 @@ namespace Inventario2.Services
 
         public static async Task<StatusMessage> putuser(int id, string objeto)
         {
-            var status = await HttpMethods.put(url + "putuser/" + $"{id}", objeto);
+            var status = await HttpMethods.put(Global.url + "putuser/" + $"{id}", objeto);
             return status;
         }
 
 
         public static async Task<StatusMessage> postuser(string objeto)
         {
-            var status = await HttpMethods.Post(url + "postUser", objeto);
+            var status = await HttpMethods.Post(Global.url + "postUser", objeto);
             return status;
         }
 

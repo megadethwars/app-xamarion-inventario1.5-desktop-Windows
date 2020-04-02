@@ -27,6 +27,7 @@ namespace Inventario2
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            /*
             search.Text = stringcode;
             tipoBusqueda = pickerBuscar.SelectedItem as String;
             search.Focus();
@@ -44,7 +45,7 @@ namespace Inventario2
                 var usuario = await App.MobileService.GetTable<InventDB>().ToListAsync();
                 postListView.ItemsSource = usuario;
             }
-            
+            */
             
         }
 
