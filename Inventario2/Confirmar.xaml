@@ -74,6 +74,20 @@
                                PlaceholderColor="White"
                                TextColor="White"
                        Placeholder="Ingrese el Destino"/>
+
+                        <Picker x:Name="pickerLugar"
+                            Title="Selecciona el tipo de lugar"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            TitleColor="White"
+                            SelectedIndexChanged="PickerLugar_SelectedIndexChanged">
+                            <!--<Picker.Items>
+                            <x:String>Usuario</x:String>
+                            <x:String>Administrador</x:String>
+                            <x:String>Almacen</x:String>
+                        </Picker.Items>-->
+                        </Picker>
+
                         <Button Clicked="Button_Clicked"
                         TextColor="Red"
                                 BackgroundColor="Transparent"

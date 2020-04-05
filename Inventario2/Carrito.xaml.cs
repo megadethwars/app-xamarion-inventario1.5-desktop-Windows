@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
 using Inventario2.Model;
+using Inventario2.Models;
 
 namespace Inventario2
 {
@@ -46,7 +47,7 @@ namespace Inventario2
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             postListView.SelectedItem = null;
-            var selectedPost = postListView.SelectedItem as Movimientos;
+            var selectedPost = postListView.SelectedItem as ModelMovements;
             if (selectedPost != null)
                 Navigation.PushAsync(new DetallesCarrito(selectedPost, re));
         }
@@ -54,11 +55,11 @@ namespace Inventario2
         private void Button_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
-            var product = button.BindingContext as Movimientos;
+            var product = button.BindingContext as ModelMovements;
             int x = 0;
-            for (int y = 0; y < re.mv.Count(); y++)
+            for (int y = 0; y < re.movimientos.Count(); y++)
             {
-                if (re.mv[y] == product)
+                if (re.movimientos[y] == product)
                 {
                     x = y;
                     break;
@@ -66,7 +67,7 @@ namespace Inventario2
             }
             if(re.f1==null)
             re.f1.Remove(re.f1[x]);
-            re.mv.Remove(product);
+            re.movimientos.Remove(product);
 
             postListView.ItemsSource = null;
             postListView.ItemsSource = re.mv;

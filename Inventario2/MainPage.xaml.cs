@@ -72,9 +72,17 @@ namespace Inventario2
                             //query this user
                             var usuarios = await UserService.getuserbyname(logus.nombre);
 
-                            if (usuarios[0].statuscode == 500)
+                            if (usuarios == null)
                             {
                                 await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
+
+                                return;
+                            }
+
+
+                            if (usuarios[0].statuscode == 500)
+                            {
+                                await DisplayAlert("Error", "Error interno en el servidor", "Aceptar");
                                 return;
                             }
 

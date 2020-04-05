@@ -40,20 +40,20 @@ namespace Inventario2
         {
             search.Focus();
             base.OnAppearing();
-            if (mv.Count>0)
+            if (movimientos.Count>0)
             {
-                for(int x =0;x<mv.Count;x++)
+                for(int x =0;x<movimientos.Count;x++)
                 {
-                    for(int y = x+1; y<mv.Count;y++)
+                    for(int y = x+1; y<movimientos.Count;y++)
                     {
-                        if(mv[x].codigo == mv[y].codigo)
+                        if(movimientos[x].codigo == movimientos[y].codigo)
                         {
-                            mv.Remove(mv[y]);
+                            movimientos.Remove(movimientos[y]);
                         }
                     }
                 }
             }
-            BotonCarrito.Text = "Carrito " + "(" + mv.Count.ToString() + ")";
+            BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
             
             p = Guid.NewGuid().ToString("D");
             
@@ -124,8 +124,8 @@ namespace Inventario2
                         serietxt.Text = devices[0].serie;
                         pertenece.Text = devices[0].pertenece;
                         origentxt.Text = devices[0].origen;
-                        Llenar();
-                        BotonCarrito.Text = "Carrito " + "(" + mv.Count.ToString() + ")";
+                        Llenar(devices[0]);
+                        BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
                     }
 
                     //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.nombre == search.Text).ToListAsync();
@@ -165,10 +165,10 @@ namespace Inventario2
                         origentxt.Text = devices[0].origen;
                         marcaTxt.Text = devices[0].modelo;
                         obserb.Text = devices[0].observaciones;
-                        if (!(users1[0].foto == ""))
-                            foto.Source = users1[0].foto;
-                        Llenar();
-                        BotonCarrito.Text = "Carrito " + "(" + mv.Count.ToString() + ")";
+                        if (!(devices[0].foto == ""))
+                            foto.Source = devices[0].foto;
+                        Llenar(devices[0]);
+                        BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
                     } 
 
 
@@ -193,23 +193,25 @@ namespace Inventario2
             //Declarada en inventario Principal
         }
 
-        private void Llenar()
+        private void Llenar(ModelDevice device)
         {
             ModelMovements moves = new ModelMovements {
                 
-                IDmovimiento="",
-                IDtipomov=2,
-                IDusuario=Model.CurrentUser.ID,
-                IDdevice=devices[0].ID,
-                observacionesMov="OK",
-                producto = devices[0].producto,
-                marca = devices[0].marca,
-                serie = devices[0].serie,
-                modelo = devices[0].modelo
+                
                 
                 //fecha = DateTime.Now.ToString("dd/MM/yyyy")
             };
 
+            moves.IDmovimiento = "";
+            moves.IDtipomov = 2;
+            moves.IDusuario = Model.CurrentUser.ID;
+            moves.IDdevice = device.ID;
+            moves.observacionesMov = "OK";
+            moves.producto = device.producto;
+            moves.marca = device.marca;
+            moves.serie = device.serie;
+            moves.modelo = device.modelo;
+            moves.codigo = device.codigo;
             movimientos.Add(moves);
 
             

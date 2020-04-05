@@ -22,7 +22,8 @@ namespace Inventario2
             user = u;
             CurrentUser.nombre = user.nombre;
             CurrentUser.apellido_paterno = user.apellido_paterno;
-            CurrentUser.ID = user.ID.ToString();
+            CurrentUser.ID = u.ID;
+            //CurrentUser.ID = user.ID.ToString();
             CurrentUser.correo = user.correo;
         }
 

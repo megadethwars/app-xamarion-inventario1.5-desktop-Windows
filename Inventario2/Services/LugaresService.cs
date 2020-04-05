@@ -15,7 +15,7 @@ namespace Inventario2.Services
 
         public static async Task<List<ModelLugares>> getlugares()
         {
-            var status = await HttpMethods.get(Global.url + "roles");
+            var status = await HttpMethods.get(Global.url + "lugares");
             if (status.statuscode == 200 || status.statuscode == 201)
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelLugares>>(status.message);

@@ -39,7 +39,18 @@ namespace Inventario2
 
             var roles = await RolesService.getroles();
 
-            pickerUser.ItemsSource = roles;
+            if (roles == null)
+            {
+                await DisplayAlert("error", "error de conexion con el servidor", "Aceptar");
+                return;
+            }
+
+            if (roles[0].statuscode==200 || roles[0].statuscode==201)
+            {
+                pickerUser.ItemsSource = roles;
+            }
+
+            
 
         }
 

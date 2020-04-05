@@ -43,5 +43,11 @@ namespace Inventario2.Models
 
         public string fotomov2 { get; set; }
 
+        public int statuscode { get; set; }
+
+        public string message { get; set; }
+
+        public string cantidad { get; set; }
+
     }
 }
