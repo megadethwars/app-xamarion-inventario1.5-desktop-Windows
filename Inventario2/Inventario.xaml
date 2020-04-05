@@ -70,12 +70,12 @@
                             SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
 
                             <Picker.Items>
-                                <x:String>QR</x:String>
-                                <x:String>Nombre</x:String>
-                                <x:String>Marca</x:String>
-                                <x:String>Modelo</x:String>
-                                <x:String>Proveedor</x:String>
-                                <x:String>Serie</x:String>
+                                    <x:String>QR</x:String>
+                                <x:String>producto</x:String>
+                                    <x:String>marca</x:String>
+                                    <x:String>modelo</x:String>
+                                    <x:String>proveedor</x:String>
+                                    <x:String>serie</x:String>
                             </Picker.Items>
                             <Picker.SelectedIndex>0</Picker.SelectedIndex>
                         </Picker>
@@ -161,7 +161,7 @@
                                                             <ColumnDefinition Width="210"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Label 
-                                                            Text="{Binding nombre}" 
+                                                            Text="{Binding producto}" 
                                                             TextColor="White" 
                                                             Grid.Column="0"/>
                                                         <Label 
@@ -181,7 +181,7 @@
                                                             TextColor="White" 
                                                             Grid.Column="4"/>
                                                         <Label 
-                                                            Text="{Binding origen}" 
+                                                            Text="{Binding Lugar}" 
                                                             TextColor="White" 
                                                             Grid.Column="5"/>
                                                         <Label 
@@ -189,7 +189,7 @@
                                                             TextColor="White" 
                                                             Grid.Column="6"/>
                                                         <Label 
-                                                            Text="{Binding lugar}" 
+                                                            Text="{Binding Lugar}" 
                                                             TextColor="White" 
                                                             Grid.Column="7"/>
                                                     </Grid>

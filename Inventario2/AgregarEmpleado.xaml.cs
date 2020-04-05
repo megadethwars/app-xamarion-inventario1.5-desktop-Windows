@@ -12,7 +12,7 @@ using System.IO;
 using Microsoft.WindowsAzure.Storage;
 using Inventario2.Models;
 using Inventario2.Services;
-using System.Threading.Tasks;
+
 using Newtonsoft.Json;
 
 namespace Inventario2

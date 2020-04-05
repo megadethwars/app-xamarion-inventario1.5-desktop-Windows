@@ -23,7 +23,7 @@ namespace Inventario2.Models
 
         public string cantidad { get; set; }
 
-        public int IDorigen { get; set; }
+        public string origen { get; set; }
 
         public string pertenece { get; set; }
 
@@ -40,6 +40,8 @@ namespace Inventario2.Models
         public string proveedor { get; set; }
 
         public string Lugar { get; set; }
+
+        public int IDlugar { get; set; }
 
         public string message { get; set; }
 

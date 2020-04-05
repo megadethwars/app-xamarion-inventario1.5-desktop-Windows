@@ -51,6 +51,12 @@
                             TextColor="Red"
                             BackgroundColor="Black"
                             Clicked="Button_Clicked_1"/>
+
+                        <Button Text="Detener"
+                            TextColor="Red"
+                            BackgroundColor="Black"
+                            Clicked="Button_detener"/>
+
                     </StackLayout>
 
                 </StackLayout>

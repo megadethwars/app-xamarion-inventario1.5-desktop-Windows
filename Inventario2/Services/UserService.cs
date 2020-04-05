@@ -15,106 +15,165 @@ namespace Inventario2.Services
         LoginUser loginuser = new LoginUser();
         public static async Task<StatusMessage> loginAsync(string objecto)
         {
-
-            var status = await HttpMethods.Post(Global.url + "loginpre", objecto);
-            return status;
+            try
+            {
+                var status = await HttpMethods.Post(Global.url + "loginpre", objecto);
+                return status;
+            }
+            catch {
+                return null;
+            }
+            
             //devolver como tabla
         }
 
         public static async Task<StatusMessage> loginpreAsync(string objecto)
         {
-
-            var status = await HttpMethods.Post(Global.url + "login", objecto);
-            return status;
+            try
+            {
+                var status = await HttpMethods.Post(Global.url + "login", objecto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+            
             //devolver como tabla
         }
 
 
         public static async Task<List<ModelUser>> getusers()
         {
-            var status = await HttpMethods.get(Global.url + "users");
-            if (status.statuscode == 200 || status.statuscode == 201)
+            try 
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
-                foreach (ModelUser usuario in list)
+                var status = await HttpMethods.get(Global.url + "users");
+                if (status.statuscode == 200 || status.statuscode == 201)
                 {
-                    usuario.statuscode = status.statuscode;
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
+                    foreach (ModelUser usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+
+                    return list;
+
                 }
+                else
+                {
+                    List<ModelUser> listerror = new List<ModelUser>();
+                    listerror.Add(new ModelUser());
 
-                return list;
-
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
             }
-            else
+            catch
             {
-                List<ModelUser> listerror = new List<ModelUser>();
-                listerror.Add(new ModelUser());
-
-                listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
-                listerror[0].statuscode = status.statuscode;
-                return listerror;
+                return null;
             }
+
+            
         }
 
         public static async Task<List<ModelUser>> getuser(int id)
         {
-            var status = await HttpMethods.get(Global.url + "users/" + $"{id}");
-            if (status.statuscode == 200 || status.statuscode == 201)
+            try
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
-                foreach (ModelUser usuario in list)
+                var status = await HttpMethods.get(Global.url + "users/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
                 {
-                    usuario.statuscode = status.statuscode;
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
+                    foreach (ModelUser usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
                 }
-                return list;
-            }
-            else
-            {
-                List<ModelUser> listerror = new List<ModelUser>();
-                listerror.Add(new ModelUser());
+                else
+                {
+                    List<ModelUser> listerror = new List<ModelUser>();
+                    listerror.Add(new ModelUser());
 
-                listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
-                listerror[0].statuscode = status.statuscode;
-                return listerror;
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
             }
+            catch
+            {
+                return null;
+            }
+
+            
 
         }
 
         public static async Task<List<ModelUser>> getuserbyname(string id)
         {
-            var status = await HttpMethods.get(Global.url + "userbyname/" + $"{id}");
-            if (status.statuscode == 200 || status.statuscode == 201)
-            {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
-                foreach (ModelUser usuario in list)
-                {
-                    usuario.statuscode = status.statuscode;
-                }
-                return list;
-            }
-            else
-            {
-                List<ModelUser> listerror = new List<ModelUser>();
-                listerror.Add(new ModelUser());
 
-                listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
-                listerror[0].statuscode = status.statuscode;
-                return listerror;
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "userbyname/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelUser>>(status.message);
+                    foreach (ModelUser usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelUser> listerror = new List<ModelUser>();
+                    listerror.Add(new ModelUser());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
             }
+            catch
+            {
+                return null;
+            }
+
+            
 
         }
 
 
         public static async Task<StatusMessage> putuser(int id, string objeto)
         {
-            var status = await HttpMethods.put(Global.url + "putuser/" + $"{id}", objeto);
-            return status;
+            try
+            {
+                var status = await HttpMethods.put(Global.url + "putuser/" + $"{id}", objeto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+
+            
         }
 
 
         public static async Task<StatusMessage> postuser(string objeto)
         {
-            var status = await HttpMethods.Post(Global.url + "postUser", objeto);
-            return status;
+            try
+            {
+                ar status = await HttpMethods.Post(Global.url + "postUser", objeto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+
+            
         }
 
 

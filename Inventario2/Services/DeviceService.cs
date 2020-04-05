@@ -15,68 +15,312 @@ namespace Inventario2.Services
 
 
 
-        public static async Task<List<ModelDevice>> getroles()
+        public static async Task<List<ModelDevice>> getdevices()
         {
-            var status = await HttpMethods.get(Global.url + "roles");
-            if (status.statuscode == 200 || status.statuscode == 201)
+            try
             {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
-                foreach (ModelDevice rol in list)
+                var status = await HttpMethods.get(Global.url + "devices");
+                if (status.statuscode == 200 || status.statuscode == 201)
                 {
-                    rol.statuscode = status.statuscode;
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice rol in list)
+                    {
+                        rol.statuscode = status.statuscode;
+                    }
+
+                    return list;
+
                 }
-
-                return list;
-
-            }
-            else
-            {
-                List<ModelDevice> listerror = new List<ModelDevice>();
-                listerror.Add(new ModelDevice());
-
-                listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
-                listerror[0].statuscode = status.statuscode;
-                return listerror;
-            }
-        }
-
-        public static async Task<List<ModelDevice>> getrol(int id)
-        {
-            var status = await HttpMethods.get(Global.url + "roles/" + $"{id}");
-            if (status.statuscode == 200 || status.statuscode == 201)
-            {
-                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
-                foreach (ModelDevice usuario in list)
+                else
                 {
-                    usuario.statuscode = status.statuscode;
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
                 }
-                return list;
             }
-            else
+            catch
             {
-                List<ModelDevice> listerror = new List<ModelDevice>();
-                listerror.Add(new ModelDevice());
-
-                listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
-                listerror[0].statuscode = status.statuscode;
-                return listerror;
+                return null;
             }
 
+            
+        }
+
+        public static async Task<List<ModelDevice>> getdevicebyid(int id)
+        {
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "deviceid/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+
         }
 
 
-
-        public static async Task<StatusMessage> putrol(int id, string objeto)
+        public static async Task<List<ModelDevice>> getdevicebycode(string id)
         {
-            var status = await HttpMethods.put(Global.url + "putrole/" + $"{id}", objeto);
-            return status;
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "devicecode/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+
         }
 
 
-        public static async Task<StatusMessage> postRole(string objeto)
+        public static async Task<List<ModelDevice>> getdevicebymodel(string id)
         {
-            var status = await HttpMethods.Post(Global.url + "postRole", objeto);
-            return status;
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "devicemodelo/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+
+        }
+
+
+        public static async Task<List<ModelDevice>> getdevicebyprov(string id)
+        {
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "deviceprov/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+
+        }
+
+
+        public static async Task<List<ModelDevice>> getdevicebyserie(string id)
+        {
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "deviceserie?serie=" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+
+            
+
+        }
+
+
+        public static async Task<List<ModelDevice>> getdevicebymarca(string id)
+        {
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "devicemarca/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+
+        }
+
+        public static async Task<List<ModelDevice>> getdevicebyproduct(string id)
+        {
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "devicename?nombre=" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+
+        }
+
+
+        public static async Task<StatusMessage> putdevice(int id, string objeto)
+        {
+            try
+            {
+                var status = await HttpMethods.put(Global.url + "putdevice/" + $"{id}", objeto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+
+            
+        }
+
+
+        public static async Task<StatusMessage> postdevice(string objeto)
+        {
+            try 
+            {
+                var status = await HttpMethods.Post(Global.url + "postDevice", objeto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+
+            
         }
 
     }
