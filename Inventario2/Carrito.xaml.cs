@@ -23,7 +23,7 @@ namespace Inventario2
         {
             InitializeComponent();
             re = r;
-            postListView.ItemsSource = re.mv;
+            postListView.ItemsSource = re.movimientos;
 
 
         }
@@ -38,7 +38,7 @@ namespace Inventario2
             base.OnAppearing();
             //re.mv.Clear();
             postListView.ItemsSource = null;
-            postListView.ItemsSource = re.mv;
+            postListView.ItemsSource = re.movimientos;
 
 
         }

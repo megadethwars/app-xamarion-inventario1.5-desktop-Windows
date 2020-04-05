@@ -57,6 +57,7 @@ namespace Inventario2
                         if(status.statuscode == 401)
                         {
                             await DisplayAlert("Error", "Usuario y/o contraseña incorrecto", "Aceptar");
+                            return;
                         }
 
                         if (status.statuscode == 500)

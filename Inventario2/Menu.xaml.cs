@@ -20,10 +20,10 @@ namespace Inventario2
             pdfmovement = new PDFMovement("");
             InitializeComponent();
             user = u;
-            User.nombre = user.nombre;
-            User.apellido_paterno = user.apellido_paterno;
-            User.ID = user.ID.ToString();
-            User.correo = user.correo;
+            CurrentUser.nombre = user.nombre;
+            CurrentUser.apellido_paterno = user.apellido_paterno;
+            CurrentUser.ID = user.ID.ToString();
+            CurrentUser.correo = user.correo;
         }
 
         private void Ir_Perfil(object sender, EventArgs e)

@@ -7,9 +7,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Inventario2.Models;
+using Inventario2.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
@@ -21,6 +23,7 @@ namespace Inventario2
         private GeneratePDF pdf;
         private InventDB CurrentDevice;
         private bool isToggled;
+        private ModelUser usuariosalida;
         public Confirmar(Carrito x)
         {
             InitializeComponent();
@@ -30,76 +33,135 @@ namespace Inventario2
             CurrentDevice = new InventDB();
         }
 
+
+        private async Task<bool> verifyuser(string user,string password)
+        {
+            LoginUser logus = new LoginUser();
+            logus.nombre = user;
+            logus.password = password;
+
+            var status = await UserService.loginAsync(JsonConvert.SerializeObject(logus));
+
+            if (status==null)
+            {
+                return false;
+            }
+
+            if (status.statuscode == 404)
+            {
+                await DisplayAlert("Error", "Usuario no encontrado", "Aceptar");
+
+                return false;
+            }
+
+            if (status.statuscode == 401)
+            {
+                await DisplayAlert("Error", "Usuario y/o contraseña incorrecto", "Aceptar");
+                return false;
+            }
+
+            if (status.statuscode == 500)
+            {
+                await DisplayAlert("Error", "error en el servidor(bad request)", "Aceptar");
+                return  false;
+
+            }
+
+            if (status.statuscode == 201 || status.statuscode == 200)
+            {
+                //query this user
+                var users = await UserService.getuserbyname(logus.nombre);
+
+                if (users[0].statuscode == 500)
+                {
+                    await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
+                    return false;
+                }
+
+                usuariosalida = users[0];
+                logus.Dispose();
+                users = null;
+                return true;
+
+            }
+
+            return false;
+        }
+
         private async void Button_Clicked(object sender, EventArgs e)
         {
             if (!isToggled)
             {
                 Boolean v = true;
-                Boolean password = false;
+                bool password = false;
                 if (Usuario.Text != null && Contra.Text != null)
                 {
-                    var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
-                    if (usuarios.Count() != 0)
+                    bool status = await verifyuser(Usuario.Text, Contra.Text);
+
+
+                    //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
+                    
+                    
+                    if (status)
                     {
-                        for (int x = 0; x < usuarios.Count(); x++)
+                        isToggled = true;
+                        password = true;
+
+                        await UpdateLocations(rp.re.mv, Destino.Text);
+
+                        for (int y = 0; y < rp.re.mv.Count(); y++)
                         {
-                            if (usuarios[x].contrasena == Contra.Text)
+                            try
                             {
-                                isToggled = true;
-                                password = true;
-                                await UpdateLocations(rp.re.mv, Destino.Text);
+                                rp.re.movimientos[y].ID = p;
+                                rp.re.movimientos[y].IDusuario = usuariosalida.ID;
+                                rp.re.movimientos[y].IDlugar = 1;
+                                rp.re.movimientos[y].fotomov1 = p.Substring(15) + rp.re.mv[y].codigo + ".jpg";
+                                rp.re.movimientos[y].fotomov2 = p.Substring(10) + rp.re.mv[y].codigo + "2.jpg";
 
-                                for (int y = 0; y < rp.re.mv.Count(); y++)
-                                {
-                                    try
-                                    {
-                                        rp.re.mv[y].ID = p;
-                                        rp.re.mv[y].usuario = usuarios[x].nombre;
-                                        rp.re.mv[y].lugar = Destino.Text;
-                                        rp.re.mv[y].foto = p.Substring(15) + rp.re.mv[y].codigo+".jpg";
-                                        rp.re.mv[y].foto2 = p.Substring(10) + rp.re.mv[y].codigo + "2.jpg";
-                                        await App.MobileService.GetTable<Movimientos>().InsertAsync(rp.re.mv[y]);
-                                        //UploadFile(f.GetStream());
-                                        //DisplayAlert("Agregado", re.mv.Count().ToString(), "Aceptar");
-                                        //re.mv.Clear();
-                                        //await Navigation.PopAsync();
-                                        v = true;
-                                        if (rp.re.f1[y] != null)
-                                            UploadFile(rp.re.f1[y].GetStream(), rp.re.mv[y].foto);
-                                        if (rp.re.f2[y] != null)
-                                            UploadFile(rp.re.f2[y].GetStream(), rp.re.mv[y].foto2);
+                                
+                                
+                                
+                                
+                                await App.MobileService.GetTable<Movimientos>().InsertAsync(rp.re.mv[y]);
+                                //UploadFile(f.GetStream());
+                                //DisplayAlert("Agregado", re.mv.Count().ToString(), "Aceptar");
+                                //re.mv.Clear();
+                                //await Navigation.PopAsync();
+                                v = true;
+                                if (rp.re.f1[y] != null)
+                                    UploadFile(rp.re.f1[y].GetStream(), rp.re.mv[y].foto);
+                                if (rp.re.f2[y] != null)
+                                    UploadFile(rp.re.f2[y].GetStream(), rp.re.mv[y].foto2);
 
-                                    }
-                                    catch (MobileServiceInvalidOperationException ms)
-                                    {
-                                        var response = await ms.Response.Content.ReadAsStringAsync();
-                                        await DisplayAlert("Error", response, "Aceptar");
-                                        v = false;
-                                        break;
-                                    }
-                                }
-                                if (v)
-                                {
-                                    //agregar el pdf
-                                    rp.re.mv.Clear();
-                                    rp.re.f1.Clear();
-                                    rp.re.f2.Clear();
-                                    await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
-                                    //await Navigation.PushAsync(new PDFMovement(p));
-                                    await pdf.InitPDFAsync(p);
-                                    ToolbarItem_Clicked(null, null);
-                                    //await Navigation.PopAsync();
-                                }
+                            }
+                            catch (MobileServiceInvalidOperationException ms)
+                            {
+                                var response = await ms.Response.Content.ReadAsStringAsync();
+                                await DisplayAlert("Error", response, "Aceptar");
+                                v = false;
+                                break;
                             }
                         }
-                        if (password == false)
-                            await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
+                        if (v)
+                        {
+                            //agregar el pdf
+                            rp.re.mv.Clear();
+                            rp.re.f1.Clear();
+                            rp.re.f2.Clear();
+                            await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
+                            //await Navigation.PushAsync(new PDFMovement(p));
+                            await pdf.InitPDFAsync(p);
+                            ToolbarItem_Clicked(null, null);
+                            //await Navigation.PopAsync();
+                        }
+
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
-                    }
-
+                        return;
+                    }                  
+                  
                 }
                 else
                 {

@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing;
 using ZXing.Net.Mobile.Forms;
+using Inventario2.Models;
+using Inventario2.Services;
 
 namespace Inventario2
 {
@@ -20,6 +22,9 @@ namespace Inventario2
         string p;
         public int cont;
         List<InventDB> users1;
+        List<ModelDevice> devices;
+        public List<ModelMovements> movimientos = new List<ModelMovements>();
+
         public List<Movimientos> mv = new List<Movimientos>();
         public Inventario inv;
         public string text;
@@ -90,53 +95,85 @@ namespace Inventario2
 
                 if (!isNumeric)
                 {
-                    //SQLiteConnection conn = new SQLiteConnection(App.DtabaseLocation);
-                    //conn.CreateTable<InventDB>();
-                    //var users1 = conn.Query<InventDB>("select * from InventDB where Nombre= ?", search.Text);
-                    //conn.Close();
-                    users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.nombre == search.Text).ToListAsync();
-                    if (users1.Count == 1)
+
+
+                    devices = await DeviceService.getdevicebyproduct(search.Text);
+                    if (devices == null)
                     {
-                        //DisplayAlert("Buscando", "encontrado", "OK");
-                        nombreTxt.Text = users1[0].nombre;
-                        modeloTxt.Text = users1[0].marca;
-                        serietxt.Text = users1[0].serie;
-                        pertenece.Text = users1[0].pertenece;
-                        origentxt.Text = users1[0].origen;
+
+                        await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                        return;
+                    }
+
+                    if (devices[0].statuscode == 500)
+                    {
+                        await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                        return;
+                    }
+
+                    if (devices[0].statuscode == 404)
+                    {
+                        await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                        return;
+                    }
+
+                    if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                    {
+                        nombreTxt.Text = devices[0].producto;
+                        modeloTxt.Text = devices[0].marca;
+                        serietxt.Text = devices[0].serie;
+                        pertenece.Text = devices[0].pertenece;
+                        origentxt.Text = devices[0].origen;
                         Llenar();
                         BotonCarrito.Text = "Carrito " + "(" + mv.Count.ToString() + ")";
-
                     }
-                    else
-                    {
-                        await DisplayAlert("Buscando", "Producto no encontrado", "Aceptar");
 
-                    }
+                    //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.nombre == search.Text).ToListAsync();
+                    
+                    
                 }
                 else
                 {
 
-                    users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
-                    if (users1.Count != 0)
+                    var devices = await DeviceService.getdevicebycode(search.Text);
+                    if (devices == null)
+                    {
+
+                        await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                        return;
+                    }
+
+                    if (devices[0].statuscode == 500)
+                    {
+                        await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                        return;
+                    }
+
+                    if (devices[0].statuscode == 404)
+                    {
+                        await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                        return;
+                    }
+
+                    if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                     {
                         //DisplayAlert("Buscando", "encontrado", "OK");
-                        nombreTxt.Text = users1[0].nombre;
-                        modeloTxt.Text = users1[0].marca;
-                        serietxt.Text = users1[0].serie;
-                        pertenece.Text = users1[0].pertenece;
-                        origentxt.Text = users1[0].origen;
-                        marcaTxt.Text = users1[0].modelo;
-                        obserb.Text = users1[0].observaciones;
+                        nombreTxt.Text = devices[0].producto;
+                        modeloTxt.Text = devices[0].marca;
+                        serietxt.Text = devices[0].serie;
+                        pertenece.Text = devices[0].pertenece;
+                        origentxt.Text = devices[0].origen;
+                        marcaTxt.Text = devices[0].modelo;
+                        obserb.Text = devices[0].observaciones;
                         if (!(users1[0].foto == ""))
                             foto.Source = users1[0].foto;
                         Llenar();
                         BotonCarrito.Text = "Carrito " + "(" + mv.Count.ToString() + ")";
-                    }
-                    else
-                    {
-                        await DisplayAlert("Buscando", " no encontrado", "OK");
+                    } 
 
-                    }
+
+                    //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
+                   
                 }
             }
             else
@@ -158,23 +195,24 @@ namespace Inventario2
 
         private void Llenar()
         {
-            Movimientos mv1 = new Movimientos
-            {
-                ID = "",
-                observ = "Ninguna",
-                producto = users1[0].nombre,
-                marca = users1[0].marca,
-                modelo = users1[0].modelo,
-                IdProducto = users1[0].ID,
-                codigo = users1[0].codigo,
-                serie = users1[0].serie,
-                cantidad = "1",
-                foto = "",
-                movimiento = "Retirar",
-                lugar = " ",
-                fecha = DateTime.Now.ToString("dd/MM/yyyy")
+            ModelMovements moves = new ModelMovements {
+                
+                IDmovimiento="",
+                IDtipomov=2,
+                IDusuario=Model.CurrentUser.ID,
+                IDdevice=devices[0].ID,
+                observacionesMov="OK",
+                producto = devices[0].producto,
+                marca = devices[0].marca,
+                serie = devices[0].serie,
+                modelo = devices[0].modelo
+                
+                //fecha = DateTime.Now.ToString("dd/MM/yyyy")
             };
-            mv.Add(mv1);
+
+            movimientos.Add(moves);
+
+            
             f2.Add(f);
             f1.Add(f);
             f = null;

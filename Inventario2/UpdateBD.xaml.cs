@@ -94,7 +94,7 @@ namespace Inventario2
                     {
                         //await DisplayAlert("Buscando", "producto no encontrado", "OK");
 
-                        var id = Guid.NewGuid().ToString();
+                        //var id = Guid.NewGuid().ToString();
                         ModelDevice n = new ModelDevice
                         {
 

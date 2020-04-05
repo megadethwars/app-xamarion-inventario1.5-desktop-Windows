@@ -165,7 +165,7 @@ namespace Inventario2.Services
         {
             try
             {
-                ar status = await HttpMethods.Post(Global.url + "postUser", objeto);
+                var status = await HttpMethods.Post(Global.url + "postUser", objeto);
                 return status;
             }
             catch

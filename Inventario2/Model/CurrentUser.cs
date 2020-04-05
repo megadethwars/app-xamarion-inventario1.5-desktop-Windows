@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Inventario2.Model
 {
-    public class User
+    public class CurrentUser
     {
-        public static string ID { get; set; }
+        public static int ID { get; set; }
 
         public static string nombre { get; set; }
 
