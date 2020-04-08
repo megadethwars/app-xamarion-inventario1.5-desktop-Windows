@@ -280,7 +280,7 @@ namespace Inventario2
                     correo = Model.CurrentUser.correo;
                 }
 
-                tablacarrito.Columns.Add("CANT", typeof(int));
+                tablacarrito.Columns.Add("CANT", typeof(string));
                 tablacarrito.Columns.Add("CODIGO", typeof(string));
                 tablacarrito.Columns.Add("DESCRP", typeof(string));
                 tablacarrito.Columns.Add("MARCA", typeof(string));
@@ -291,6 +291,7 @@ namespace Inventario2
 
                 foreach (ModelMovements mov in lista)
                 {
+
                     tablacarrito.Rows.Add(mov.cantidad, mov.codigo, mov.producto, mov.marca, mov.modelo, mov.serie);
                 }
 
@@ -299,7 +300,7 @@ namespace Inventario2
                 tablacarrito.Dispose();
                 
             }
-            catch
+            catch(Exception ex)
             {
                 await DisplayAlert("Error", "Error de consulta", "Aceptar");
             }
