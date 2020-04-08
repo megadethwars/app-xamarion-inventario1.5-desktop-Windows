@@ -168,7 +168,7 @@ namespace Inventario2
                                     break;
                                 }
 
-                                if (statusmove.statuscode != 500)
+                                if (statusmove.statuscode == 500)
                                 {
                                     await DisplayAlert("Error", "interno del servidor", "Aceptar");
                                     break;
