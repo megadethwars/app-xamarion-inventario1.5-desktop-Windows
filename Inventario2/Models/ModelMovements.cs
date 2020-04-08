@@ -13,6 +13,8 @@ namespace Inventario2.Models
 
         public int IDtipomov { get; set; }
 
+        public string tipomovimiento { get; set; }
+
         public int IDdevice { get; set; }
 
 
@@ -34,6 +36,7 @@ namespace Inventario2.Models
 
         public string nombre { get; set; }
 
+      
 
         public string Lugar { get; set; }
 

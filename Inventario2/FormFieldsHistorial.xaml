@@ -42,22 +42,8 @@
 
 
                 </StackLayout>
-                <StackLayout>
-
-                    <Label Text="USUARIO:"
-               CharacterSpacing="2"
-               FontFamily="Montserrat-Bold"
-               FontAttributes="Bold"
-               FontSize="Default"
-                   TextColor="White"/>
-                </StackLayout>
-                <StackLayout Padding="40,0,20,50">
-                    <Entry Text="" x:Name="InUsuario"
-                   BackgroundColor="Gray"
-                   PlaceholderColor="White"
-                   Placeholder="Introduzca Usuario"
-                   TextColor="White"/>
-                </StackLayout>
+                
+                
                 <StackLayout>
                     <Label Text="ID Product:"
                 CharacterSpacing="2"
@@ -73,22 +59,8 @@
                    Placeholder="Introduzca ID"
                    TextColor="White"/>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="MOVIMIENTO:"
-                   TextColor="White"
-                    CharacterSpacing="2"
-               FontFamily="Montserrat-Bold"
-               FontAttributes="Bold"
-               FontSize="Default"
-                   />
-                </StackLayout>
-                <StackLayout Padding="40,0,20,50">
-                    <Entry Text="" x:Name="InUbicacion"
-                   BackgroundColor="Gray"
-                   PlaceholderColor="White"
-                   Placeholder="Introduzca ubicacion"
-                   TextColor="White"/>
-                </StackLayout>
+                
+                
 
                 <StackLayout>
                     <Label Text="PRODUCTO:"
@@ -105,14 +77,7 @@
                    Placeholder="INTRODUZCA NOMBRE DEL PRODUCTO"
                    TextColor="White"/>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="UBICACION:" 
-                   TextColor="White"
-                   CharacterSpacing="2"
-               FontFamily="Montserrat-Bold"
-               FontAttributes="Bold"
-               FontSize="Default"/>
-                </StackLayout>
+                
                 <StackLayout Padding="40,0,20,50">
                     <Entry Text="" x:Name="InModel"
                    BackgroundColor="Gray"
@@ -120,7 +85,90 @@
                    Placeholder="INTRODUZCA modelo"
                    TextColor="White"/>
                 </StackLayout>
+
                 <StackLayout>
+                        <Label Text="UBICACION:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Default"/>
+                </StackLayout>
+
+
+                <StackLayout Padding="40,0,20,50">
+
+                    <Picker x:Name="pickerlugar"
+                        Title="Seleccionar la ubicacion"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        TitleColor="White"
+                        SelectedIndexChanged="Pickerlugar_SelectedIndexChanged">
+                        <!--<Picker.Items>
+                        <x:String>Usuario</x:String>
+                        <x:String>Administrador</x:String>
+                        <x:String>Almacen</x:String>
+                    </Picker.Items>-->
+                    </Picker>
+                </StackLayout>
+
+                <StackLayout>
+
+                        <Label Text="USUARIO:"
+                            CharacterSpacing="2"
+                            FontFamily="Montserrat-Bold"
+                            FontAttributes="Bold"
+                            FontSize="Default"
+                            TextColor="White"/>  
+                 </StackLayout>
+
+
+                <StackLayout Padding="40,0,20,50">
+
+                    <Picker x:Name="pickeruser"
+                        Title="usuario"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        TitleColor="White"
+                        SelectedIndexChanged="PickerUser_SelectedIndexChanged">
+                        <!--<Picker.Items>
+                        <x:String>Usuario</x:String>
+                        <x:String>Administrador</x:String>
+                        <x:String>Almacen</x:String>
+                    </Picker.Items>-->
+                    </Picker>
+                </StackLayout>
+
+
+                <StackLayout>
+                    <Label Text="MOVIMIENTO:"
+                            TextColor="White"
+                            CharacterSpacing="2"
+                        FontFamily="Montserrat-Bold"
+                        FontAttributes="Bold"
+                        FontSize="Default"
+                            />
+                </StackLayout>
+
+
+                <StackLayout Padding="40,0,20,50">
+
+                    <Picker x:Name="pickertipomov"
+                        Title="tipo de movimiento"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        TitleColor="White"
+                        SelectedIndexChanged="pickertipomov_SelectedIndexChanged">
+                        <!--<Picker.Items>
+                        <x:String>Usuario</x:String>
+                        <x:String>Administrador</x:String>
+                        <x:String>Almacen</x:String>
+                    </Picker.Items>-->
+                    </Picker>
+                </StackLayout>
+
+
+                    <StackLayout>
                     <Label Text="SERIE:" 
                    TextColor="White"
                    CharacterSpacing="2"

@@ -294,16 +294,19 @@ namespace Inventario2
                 var listamoves = await MovementService.searchmovements(IDsalida, 0, 0, 0, null, null, null, null, null, null);
                 if (listamoves==null)
                 {
+                    await DisplayAlert("buscando", "error de conexion", "Aceptar");
                     return null;
                 }
 
                 if (listamoves[0].statuscode == 500)
                 {
+                    await DisplayAlert("buscando", "error interno en el servidor", "Aceptar");
                     return null;
                 }
 
                 if (listamoves[0].statuscode == 404)
                 {
+                    await DisplayAlert("buscando", "no encontrado", "Aceptar");
                     return null;
                 }
 

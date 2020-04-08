@@ -131,10 +131,10 @@ namespace Inventario2
                     }
                 }
                 else
-                    DisplayAlert("Error", "Contraseña no coincide", "Aceptar");
+                    await DisplayAlert("Error", "Contraseña no coincide", "Aceptar");
             }
             else
-                DisplayAlert("Error","Faltan campos por Llenar","Aceptar");
+                await DisplayAlert("Error","Faltan campos por Llenar","Aceptar");
         }
 
         private void PickerUser_SelectedIndexChanged(object sender, EventArgs e)

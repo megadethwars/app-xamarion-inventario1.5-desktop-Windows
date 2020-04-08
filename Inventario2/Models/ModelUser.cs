@@ -21,6 +21,11 @@ namespace Inventario2.Models
         public string message { get; set; }
 
         public string foto { get; set; }
+
+        public override string ToString()
+        {
+            return nombre;
+        }
         public void Dispose()
         {
            

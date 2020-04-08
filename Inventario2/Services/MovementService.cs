@@ -27,37 +27,37 @@ namespace Inventario2.Services
         public static async Task<List<ModelMovements>> searchmovements(string idmovimiento,int idtipomov,int idlugar,int idusuario,string producto,string fechamovimiento,string modelo,string marca,string codigo,string serie)
         {
             //generador string
-            if (idmovimiento==null)
+            if (idmovimiento==null || idmovimiento == "")
             {
                 idmovimiento = "null"; 
             }
 
-            if (producto == null)
+            if (producto == null || producto=="")
             {
                 producto = "null";
             }
 
-            if (fechamovimiento == null)
+            if (fechamovimiento == null || fechamovimiento=="")
             {
                 fechamovimiento = "null";
             }
 
-            if (modelo == null)
+            if (modelo == null || modelo=="")
             {
                 modelo = "null";
             }
 
-            if (marca == null)
+            if (marca == null || marca=="")
             {
                 marca = "null";
             }
 
-            if (codigo == null)
+            if (codigo == null || codigo=="")
             {
                 codigo = "null";
             }
 
-            if (serie == null)
+            if (serie == null || serie=="")
             {
                 serie = "null";
             }

@@ -39,6 +39,22 @@ namespace Inventario2
             {
                 //var busqueda = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
                 var busqueda = await DeviceService.getdevicebycode(search.Text);
+
+                if (busqueda == null)
+                {
+                    return;
+                }
+
+                if (busqueda[0].statuscode==500)
+                {
+                    return;
+                }
+
+                if (busqueda[0].statuscode == 404)
+                {
+                    return;
+                }
+
                 if (busqueda.Count != 0)
                     postListView.ItemsSource = busqueda;
                 else
@@ -55,7 +71,12 @@ namespace Inventario2
                     return;
                 }
 
-                if(devices[0].statuscode==200 || devices[0].statuscode == 201)
+                if (devices[0].statuscode==500)
+                {
+                    return;
+                }
+
+                if (devices[0].statuscode==200 || devices[0].statuscode == 201)
                 {
                     postListView.ItemsSource = devices;
                 }
@@ -69,9 +90,18 @@ namespace Inventario2
         
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedPost = postListView.SelectedItem as InventDB;
-            if (selectedPost != null)
-                Navigation.PushAsync(new DetallesProducto(selectedPost));
+            try
+            {
+                var selectedPost = postListView.SelectedItem as ModelDevice;
+                if (selectedPost != null)
+                    Navigation.PushAsync(new DetallesProducto(selectedPost));
+            }
+            catch
+            {
+
+            }
+
+            
         }
 
         public async void buscar()
