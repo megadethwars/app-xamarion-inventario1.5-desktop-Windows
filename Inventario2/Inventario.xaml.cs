@@ -55,11 +55,16 @@ namespace Inventario2
                     return;
                 }
 
-                if (busqueda.Count != 0)
-                    postListView.ItemsSource = busqueda;
-                else
-                    //DependencyService.Get<IMessage>().ShortAlert("Producto no Encontrado");
-                cont = 0;
+                if (busqueda[0].statuscode == 200)
+                {
+                    if (busqueda.Count != 0)
+                        postListView.ItemsSource = busqueda;
+                    else
+                        //DependencyService.Get<IMessage>().ShortAlert("Producto no Encontrado");
+                        cont = 0;
+                }
+
+                
             }
             else
             {

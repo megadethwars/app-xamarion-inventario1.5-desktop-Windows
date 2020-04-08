@@ -167,7 +167,7 @@ namespace Inventario2
             Navigation.PopAsync();
         }
 
-        async void search_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
+        private void search_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             
         }

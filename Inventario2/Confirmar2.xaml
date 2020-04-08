@@ -71,6 +71,9 @@
                                 BackgroundColor="Transparent"
                         TextColor="Red"
                         ImageSource="baceptar.png"></Button>
+
+                        
+
                     </StackLayout>
 
 

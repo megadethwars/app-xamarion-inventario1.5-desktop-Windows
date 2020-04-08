@@ -59,9 +59,17 @@ namespace Inventario2
 
         private void PickerLugar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var lugarindex = (ModelLugares)pickerLugar.SelectedItem;
-            idlugar = lugarindex.ID;
-            lugarindex.Dispose();
+            try
+            {
+                var lugarindex = (ModelLugares)pickerLugar.SelectedItem;
+                idlugar = lugarindex.ID;
+                lugarindex.Dispose();
+            }
+            catch
+            {
+
+            }
+            
         }
 
         private async Task<bool> verifyuser(string user,string password)
@@ -123,7 +131,7 @@ namespace Inventario2
             if (!isToggled)
             {
                 Boolean v = true;
-                bool password = false;
+            
                 if (Usuario.Text != null && Contra.Text != null)
                 {
                     bool status = await verifyuser(Usuario.Text, Contra.Text);
@@ -135,7 +143,7 @@ namespace Inventario2
                     if (status)
                     {
                         isToggled = true;
-                        password = true;
+                       
 
                         await UpdateLocations(rp.re.movimientos, idlugar);
 
@@ -156,6 +164,13 @@ namespace Inventario2
 
                                 if (statusmove == null)
                                 {
+                                    await DisplayAlert("Error", "error de conexion", "Aceptar");
+                                    break;
+                                }
+
+                                if (statusmove.statuscode != 500)
+                                {
+                                    await DisplayAlert("Error", "interno del servidor", "Aceptar");
                                     break;
                                 }
 
@@ -163,14 +178,7 @@ namespace Inventario2
                                     break;
                                 }
 
-
-                                //await App.MobileService.GetTable<Movimientos>().InsertAsync(rp.re.mv[y]);
-
-
-                                //UploadFile(f.GetStream());
-                                //DisplayAlert("Agregado", re.mv.Count().ToString(), "Aceptar");
-                                //re.mv.Clear();
-                                //await Navigation.PopAsync();
+                          
                                 v = true;
                                 if (rp.re.f1[y] != null)
                                     UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
@@ -287,6 +295,8 @@ namespace Inventario2
                         {
                             break;
                         }
+
+                        
                     }
 
 

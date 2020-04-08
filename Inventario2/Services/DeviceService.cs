@@ -7,7 +7,7 @@ using Inventario2.Models;
 
 namespace Inventario2.Services
 {
-    public class DeviceService
+    public  class DeviceService
     {
 
         public static string url = "http://127.0.0.1:5000/";
@@ -213,8 +213,10 @@ namespace Inventario2.Services
                     return listerror;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex) 
+            
             {
+                Console.WriteLine(ex.Message);
                 return null;
             }
 
@@ -292,11 +294,11 @@ namespace Inventario2.Services
         }
 
 
-        public static async Task<StatusMessage> putdevice(int id, string objeto)
+        public static async Task<StatusMessage> putdevice(int id1, string objeto)
         {
             try
             {
-                var status = await HttpMethods.put(Global.url + "putdevice/" + $"{id}", objeto);
+                var status = await HttpMethods.put(Global.url + "putdevice/" + $"{id1}", objeto);
                 return status;
             }
             catch

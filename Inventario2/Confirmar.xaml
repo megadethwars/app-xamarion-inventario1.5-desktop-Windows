@@ -69,14 +69,10 @@
                                FontFamily="Montserrat-Bold"
                        TextColor="White"
                    FontAttributes="Bold"/>
-                        <Entry x:Name="Destino"
-                               BackgroundColor="Gray"
-                               PlaceholderColor="White"
-                               TextColor="White"
-                       Placeholder="Ingrese el Destino"/>
+                        
 
                         <Picker x:Name="pickerLugar"
-                            Title="Selecciona el tipo de lugar"
+                            Title="Selecciona el lugar de destino"
                             BackgroundColor="Gray"
                             TextColor="White"
                             TitleColor="White"

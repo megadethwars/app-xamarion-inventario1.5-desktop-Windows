@@ -43,7 +43,7 @@ namespace Inventario2
         }
 
 
-        public bool CreatePDF(ModelMovements movimientos, DataTable tablacarrito, ModelUser User)
+        public bool CreatePDF(ModelMovements movimientos, DataTable tablacarrito, ModelUser User,int tipomov)
         {
             try
             {
@@ -78,7 +78,17 @@ namespace Inventario2
 
                 PdfFont Subtitle = new PdfStandardFont(PdfFontFamily.Helvetica, 14);
                 //Creates a text element to add the invoice number
-                PdfTextElement subtitelement = new PdfTextElement("ORDEN DE SALIDA ", Subtitle);
+                string hd = "ORDEN DE MOVIMIENTO";
+                if (tipomov == 1) 
+                {
+                    hd = "ORDEN DE ENTRADA ";
+                }
+                if(tipomov == 2)
+                {
+                    hd = "ORDEN DE SALIDA ";
+                }
+               
+                PdfTextElement subtitelement = new PdfTextElement(hd, Subtitle);
                 subtitelement.Brush = PdfBrushes.Red;
                 PdfLayoutResult Subresult = subtitelement.Draw(page, new PointF(graphics.ClientSize.Width - 300, graphics.ClientSize.Height - 710));
 
@@ -214,7 +224,18 @@ namespace Inventario2
 
 
                 bool res = SendSTMPT(bytes, correo);
-                string save = "OrdenDeSalida-" + movimientos.IDmovimiento;
+
+                
+                if (tipomov == 1)
+                {
+                    hd = "OrdendeEntrada";
+                }
+                if (tipomov == 2)
+                {
+                    hd = "OrdendeSalida";
+                }
+
+                string save = hd + movimientos.IDmovimiento;
                 //Save the stream as a file in the device and invoke it for viewing
                 // Xamarin.Forms.DependencyService.Get<ISave>().SaveAndView(save + ".pdf", "application/pdf", stream);
                 //The operation in Save under Xamarin varies between Windows Phone, Android and iOS platforms. Please refer PDF/Xamarin section for respective code samples.
@@ -274,7 +295,7 @@ namespace Inventario2
                 }
 
 
-                CreatePDF(lista[0], tablacarrito, listaUsuario[0]);
+                CreatePDF(lista[0], tablacarrito, listaUsuario[0],lista[0].IDtipomov);
                 tablacarrito.Dispose();
                 
             }
