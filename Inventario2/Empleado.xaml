@@ -118,7 +118,7 @@
                                                     TextColor="White" 
                                                     Grid.Column="0"/>
                                                 <Label 
-                                                    Text="{Binding tipoUsuario}" 
+                                                    Text="{Binding rol}" 
                                                     TextColor="White" 
                                                     Grid.Column="1"/>
                                                 <Label 

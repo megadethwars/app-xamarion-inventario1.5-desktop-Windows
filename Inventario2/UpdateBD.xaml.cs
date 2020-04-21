@@ -7,6 +7,9 @@ using Plugin.FilePicker;
 using Syncfusion.XlsIO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Inventario2.Models;
+using Inventario2.Services;
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
@@ -14,6 +17,7 @@ namespace Inventario2
     public partial class UpdateBD : ContentPage
     {
         Plugin.FilePicker.Abstractions.FileData f;
+        bool isStopped = false;
         public UpdateBD()
         {
             InitializeComponent();
@@ -25,8 +29,15 @@ namespace Inventario2
             nombre.Text = f.FileName;
         }
 
+
+        private void Button_detener(object sender, EventArgs e)
+        {
+            isStopped = true;
+        }
+
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
+            isStopped = false;
             if (f != null)
             {
                 
@@ -41,10 +52,103 @@ namespace Inventario2
 
                 //Access first worksheet from the workbook.
                 IWorksheet worksheet = workbook.Worksheets[1];
-                List<InventDB> list = null;
                
-                //Filas.
+
                 
+                //Filas.
+                int row = 2;
+               
+                while (!worksheet.GetValueRowCol(row, 2).Equals("") && worksheet.GetValueRowCol(row, 2)!= null)
+                {
+
+                    if (isStopped)
+                    {
+                        porcent.Text = "Detenido";
+                        break;
+                    }
+
+                    //columnas
+
+                    var strs = worksheet.GetText(row, 1);
+
+                    //list = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == strs).ToListAsync();
+
+
+                    var devices = await DeviceService.getdevicebycode(strs);
+                    if (devices == null)
+                    {
+
+                        await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                        porcent.Text = "Error de conexion";
+                        break;
+                    }
+
+                    if (devices[0].statuscode == 500)
+                    {
+                        await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                        porcent.Text = "Error de sincronizacion";
+                        break;
+                    }
+
+                    if (devices[0].statuscode == 404)
+                    {
+                        //await DisplayAlert("Buscando", "producto no encontrado", "OK");
+
+                        //var id = Guid.NewGuid().ToString();
+                        ModelDevice n = new ModelDevice
+                        {
+
+                            codigo = strs,
+                            serie = (string)worksheet.GetValueRowCol(row, 2),
+                            compra = worksheet.GetText(row, 8),
+                            costo = worksheet.GetText(row, 6),
+                            descompostura = worksheet.GetText(row, 11),
+                            marca = worksheet.GetText(row, 4),
+                            modelo = worksheet.GetText(row, 5),
+                            producto = worksheet.GetText(row, 3),
+                            observaciones = worksheet.GetText(row, 9),
+                            origen = worksheet.GetText(row, 7),
+                            pertenece = worksheet.GetText(row, 10),
+                            //ID = id,
+                            IDlugar = 1,
+                            
+                        };
+
+                        n.serie = n.serie.Replace('\x22', '\0');
+
+                        await DeviceService.postdevice(JsonConvert.SerializeObject(n));
+                        //await App.MobileService.GetTable<InventDB>().InsertAsync(n);
+
+
+                    }
+
+                    if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                    {
+                        devices[0].compra = worksheet.GetText(row, 8);
+                        devices[0].costo = worksheet.GetText(row, 6);
+                        devices[0].descompostura = worksheet.GetText(row, 11);
+                        devices[0].marca = worksheet.GetText(row, 4);
+                        devices[0].modelo = worksheet.GetText(row, 5);
+                        devices[0].producto = worksheet.GetText(row, 3);
+                        devices[0].observaciones = worksheet.GetText(row, 9);
+                        devices[0].origen = worksheet.GetText(row, 7);
+                        devices[0].pertenece = worksheet.GetText(row, 10);
+                        devices[0].serie = (string)worksheet.GetValueRowCol(row, 1);
+                        devices[0].IDlugar = 1;
+                        devices[0].serie = devices[0].serie.Replace('\x22', '\0');
+                        await DeviceService.putdevice(devices[0].ID, JsonConvert.SerializeObject(devices[0]));
+                        //await App.MobileService.GetTable<InventDB>().UpdateAsync(list[0]);
+                    }
+
+
+
+                    porcent.Text = worksheet.GetText(row, 1) + "  " + (row * 100 / 1576).ToString() + "%";
+                    row = row + 1;
+                }
+                row = 2;
+                porcent.Text = "terminado";
+
+                /*
                 for (int x = 2; x < 1577; x++)
                 {
                     //columnas
@@ -90,8 +194,8 @@ namespace Inventario2
                     }
                     porcent.Text = worksheet.GetText(x, 1)+"  "+(x * 100 / 1576).ToString()+"%";
 
-                }
-                
+                }*/
+                workbook.Close();
             }
         }
     }

@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Forms;
+using Inventario2.Models;
+using Inventario2.Services;
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
     public partial class EditarProducto : ContentPage
     {
         DetallesProducto pro;
-        InventDB pr;
+        ModelDevice pr;
         
         public EditarProducto(DetallesProducto nu)
         {
@@ -39,7 +42,7 @@ namespace Inventario2
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             if (idProducto.Text != "")
-                pr.nombre = idProducto.Text;
+                pr.producto = idProducto.Text;
             if(idMarca.Text != "")
                 pr.marca = idMarca.Text;
             if (idModelo.Text != "")
@@ -64,21 +67,47 @@ namespace Inventario2
             {
                 try
                 {
-                    await App.MobileService.GetTable<InventDB>().UpdateAsync(pr);
-                    DisplayAlert("OK", "PRODUCTO AGREGADO CORRECTAMENTE", "ACEPTAR");
+                    var status = await DeviceService.putdevice(pr.ID, JsonConvert.SerializeObject(pr));
+                    if (status == null)
+                    {
+
+                        await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+
+                        return ;
+                    }
+
+                    if (status.statuscode == 500)
+                    {
+                        await DisplayAlert("actualizando", "error interno del servidor", "OK");
+
+                        return ;
+                    }
+
+                    if (status.statuscode == 201 || status.statuscode == 200)
+                    {
+                        await DisplayAlert("Agregado", "Producto actualizado correctamente", "Aceptar");
+                        
+                    }
+
+
+
+
+
+                    //await App.MobileService.GetTable<InventDB>().UpdateAsync(pr);
+                    await DisplayAlert("OK", "PRODUCTO EDITADO CORRECTAMENTE", "ACEPTAR");
                     pro.n = pr;
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 }
                 catch (MobileServiceInvalidOperationException ms)
                 {
 
-
+                    Console.WriteLine(ms.Message);
                     await DisplayAlert("Error", "Error al actualizar", "Aceptar");
 
                 }
             }
             else
-                DisplayAlert("Error", "Faltan campos por llenar","Aceptar");
+                await DisplayAlert("Error", "Faltan campos por llenar","Aceptar");
 
         }
     }

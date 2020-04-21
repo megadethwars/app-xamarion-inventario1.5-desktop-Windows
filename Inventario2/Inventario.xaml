@@ -161,7 +161,7 @@
                                                             <ColumnDefinition Width="210"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Label 
-                                                            Text="{Binding nombre}" 
+                                                            Text="{Binding producto}" 
                                                             TextColor="White" 
                                                             Grid.Column="0"/>
                                                         <Label 

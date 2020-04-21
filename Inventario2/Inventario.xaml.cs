@@ -7,6 +7,10 @@ using Plugin.FilePicker;
 using Syncfusion.XlsIO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Inventario2.Models;
+using Inventario2.Services;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
@@ -27,22 +31,62 @@ namespace Inventario2
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            
             search.Text = stringcode;
             tipoBusqueda = pickerBuscar.SelectedItem as String;
             search.Focus();
             if (cont == 1)
             {
-                var busqueda = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
-                if (busqueda.Count != 0)
-                    postListView.ItemsSource = busqueda;
-                else
-                    DependencyService.Get<IMessage>().ShortAlert("Producto no Encontrado");
-                cont = 0;
+                //var busqueda = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
+                var busqueda = await DeviceService.getdevicebycode(search.Text);
+
+                if (busqueda == null)
+                {
+                    return;
+                }
+
+                if (busqueda[0].statuscode==500)
+                {
+                    return;
+                }
+
+                if (busqueda[0].statuscode == 404)
+                {
+                    return;
+                }
+
+                if (busqueda[0].statuscode == 200)
+                {
+                    if (busqueda.Count != 0)
+                        postListView.ItemsSource = busqueda;
+                    else
+                        //DependencyService.Get<IMessage>().ShortAlert("Producto no Encontrado");
+                        cont = 0;
+                }
+
+                
             }
             else
             {
-                var usuario = await App.MobileService.GetTable<InventDB>().ToListAsync();
-                postListView.ItemsSource = usuario;
+                //var usuario = await App.MobileService.GetTable<InventDB>().ToListAsync();
+                var devices = await DeviceService.getdevices();
+
+                if (devices == null)
+                {
+                    return;
+                }
+
+                if (devices[0].statuscode==500)
+                {
+                    return;
+                }
+
+                if (devices[0].statuscode==200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
+                }
+
+                
             }
             
             
@@ -51,9 +95,18 @@ namespace Inventario2
         
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedPost = postListView.SelectedItem as InventDB;
-            if (selectedPost != null)
-                Navigation.PushAsync(new DetallesProducto(selectedPost));
+            try
+            {
+                var selectedPost = postListView.SelectedItem as ModelDevice;
+                if (selectedPost != null)
+                    Navigation.PushAsync(new DetallesProducto(selectedPost));
+            }
+            catch
+            {
+
+            }
+
+            
         }
 
         public async void buscar()
@@ -64,109 +117,178 @@ namespace Inventario2
             var isNumeric = long.TryParse(cadena, out long n);
 
 
-            if (tipoBusqueda=="Nombre")
+            if (tipoBusqueda=="producto")
             {
-                //SQLiteConnection conn = new SQLiteConnection(App.DtabaseLocation);
-                //conn.CreateTable<InventDB>();
-                //var users1 = conn.Query<InventDB>("select * from InventDB where Nombre= ?", search.Text);
-                //conn.Close();
-                var users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.nombre == search.Text).ToListAsync();
-                if (users1.Count != 0)
+               
+                var devices = await DeviceService.getdevicebyproduct(search.Text);
+                if (devices == null)
                 {
-                    //DisplayAlert("Buscando", "encontrado", "OK");
-                    postListView.ItemsSource = users1;
-                }
-                else
-                {
-                    DisplayAlert("Buscando", "Producto no encontrado", "Aceptar");
-                    var usuarios = await App.MobileService.GetTable<InventDB>().ToListAsync();
 
-                    postListView.ItemsSource = usuarios;
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                    return;
                 }
+
+                if (devices[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode==200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
+                }
+
+
+                
             }
             if(tipoBusqueda=="QR")
             {
 
-                var users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
-                if (users1.Count != 0)
+                var devices = await DeviceService.getdevicebycode(search.Text);
+                if (devices == null)
                 {
-                    //DisplayAlert("Buscando", "encontrado", "OK");
-                    postListView.ItemsSource = users1;
-                }
-                else
-                {
-                    DisplayAlert("Buscando", " no encontrado" + search.Text, "OK");
-                    var usuarios = await App.MobileService.GetTable<InventDB>().ToListAsync();
 
-                    postListView.ItemsSource = usuarios;
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
+                }
+
+            }
+            if (tipoBusqueda == "modelo")
+            {
+                var devices = await DeviceService.getdevicebymodel(search.Text);
+                if (devices == null)
+                {
+
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
                 }
             }
-            if (tipoBusqueda == "Marca")
+
+
+            if (tipoBusqueda == "marca")
             {
-
-                var users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.marca == search.Text).ToListAsync();
-                if (users1.Count != 0)
+                var devices = await DeviceService.getdevicebymarca(search.Text);
+                if (devices == null)
                 {
-                    //DisplayAlert("Buscando", "encontrado", "OK");
-                    postListView.ItemsSource = users1;
+
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                    return;
                 }
-                else
-                {
-                    DisplayAlert("Buscando", " no encontrado" + search.Text, "OK");
-                    var usuarios = await App.MobileService.GetTable<InventDB>().ToListAsync();
 
-                    postListView.ItemsSource = usuarios;
+                if (devices[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
                 }
             }
-            if (tipoBusqueda == "Modelo")
+
+
+            if (tipoBusqueda == "proveedor")
             {
 
-                var users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.modelo == search.Text).ToListAsync();
-                if (users1.Count != 0)
+                var devices = await DeviceService.getdevicebyprov(search.Text);
+                if (devices == null)
                 {
-                    //DisplayAlert("Buscando", "encontrado", "OK");
-                    postListView.ItemsSource = users1;
-                }
-                else
-                {
-                    DisplayAlert("Buscando", " no encontrado" + search.Text, "OK");
-                    var usuarios = await App.MobileService.GetTable<InventDB>().ToListAsync();
 
-                    postListView.ItemsSource = usuarios;
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
                 }
             }
-            if (tipoBusqueda == "Proveedor")
+            if (tipoBusqueda == "serie")
             {
 
-                var users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.proveedor == search.Text).ToListAsync();
-                if (users1.Count != 0)
+                var devices = await DeviceService.getdevicebyserie(search.Text);
+                if (devices == null)
                 {
-                    //DisplayAlert("Buscando", "encontrado", "OK");
-                    postListView.ItemsSource = users1;
-                }
-                else
-                {
-                    DisplayAlert("Buscando", " no encontrado" + search.Text, "OK");
-                    var usuarios = await App.MobileService.GetTable<InventDB>().ToListAsync();
 
-                    postListView.ItemsSource = usuarios;
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                    return;
                 }
-            }
-            if (tipoBusqueda == "Serie")
-            {
 
-                var users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.serie == search.Text).ToListAsync();
-                if (users1.Count != 0)
+                if (devices[0].statuscode == 500)
                 {
-                    //DisplayAlert("Buscando", "encontrado", "OK");
-                    postListView.ItemsSource = users1;
+                    await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                    return;
                 }
-                else
-                {
-                    DisplayAlert("Buscando", " no encontrado" + search.Text, "OK");
-                    var usuarios = await App.MobileService.GetTable<InventDB>().ToListAsync();
 
-                    postListView.ItemsSource = usuarios;
+                if (devices[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "producto no encontrado", "OK");
+                    return;
+                }
+
+                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                {
+                    postListView.ItemsSource = devices;
                 }
             }
         }
@@ -198,7 +320,7 @@ namespace Inventario2
 
                     //Access first worksheet from the workbook.
                     IWorksheet worksheet = workbook.Worksheets[1];
-                    List<InventDB> list = null;
+                    
                     
                     //Filas.
                     for (int x = 2; x < 1514; x++)
@@ -206,26 +328,30 @@ namespace Inventario2
                         //columnas
 
                         var strs = worksheet.GetText(x, 2);
-                        list = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == strs).ToListAsync();
-                        if (list.Count != 0)
+
+                        //list = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == strs).ToListAsync();
+
+
+                        var devices = await DeviceService.getdevicebyserie(search.Text);
+                        if (devices == null)
                         {
-                            list[0].compra = worksheet.GetText(x, 8);
-                            list[0].costo = worksheet.GetText(x, 6);
-                            list[0].descompostura = worksheet.GetText(x, 11);
-                            list[0].marca = worksheet.GetText(x, 4);
-                            list[0].modelo = worksheet.GetText(x, 5);
-                            list[0].nombre = worksheet.GetText(x, 3);
-                            list[0].observaciones = worksheet.GetText(x, 9);
-                            list[0].origen = worksheet.GetText(x, 7);
-                            list[0].pertenece = worksheet.GetText(x, 10);
-                            list[0].lugar = "Almacen";
-                            list[0].serie = worksheet.GetText(x, 1);
-                            await App.MobileService.GetTable<InventDB>().UpdateAsync(list[0]);
+
+                            await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                            return;
                         }
-                        else
+
+                        if (devices[0].statuscode == 500)
                         {
+                            await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                            return;
+                        }
+
+                        if (devices[0].statuscode == 404)
+                        {
+                            await DisplayAlert("Buscando", "producto no encontrado", "OK");
+
                             var id = Guid.NewGuid().ToString();
-                            InventDB n = new InventDB
+                            ModelDevice n = new ModelDevice
                             {
 
                                 codigo = strs,
@@ -235,15 +361,38 @@ namespace Inventario2
                                 descompostura = worksheet.GetText(x, 11),
                                 marca = worksheet.GetText(x, 4),
                                 modelo = worksheet.GetText(x, 5),
-                                nombre = worksheet.GetText(x, 3),
+                                producto = worksheet.GetText(x, 3),
                                 observaciones = worksheet.GetText(x, 9),
                                 origen = worksheet.GetText(x, 7),
                                 pertenece = worksheet.GetText(x, 10),
-                                ID = id,
-                                lugar = "Almacen"
+                                //ID = id,
+                                IDlugar = 1,
                             };
-                            await App.MobileService.GetTable<InventDB>().InsertAsync(n);
+
+                            await DeviceService.postdevice(JsonConvert.SerializeObject(n));
+                            //await App.MobileService.GetTable<InventDB>().InsertAsync(n);
+
+                        
                         }
+
+                        if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                        {
+                            devices[0].compra = worksheet.GetText(x, 8);
+                            devices[0].costo = worksheet.GetText(x, 6);
+                            devices[0].descompostura = worksheet.GetText(x, 11);
+                            devices[0].marca = worksheet.GetText(x, 4);
+                            devices[0].modelo = worksheet.GetText(x, 5);
+                            devices[0].producto = worksheet.GetText(x, 3);
+                            devices[0].observaciones = worksheet.GetText(x, 9);
+                            devices[0].origen = worksheet.GetText(x, 7);
+                            devices[0].pertenece = worksheet.GetText(x, 10);                          
+                            devices[0].serie = worksheet.GetText(x, 1);
+                            await DeviceService.putdevice(devices[0].ID,JsonConvert.SerializeObject(devices[0]) );
+                            //await App.MobileService.GetTable<InventDB>().UpdateAsync(list[0]);
+                        }
+
+
+                        
 
                     }
                     activityIndicator.IsRunning = false;
@@ -259,19 +408,19 @@ namespace Inventario2
             {
                 case "Agregar Nuevo Producto":
                     //Abrir vista/pagina Detalles del Producto
-                    Navigation.PushAsync(new NuevoProducto());
+                    await Navigation.PushAsync(new NuevoProducto());
                     
                     break;
                 case "Reingresar Producto":
                     //Abrir vista/pagina Ingresar Producto
-                    Navigation.PushAsync(new IngresarProducto(  ));
+                    await Navigation.PushAsync(new IngresarProducto(  ));
                     break;
                 case "Salida":
                     //Abrir vista/pagina Retirar Producto
-                    Navigation.PushAsync(new RetirarProducto(this));
+                    await Navigation.PushAsync(new RetirarProducto(this));
                     break;
                 case "Actualizar BD":
-                    Navigation.PushAsync(new UpdateBD());
+                    await Navigation.PushAsync(new UpdateBD());
                     break;
 
 
@@ -293,8 +442,10 @@ namespace Inventario2
         {
             if(search.Text=="")
             {
-                var usuario = await App.MobileService.GetTable<InventDB>().ToListAsync();
-                postListView.ItemsSource = usuario;
+
+                //var usuario = await App.MobileService.GetTable<InventDB>().ToListAsync();
+                var list = await DeviceService.getdevices();
+                postListView.ItemsSource = list;
             }
         }
     }
