@@ -15,11 +15,23 @@
 		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout Padding="210,20,210,50">
                 <StackLayout
-                    Padding="0,20,0,170">
+                    Padding="0,20,0,180">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions />
-                        <Image Source="prueba2.png"
-                               />
+                        <Image Source="tache.png"
+                        HorizontalOptions="End"
+                        WidthRequest="45"
+                        HeightRequest="45"/>
+                        <Label
+                        VerticalOptions="Center"
+                        FontFamily="Montserrat-Bold"
+                        TextColor="White"
+                        FontSize="30"
+			            HorizontalOptions="Center"
+			            Text="INICIAR SESION" 
+			            FontAttributes="Bold"
+			            StyleId="Titulo"/>
+                        
                                              
                     </Grid>                     
                 </StackLayout>
