@@ -88,8 +88,19 @@ namespace Inventario2
 
 
                             usuario.password = changecontra.Text;
+                            bool res = await Updateuser(usuario.ID, JsonConvert.SerializeObject(usuario));
 
-                            bool res = await UpdatePasword(usuario.ID, JsonConvert.SerializeObject(usuario));
+                            if (!res)
+                            {
+                                return;
+                            }
+
+                            res = await UpdatePasword(usuario.ID, JsonConvert.SerializeObject(usuario));
+
+                            if (!res)
+                            {
+                                return;
+                            }
 
                             //await App.MobileService.GetTable<Usuario>().UpdateAsync(usuario);
                             if (res)
