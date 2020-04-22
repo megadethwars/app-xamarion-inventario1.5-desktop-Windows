@@ -160,6 +160,20 @@ namespace Inventario2.Services
             
         }
 
+        public static async Task<StatusMessage> putpass(int id, string objeto)
+        {
+            try
+            {
+                var status = await HttpMethods.put(Global.url + "putpassword/" + $"{id}", objeto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
 
         public static async Task<StatusMessage> postuser(string objeto)
         {
