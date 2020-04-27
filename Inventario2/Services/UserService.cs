@@ -215,7 +215,18 @@ namespace Inventario2.Services
         }
 
 
-        
+        public static async Task<StatusMessage> deleteUser(int id)
+        {
+            try
+            {
+                var status = await HttpMethods.delete(Global.url + "deluser/" + $"{id}");
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
 
 

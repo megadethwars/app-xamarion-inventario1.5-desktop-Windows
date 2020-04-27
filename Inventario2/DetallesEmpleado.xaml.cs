@@ -32,25 +32,32 @@ namespace Inventario2
 
         private async void EliminaEmp(object sender, EventArgs e)
         {
-            /*
-            string res = await DisplayActionSheet("¡Estas a punto de eliminar un Empleado!, ¿Deseas continuar?", "Cancelar", null, "Eliminar Empleado");
+            
+            if(usuario.ID == CurrentUser.ID)
+            {
+                await DisplayAlert("Error", "No puedes borrar el usuario actual", "Aceptar");
+
+            }
+
+            string res = await DisplayActionSheet("¡Estas a punto de eliminar un Empleado!, ¿Deseas continuar?", "Cancelar", "Eliminar Empleado");
             switch (res)
             {
                 case "Eliminar Empleado":
                     //Eliminar empleado
                     try
                     {
-                        await App.MobileService.GetTable<Usuario>().DeleteAsync(usuario);
-                        var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
-                        var client = account.CreateCloudBlobClient();
-                        var container = client.GetContainerReference("fotosempleados");
-                        await container.CreateIfNotExistsAsync();
-                        var foto = usuario.ID + ".jpg";
-                        var block = container.GetBlockBlobReference($"{foto}");
-                        await block.DeleteIfExistsAsync();
-                        
+                        //await App.MobileService.GetTable<Usuario>().DeleteAsync(usuario);
+                        //var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
+                        //var client = account.CreateCloudBlobClient();
+                        //var container = client.GetContainerReference("fotosempleados");
+                        //await container.CreateIfNotExistsAsync();
+                        //var foto = usuario.ID + ".jpg";
+                        //var block = container.GetBlockBlobReference($"{foto}");
+                        //await block.DeleteIfExistsAsync();
 
-                        await DisplayAlert("Hecho", "Usuario borrado exitosamente", "Aceptar");
+                        bool resp = await Deleteuser(usuario.ID);
+
+                        //await DisplayAlert("Hecho", "Usuario borrado exitosamente", "Aceptar");
                         await Navigation.PopAsync();
                     }
                     catch (MobileServiceInvalidOperationException ms)
@@ -63,7 +70,7 @@ namespace Inventario2
                     break;
 
             }
-            */
+            
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -238,6 +245,55 @@ namespace Inventario2
                 return false;
             }
             
+
+            return false;
+        }
+
+        private async Task<bool> Deleteuser(int id)
+        {
+            try
+            {
+                var deluser = await UserService.deleteUser(id);
+
+                if (deluser == null)
+                {
+                    await DisplayAlert("Error", "Error de conexion al servidor", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 500)
+                {
+                    await DisplayAlert("Error", "Error interno en el servidor", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 404)
+                {
+                    await DisplayAlert("Error", "No encontrado", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 409)
+                {
+                    await DisplayAlert("Error", "Conflicto al borrar Usuario", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 200 || deluser.statuscode == 201)
+                {
+                    await DisplayAlert("Mensaje", "Borrado correctamente", "Aceptar");
+                    return true;
+                }
+
+
+                //var tablainventario = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == movimiento.codigo).ToListAsync();
+
+            }
+            catch
+            {
+                return false;
+            }
+
 
             return false;
         }

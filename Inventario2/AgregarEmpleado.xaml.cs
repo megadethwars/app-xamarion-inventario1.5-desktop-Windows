@@ -72,7 +72,7 @@ namespace Inventario2
 
                     ModelUser user = new ModelUser
                     {
-                        
+
                         nombre = nombrEntry.Text,
                         password = contraEntry.Text,
                         apellido_paterno = apepEntry.Text,
@@ -80,14 +80,13 @@ namespace Inventario2
                         IDtipoUsuario = tipousuario,
                         telefono = telEntry.Text,
                         correo = correoEntry.Text,
-                        
+                        IDuser = identi
                         //fechaContratacion = DateTime.Now.ToString("dd/MM/yyyy")
                     };
                     try
                     {
 
-                      
-                        
+                                          
                         user.foto = PathFoto;
 
                         if (PathFoto == null)
