@@ -403,7 +403,7 @@ namespace Inventario2
 
         private async void MenuOp(object sender, EventArgs e)
         { //Despegar menu de  3 opciones Ingresar, Retirar, Detalles
-            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida","Actualizar BD");
+            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida","Actualizar BD","Editar Lugares");
             switch (res)
             {
                 case "Agregar Nuevo Producto":
@@ -421,6 +421,9 @@ namespace Inventario2
                     break;
                 case "Actualizar BD":
                     await Navigation.PushAsync(new UpdateBD());
+                    break;
+                case "Editar Lugares":
+                    await Navigation.PushAsync(new Lugares());
                     break;
 
 

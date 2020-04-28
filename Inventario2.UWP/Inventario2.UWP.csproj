@@ -114,6 +114,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AGREGAR_P.png" />
     <Content Include="AJUSTES.png" />
     <Content Include="Assets\insesion.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
@@ -154,7 +155,7 @@
     <Content Include="bingresar.png" />
     <Content Include="bopciones.png" />
     <Content Include="bscanner.png" />
-    <Content Include="carrito.png" />
+    <Content Include="CARRITO.png" />
     <Content Include="EMPLEADOS.png" />
     <Content Include="HISTORIAL.png" />
     <Content Include="iconoajustes.png" />
@@ -175,6 +176,7 @@
     <Content Include="prueba2.png" />
     <Content Include="pruebapn.png" />
     <Content Include="REPORTES.png" />
+    <Content Include="SALIDA.png" />
     <Content Include="scale-100\insesion.png" />
     <Content Include="scale-100\nuevofondo.png" />
     <Content Include="scale-100\tache.png" />

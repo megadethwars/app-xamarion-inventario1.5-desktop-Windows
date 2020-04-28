@@ -20,23 +20,14 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
-            <StackLayout Padding="210,10,210,40">
+            <StackLayout Padding="90,10,80,40">
                 <StackLayout
-            Padding="663,20,663,30">
+            Padding="0,20,0,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
-                        <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="55" WidthRequest="55"/>
-                        <Label
-                            VerticalOptions="Center"
-                            FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="30"
-			                HorizontalOptions="Center"
-			                Text="CARRITO" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
+                        <Grid.ColumnDefinitions />
+                            <Image Source="CARRITO.png"/>
 
-                    </Grid>
+                        </Grid>
 
 
                 </StackLayout>
