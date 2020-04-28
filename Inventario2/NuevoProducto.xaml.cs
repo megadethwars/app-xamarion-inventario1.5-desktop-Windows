@@ -142,7 +142,8 @@ namespace Inventario2
         {
             try
             {
-                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
+                string connection = "DefaultEndpointsProtocol=https;AccountName=inventarioavs;AccountKey="+Global.keystorege+";EndpointSuffix=core.windows.net";
+                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=inventarioavs;AccountKey=wO8R0xJGc9+VleJHkKEL2AHLmZOEUvLcZg0M1KaMNI2lB9Jd27SShyHhlgeCGEQLOs7SCgYffIx4OI6TBABFPg==;EndpointSuffix=core.windows.net");
                 var client = account.CreateCloudBlobClient();
                 var container = client.GetContainerReference("fotosinventario");
                 await container.CreateIfNotExistsAsync();
@@ -157,7 +158,7 @@ namespace Inventario2
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return "not url";
+                return "N7A";
             }
 
             

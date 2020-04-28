@@ -41,7 +41,16 @@ namespace Inventario2
             idFecha.Text = n.fecha;
 
             idmodelo.Text = n.modelo;
-            imagen.Source = "https://fotosavs.blob.core.windows.net/fotosinventario/" + n.foto;
+            try
+            {
+                //imagen.Source = "https://fotosavs.blob.core.windows.net/fotosinventario/" + n.foto;
+                imagen.Source = n.foto;
+            }
+            catch
+            {
+
+            }
+            
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {

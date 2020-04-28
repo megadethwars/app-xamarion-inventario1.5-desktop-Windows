@@ -47,13 +47,13 @@ namespace Inventario2
                 DisplayAlert("Aceptar", "Producto Actualizado Correctamente", "Aceptar");
             if (f != null || f2!=null)
             {
-                for(int x =0; x<ca.mv.Count;x++)
+                for(int x =0; x<ca.movimientos.Count;x++)
                 {
-                    if (ca.mv[x].codigo == ma.codigo)
+                    if (ca.movimientos[x].codigo == ma.codigo)
                         ca.f1[x] = f;
                     if (f2 != null)
                     {
-                        if (ca.mv[x].codigo == ma.codigo)
+                        if (ca.movimientos[x].codigo == ma.codigo)
                             ca.f2[x] = f2;
                     }
 
@@ -86,6 +86,7 @@ namespace Inventario2
 
         async void Button_Clicked_1(System.Object sender, System.EventArgs e)
         {
+            string ID = Guid.NewGuid().ToString();
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable ||
                 !CrossMedia.Current.IsTakePhotoSupported)
@@ -100,18 +101,19 @@ namespace Inventario2
                   Directory = "Sample",
                   RotateImage = false,
 
-                  Name = "prueba" + ".jpg"
+                  Name = ID + ".jpg"
               });
             if (f == null)
                 return;
             await DisplayAlert("File Location", f.Path, "OK");
             image1.Source = f.Path;
-            image1.RotateTo(90);
+            await image1.RotateTo(90);
             f.GetStream();
         }
 
         async void Button_Clicked_2(System.Object sender, System.EventArgs e)
         {
+            string ID = Guid.NewGuid().ToString();
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable ||
                 !CrossMedia.Current.IsTakePhotoSupported)
@@ -126,13 +128,13 @@ namespace Inventario2
                   Directory = "Sample",
                   RotateImage = false,
 
-                  Name = "prueba" + ".jpg"
+                  Name = ID + ".jpg"
               });
             if (f2 == null)
                 return;
             await DisplayAlert("File Location", f2.Path, "OK");
             image2.Source = f2.Path;
-            image2.RotateTo(90);
+            await image2.RotateTo(90);
             f2.GetStream();
         }
     }

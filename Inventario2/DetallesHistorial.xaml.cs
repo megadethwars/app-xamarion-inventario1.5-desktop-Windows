@@ -27,7 +27,8 @@ namespace Inventario2
             idFecha.Text = mv.fechamovimiento;
             try
             {
-                imagen.Source = "https://fotosavs.blob.core.windows.net/fotossalida/" + mv.fotomov1;
+                imagen.Source = mv.fotomov2;
+                //imagen.Source = "https://fotosavs.blob.core.windows.net/fotossalida/" + mv.fotomov1;
             }
             catch
             {

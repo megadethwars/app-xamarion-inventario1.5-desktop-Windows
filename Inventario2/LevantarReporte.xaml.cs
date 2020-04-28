@@ -27,6 +27,7 @@ namespace Inventario2
         private bool isFull = false;
         public string PathFoto;
         public string stringphoto;
+        string url = "";
         public LevantarReporte(string c)
         {
             reporte = new ModelReport();
@@ -151,15 +152,16 @@ namespace Inventario2
                 PathFoto = id;
                 reporte.IDdevice = device.ID;
                 reporte.IDusuario = Model.CurrentUser.ID;
-                bool res = await PostReport(reporte);
+                
 
                 //enviar foto
                 if (camara != null)
                 {
-                    UploadFile(camara.GetStream());
+                   await UploadFile(camara.GetStream());
 
                 }
-
+                reporte.foto2 = url;
+                bool res = await PostReport(reporte);
                 editor.Text = "";
                 if (res)
                 {
@@ -285,11 +287,11 @@ namespace Inventario2
 
         }
 
-        private async void UploadFile(Stream stream)
+        private async Task<string> UploadFile(Stream stream)
         {
             try
             {
-                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
+                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=inventarioavs;AccountKey=wO8R0xJGc9+VleJHkKEL2AHLmZOEUvLcZg0M1KaMNI2lB9Jd27SShyHhlgeCGEQLOs7SCgYffIx4OI6TBABFPg==;EndpointSuffix=core.windows.net");
                 var client = account.CreateCloudBlobClient();
                 var container = client.GetContainerReference("fotosreporte");
                 await container.CreateIfNotExistsAsync();
@@ -298,11 +300,13 @@ namespace Inventario2
 
                 var block = container.GetBlockBlobReference($"{PathFoto}.jpg");
                 await block.UploadFromStreamAsync(stream);
-                string url = block.Uri.OriginalString;
+                url = block.Uri.OriginalString;
+                return url;
             }
             catch
             {
                 await DisplayAlert("Error al subir imagen", "error de post", "OK");
+                return "N/A";
             }
 
         }

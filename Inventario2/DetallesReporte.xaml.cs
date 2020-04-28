@@ -30,7 +30,8 @@ namespace Inventario2
             idobserv.Text = reporte.comentario;
             try
             {
-                imagen.Source = "https://fotosavs.blob.core.windows.net/fotosreporte/" + reporte.foto2 + ".jpg";
+                //imagen.Source = "https://fotosavs.blob.core.windows.net/fotosreporte/" + reporte.foto2 + ".jpg";
+                imagen.Source = reporte.foto2;
                 isImageOK = true;
             }
             catch
