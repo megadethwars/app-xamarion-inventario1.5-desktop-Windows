@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>72A3183326FF1D8183DC857EF00F32D00E31B9A1</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1C746B0C6E7B5FBA08B08250D589C79240EACC30</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -114,6 +114,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AJUSTES.png" />
     <Content Include="Assets\insesion.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -154,19 +155,26 @@
     <Content Include="bopciones.png" />
     <Content Include="bscanner.png" />
     <Content Include="carrito.png" />
+    <Content Include="EMPLEADOS.png" />
+    <Content Include="HISTORIAL.png" />
     <Content Include="iconoajustes.png" />
     <Content Include="iconoempleados.png" />
     <Content Include="iconohistorial.png" />
     <Content Include="iconoinventario.png" />
     <Content Include="iconoperfil.png" />
     <Content Include="iconoreporte.png" />
+    <Content Include="iniciar.png" />
     <Content Include="insesion.png" />
+    <Content Include="INVENTARIO.png" />
     <Content Include="Inventario2.sln" />
+    <Content Include="MENU.png" />
     <Content Include="menuu.png" />
+    <Content Include="MI_PERFIL.png" />
     <Content Include="mun.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="prueba2.png" />
     <Content Include="pruebapn.png" />
+    <Content Include="REPORTES.png" />
     <Content Include="scale-100\insesion.png" />
     <Content Include="scale-100\nuevofondo.png" />
     <Content Include="scale-100\tache.png" />
@@ -228,8 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Inventario2.UWP_TemporaryKey.pfx" />
-    <None Include="test.pfx" />
-    <None Include="test2.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
@@ -238,7 +244,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>test2.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
 </Project>

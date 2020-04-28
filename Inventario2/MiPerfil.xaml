@@ -22,22 +22,12 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout HorizontalOptions="Center"
-		Padding="200,10,200,10">
+		Padding="90,10,80,10">
                 <StackLayout
-            Padding="670,20,670,20">
+            Padding="0,20,0,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
-                        <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
-                        <Label
-                            VerticalOptions="Center"
-                 FontFamily="Montserrat-Bold"
-                TextColor="White"
-                            FontSize="30"
-			    HorizontalOptions="Center"
-			    Text="MI PERFIL" 
-			    FontAttributes="Bold"
-			    StyleId="Titulo"/>
-
+                        <Grid.ColumnDefinitions />
+                        <Image Source="MI_PERFIL.png"/>
                     </Grid>
 
 
@@ -54,7 +44,7 @@
                     <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Default"
+                FontSize="Large"
                 CharacterSpacing="4"
 				Text="NOMBRE:"
                 
@@ -63,7 +53,7 @@
                 <StackLayout Padding="10,0,10,20">
                     <Label
                  FontFamily="Montserrat-Light"
-                        FontSize="Default"
+                        FontSize="Large"
                 
                 TextColor="White"
 				x:Name="name"
@@ -76,7 +66,7 @@
                     <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Default"
+                FontSize="Large"
                 CharacterSpacing="4"
 				Text="TIPO DE EMPLEADO:"
 				FontAttributes="Bold"/>
@@ -86,7 +76,7 @@
                  FontFamily="Montserrat-Light"
                        
                 TextColor="White"
-                FontSize="Default"
+                FontSize="Large"
                 
 				x:Name="idPersonal"
                 StyleId="informacion"/>
@@ -97,7 +87,7 @@
                     <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Default"
+                FontSize="Large"
                 CharacterSpacing="4"
 				Text="TELEFONO:"
 				FontAttributes="Bold"/>
@@ -105,7 +95,7 @@
                 <StackLayout Padding="10,0,10,20">
                     <Label
                  FontFamily="Montserrat-Light"
-                FontSize="Default"
+                FontSize="Large"
                 
                 TextColor="White"
 				x:Name="idtel"
@@ -116,14 +106,14 @@
                     <Label
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                FontSize="Default"
+                FontSize="Large"
                 CharacterSpacing="4"
 				Text="CORREO:"
 				FontAttributes="Bold"/>
                 </StackLayout>
                 <StackLayout Padding="10,0,0,20">
                     <Label
-                FontSize="Default"
+                FontSize="Large"
                 
                 FontFamily="Montserrat-Light"
                 TextColor="White"

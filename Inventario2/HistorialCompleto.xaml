@@ -21,25 +21,16 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
             <StackLayout
-		        Padding="210,5,210,80">
+		        Padding="80,5,80,100">
                 <StackLayout
-                    Padding="649,0,649,5">
+                    Padding="0,0,0,10">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
                         <Grid.RowDefinitions >
                             <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
-                        <Label
-                            VerticalOptions="Center"
-                             FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="30"
-			                HorizontalOptions="Center"
-			                Text="HISTORIAL" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
+                        <Image Source="HISTORIAL.png"/>
                     </Grid>
                 </StackLayout>
 

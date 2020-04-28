@@ -24,25 +24,13 @@
 		        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
                 <StackLayout
-		            Padding="210,10,210,50">
+		            Padding="90,10,80,50">
                     <StackLayout
-                        Padding="590,20,590,20">
+                        Padding="0,20,0,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
-                        <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png"
-                               HorizontalOptions="End"
-                               HeightRequest="60"
-                               WidthRequest="60"/>
-                        <Label
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="27"
+                        <Grid.ColumnDefinitions />
+                        <Image Source="REPORTES.png"/>
 			                
-			                Text="LEVANTAR REPORTE" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
 
                     </Grid>
 

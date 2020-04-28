@@ -25,22 +25,13 @@
             <StackLayout
                 Padding="40,10,40,10">
                 <StackLayout
-                    Padding="863,0,863,0">
+                    Padding="0,20,0,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
-                        <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>  
-                        <Label
-                            VerticalOptions="Center"
-                            FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="30"
-			                HorizontalOptions="Center"
-			                Text="MENU" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
+                        <Grid.ColumnDefinitions />
+                        <Image Source="MENU.png" />
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="100,0,0,30"
+                <StackLayout Padding="30,0,30,30"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="Center">
                 <Grid
@@ -49,15 +40,15 @@
                     HorizontalOptions="Center"
                     VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="210"/>
+                        <RowDefinition Height="150"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210"/>
-                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -91,8 +82,8 @@
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210"/>
-                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
                     <Label
                HorizontalOptions="Center"
@@ -119,15 +110,15 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="210"/>
+                        <RowDefinition Height="150"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210"/>
-                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -160,8 +151,8 @@
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210"/>
-                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
                     <Label
@@ -190,15 +181,15 @@
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="210"/>
+                        <RowDefinition Height="150"/>
 
                     </Grid.RowDefinitions>
 
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210"/>
-                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -230,8 +221,8 @@
 
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210"/>
-                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
                     <Label

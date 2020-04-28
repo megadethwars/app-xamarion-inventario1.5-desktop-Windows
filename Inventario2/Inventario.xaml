@@ -21,27 +21,15 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
             <StackLayout
-		        Padding="210,0,210,10">
+		        Padding="80,0,80,10">
                 <StackLayout
-                    Padding="635,10,635,0">
+                    Padding="0,20,0,10">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
-                        
-                        <Image Aspect="AspectFit" Source="tache.png" 
-                               HorizontalOptions="End" 
-                               HeightRequest="60" 
-                               WidthRequest="60"/>
-                        <Label
-                            VerticalOptions="Center"
-                            FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="Large"
-			                
-			                Text="INVENTARIO" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
 
-                    </Grid>
+                            <Image Source="INVENTARIO.png"/>
+
+                        </Grid>
                 </StackLayout>
                 <StackLayout Padding="0,0,0,0">
                     <SearchBar

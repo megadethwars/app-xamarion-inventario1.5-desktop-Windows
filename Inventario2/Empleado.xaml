@@ -25,26 +25,15 @@
             AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
                 <StackLayout
-		        Padding="210,10,210,20">
+		        Padding="80,10,80,50">
                     <StackLayout
-                Padding="636,0,636,10">
+                Padding="0,0,0,10">
                         <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions Width = "100"/>
-                    <Grid.RowDefinitions Height="250"/>
-                    <Image Source="tache.png"
-                        HorizontalOptions="End"
-                        WidthRequest="45"
-                        HeightRequest="45"/>
-                    <Label
-                        VerticalOptions="Center"
-                        FontFamily="Montserrat-Bold"
-                        TextColor="White"
-                        FontSize="30"
-			            HorizontalOptions="Center"
-			            Text="EMPLEADOS" 
-			            FontAttributes="Bold"
-			            StyleId="Titulo"/>
-                </Grid>
+                    <Grid.ColumnDefinitions />
+                    <Grid.RowDefinitions />
+                            <Image Source="EMPLEADOS.png"/>
+
+                        </Grid>
                 
             </StackLayout>
             
