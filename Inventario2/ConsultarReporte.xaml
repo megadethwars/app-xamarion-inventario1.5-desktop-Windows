@@ -22,25 +22,13 @@
             <ScrollView
             >
             <StackLayout
-		Padding="210,20,210,50">
+		Padding="90,20,80,50">
                 <StackLayout
-            Padding="580,20,580,70">
+            Padding="0,20,0,70">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "700"/>
-                        <Image Source="tache.png"
-                               HorizontalOptions="End"
-                               HeightRequest="60"
-                               WidthRequest="60"/>
-                        <Label
-                            VerticalOptions="Center"
-                            FontFamily="Montserrat-Bold"
-                            TextColor="White"
-                            FontSize="25"
-			                HorizontalOptions="Center"
-			                Text="CONSULTAR REPORTE" 
-			                FontAttributes="Bold"
-			                StyleId="Titulo"/>
-                    </Grid>
+                            <Image Source="REPORTES.png"/>
+                        </Grid>
                 </StackLayout>
     <StackLayout>
 

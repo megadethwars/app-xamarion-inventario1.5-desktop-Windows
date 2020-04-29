@@ -24,21 +24,12 @@
             <StackLayout
 		Padding="210,10,210,10">
                 <StackLayout
-            Padding="575,20,575,20">
+            Padding="0,20,0,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
-                        <Label
-                            VerticalOptions="Center"
-                 FontFamily="Montserrat-Bold"
-                TextColor="White"
-                            FontSize="27"
-			    HorizontalOptions="Center"
-			    Text="AGREGAR EMPLEADO" 
-			    FontAttributes="Bold"
-			    StyleId="Titulo"/>
+                            <Image Source="AGREGAR_E.png"/>
 
-                    </Grid>
+                        </Grid>
 
 
                 </StackLayout>

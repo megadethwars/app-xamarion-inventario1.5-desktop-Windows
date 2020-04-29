@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>83AE7ED2440F1253771B2BBA1109F6CD340BED77</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1C746B0C6E7B5FBA08B08250D589C79240EACC30</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -114,6 +114,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ACTUALIZAR_BDD.png" />
+    <Content Include="AGREGAR_E.png" />
     <Content Include="AGREGAR_P.png" />
     <Content Include="AJUSTES.png" />
     <Content Include="Assets\insesion.png" />
@@ -157,7 +159,9 @@
     <Content Include="bscanner.png" />
     <Content Include="CARRITO.png" />
     <Content Include="CONFIRMAR.png" />
+    <Content Include="DETALLES_E.png" />
     <Content Include="DETALLES_P.png" />
+    <Content Include="DETALLES_R.png" />
     <Content Include="EDITAR_P.png" />
     <Content Include="EMPLEADOS.png" />
     <Content Include="HISTORIAL.png" />
