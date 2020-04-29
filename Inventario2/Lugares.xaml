@@ -52,7 +52,7 @@
 
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Label  Text="{Binding lugar}" TextColor="White" Grid.Column="0"/>
+                                                    <Label  Text="{Binding Lugar}" TextColor="White" Grid.Column="0"/>
                                                     
 
                                                     
@@ -71,7 +71,7 @@
                                TextColor="White"
                                FontFamily="Montserrat-Bold"
                                FontAttributes="Bold"/>
-                        <Entry Placeholder="Ingrese lugar deseado"
+                        <Entry x:Name="tbLugar" Placeholder="Ingrese lugar deseado"
                                BackgroundColor="Gray"
                                PlaceholderColor="Black"
                                TextColor="Black"/>
