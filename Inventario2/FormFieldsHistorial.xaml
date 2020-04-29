@@ -24,9 +24,9 @@
             <ScrollView>
             <StackLayout Padding="210,10,210,110">
                 <StackLayout
-            Padding="579,20,579,40">
+            Padding="300,20,300,40">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
-                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Grid.ColumnDefinitions />
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
                         <Label
                             VerticalOptions="Center"

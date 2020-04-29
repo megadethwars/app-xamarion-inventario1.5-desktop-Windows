@@ -156,6 +156,9 @@
     <Content Include="bopciones.png" />
     <Content Include="bscanner.png" />
     <Content Include="CARRITO.png" />
+    <Content Include="CONFIRMAR.png" />
+    <Content Include="DETALLES_P.png" />
+    <Content Include="EDITAR_P.png" />
     <Content Include="EMPLEADOS.png" />
     <Content Include="HISTORIAL.png" />
     <Content Include="iconoajustes.png" />
