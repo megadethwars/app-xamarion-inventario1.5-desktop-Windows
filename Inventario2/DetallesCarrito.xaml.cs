@@ -31,7 +31,7 @@ namespace Inventario2
             ca = r;
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             if (!(observ.Text == ""))
             {
@@ -62,7 +62,7 @@ namespace Inventario2
 
                 DisplayAlert("OK", "FOTO AGREGADA CORRECTAMENTE", "ACEPTAR");
             }
-            
+            await Navigation.PopAsync();
         }
 
         void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
