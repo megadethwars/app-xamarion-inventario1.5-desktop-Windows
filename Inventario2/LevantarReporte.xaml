@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             mc:Ignorable="d"
+             x:Class="Inventario2.LevantarReporte">
+    <!--<ContentPage.Resources>
+        <StyleSheet Source="Estilo.css"/>
+    </ContentPage.Resources>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME"  Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="              " />
+        <ToolbarItem Text="              " />
+        
+        
+    </ContentPage.ToolbarItems>
+
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="Fill"/>
+        <StackLayout
+		        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
+                <StackLayout
+		            Padding="90,10,80,50">
+                    <StackLayout
+                        Padding="0,20,0,20">
+                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions />
+                        <Image Source="REPORTES.png"/>
+			                
+
+                    </Grid>
+
+
+                    </StackLayout>
+
+    
+        
+
+        
+            
+                <StackLayout Padding="0,0,0,70"
+			         HorizontalOptions="FillAndExpand">
+
+                    
+                    <SearchBar x:Name="nombreID"
+                    BackgroundColor="Gray"
+                    TextColor="Black"
+                    PlaceholderColor="Black"
+			        Placeholder="Buscar por nombre o ID"
+			        CancelButtonColor="Red"
+			        SearchButtonPressed="searchbar_SearchButtonPressed"
+                        ></SearchBar>
+
+                    
+
+                </StackLayout>
+
+               
+                <StackLayout 
+            
+			Orientation="Horizontal">
+                            <Label
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Default"
+                CharacterSpacing="4"
+				Text="NOMBRE DEL PRODUCTO:"
+				FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="40,0,20,20">
+                            <Label
+                 FontFamily="Montserrat-Light"
+                       
+                TextColor="White"
+                FontSize="Default"
+                
+				x:Name="lbNombre"
+                StyleId="informacion"/>
+                        </StackLayout>
+
+                <StackLayout 
+            
+			Orientation="Horizontal">
+                            <Label
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Default"
+                CharacterSpacing="4"
+				Text="MARCA:"
+				FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="40,0,20,20">
+                            <Label
+                 FontFamily="Montserrat-Light"
+                       
+                TextColor="White"
+                FontSize="Default"
+                
+				x:Name="lbMarca"
+                StyleId="informacion"/>
+                        </StackLayout>
+
+               <StackLayout 
+            
+			Orientation="Horizontal">
+                            <Label
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Default"
+                CharacterSpacing="4"
+				Text="SERIE:"
+				FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="40,0,20,20">
+                            <Label
+                 FontFamily="Montserrat-Light"
+                       
+                TextColor="White"
+                FontSize="Default"
+                
+				x:Name="lbSerie"
+                StyleId="informacion"/>
+                        </StackLayout>             
+                <StackLayout 
+            
+			Orientation="Horizontal">
+                            <Label
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Default"
+                CharacterSpacing="4"
+				Text="MODELO:"
+				FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="40,0,20,20">
+                            <Label
+                 FontFamily="Montserrat-Light"
+                       
+                TextColor="White"
+                FontSize="Default"
+                
+				x:Name="lbModelo"
+                StyleId="informacion"/>
+                        </StackLayout>
+
+                <StackLayout 
+            
+			Orientation="Horizontal">
+                            <Label
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Default"
+                CharacterSpacing="4"
+				Text="ACCESORIO DE:"
+				FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="40,0,20,20">
+                            <Label
+                 FontFamily="Montserrat-Light"
+                       
+                TextColor="White"
+                FontSize="Default"
+                
+				x:Name="lbAccDe"
+                StyleId="informacion"/>
+                        </StackLayout>
+
+                
+
+
+                <Label
+                    FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Default"
+                CharacterSpacing="4"
+			        Text="Descripcion:" 
+			        FontAttributes="Bold"/>
+
+                <Editor
+                    BackgroundColor="Gray"
+                    PlaceholderColor="White"
+                    TextColor="White"
+                    x:Name="editor"
+			        HeightRequest ="200"
+			        Placeholder="Indicar observaciones del producto." />
+
+                <Button
+                    BackgroundColor="Transparent"
+			        ImageSource="bfoto.png"
+			        x:Name="fotos1"
+			        HorizontalOptions="FillAndExpand"
+                    Clicked="ScanFotos"
+			        VerticalOptions="Center"/>
+
+                <StackLayout Padding="70,30">
+                <Image x:Name="imagen"
+                     Aspect="AspectFit"
+                     HeightRequest="200"
+                     WidthRequest="150"
+                        />
+                 </StackLayout>
+               
+
+                <StackLayout
+                    Orientation="Horizontal"
+			        HorizontalOptions="Center">
+
+                    <Button
+                        BackgroundColor="Transparent"
+				        ImageSource="bopciones.png"
+				        Clicked="Consultar_Reporte"
+				        HorizontalOptions="Start"
+                        WidthRequest="180"
+                        HeightRequest="92"
+				        FontAttributes="Bold"
+				        StyleId="Ok"/>
+
+
+                    <Button
+                        BackgroundColor="Transparent"
+				        ImageSource="baceptar.png"
+				        Clicked="Enviar_Reporte"
+                        HeightRequest="92"
+				        HorizontalOptions="End"
+                        WidthRequest="180"
+				        FontAttributes="Bold"
+				        StyleId="Ok"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+               
+        </AbsoluteLayout>
+</ContentPage>

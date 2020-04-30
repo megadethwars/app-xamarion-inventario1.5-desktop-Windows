@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.Menu"
+           >
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="iOS" Value="Montserrat-Bold"></On>
+            </OnPlatform>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="Fill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+            <StackLayout
+                Padding="40,10,40,10">
+                <StackLayout
+                    Padding="0,20,0,30">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions />
+                        <Image Source="MENU.png" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout Padding="30,0,30,30"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="Center">
+                <Grid
+                    ColumnSpacing="100"
+                    RowSpacing="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+			    
+                ImageSource="iconoperfil.png"
+                TextColor="Red"
+               BackgroundColor="Gray"
+               
+			    Clicked="Ir_Perfil"
+			    FontAttributes="Bold"/>
+
+                    <Button
+                x:Name="buttInvent"
+			    
+                ImageSource="iconoinventario.png"
+			    Clicked="Ir_Inventario"
+			    FontAttributes="Bold"
+                BackgroundColor="Gray"
+			    Grid.Column="1"/>
+                </Grid>
+                <Grid
+            ColumnSpacing="100"
+            RowSpacing="0"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+               HorizontalOptions="Center"
+                Text="MI PERFIL"
+                FontAttributes="Bold"
+                FontSize="Default"
+                FontFamily="{StaticResource BoldFont}"
+                TextColor="Red"
+                Grid.Column="0"
+                Grid.Row="0"/>
+                    <Label
+                HorizontalOptions="Center"
+                Text="INVENTARIO"
+                FontAttributes="Bold"
+                FontSize="Default"
+                FontFamily="Montserrat-Bold"
+                TextColor="Red"
+                Grid.Column="1"
+                Grid.Row="0"/>
+                </Grid>
+                <Grid
+            ColumnSpacing="100"
+            RowSpacing="20"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+			    
+                ImageSource="iconohistorial.png"
+			    Clicked="Ir_Historial"
+			    FontAttributes="Bold"
+                BackgroundColor="Gray"
+			    Grid.Row="0"/>
+
+                    <Button
+			    
+                ImageSource="iconoempleados.png"
+			    Clicked="Ir_Empleados"
+                BackgroundColor="Gray"
+			    FontAttributes="Bold"
+			    Grid.Row="0"
+			    Grid.Column="1"/>
+                </Grid>
+                <Grid
+            ColumnSpacing="100"
+            RowSpacing="20"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                HorizontalOptions="Center"
+                Text="HISTORIAL"
+                FontAttributes="Bold"
+                FontSize="Default"
+                FontFamily="Montserrat-Bold"
+                TextColor="Red"
+                Grid.Column="0"
+                Grid.Row="0"/>
+
+                    <Label
+                HorizontalOptions="Center"
+                Text="EMPLEADOS"
+                FontAttributes="Bold"
+                FontSize="Default"
+                FontFamily="Montserrat-Bold"
+                TextColor="Red"
+                Grid.Column="1"
+                Grid.Row="0"/>
+                </Grid>
+                <Grid
+            ColumnSpacing="100"
+            RowSpacing="20"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                ImageSource="iconoreporte.png"
+                BackgroundColor="Gray"
+			    Clicked="Ir_Reporte"
+			    FontAttributes="Bold"
+			    Grid.Row="0"/>
+
+                    <Button
+                BackgroundColor="Gray"
+                
+                ImageSource="iconoajustes.png"
+			    Clicked="Ir_Ajustes"
+			    FontAttributes="Bold"
+                Grid.Column="1"
+                Grid.Row="0"/>
+                </Grid>
+                <Grid
+            ColumnSpacing="100"
+            RowSpacing="20"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                HeightRequest="15"
+                HorizontalOptions="Center"
+                Text="REPORTE"
+                FontAttributes="Bold"
+                FontSize="Default"
+                FontFamily="Montserrat-Bold"
+                TextColor="Red"
+                Grid.Column="0"
+                Grid.Row="0"/>
+
+                    <Label
+                HeightRequest="15"
+                HorizontalOptions="Center"
+                Text="AJUSTES"
+                FontAttributes="Bold"
+                FontSize="Default"
+                FontFamily="Montserrat-Bold"
+                TextColor="Red"
+                Grid.Column="1"
+                Grid.Row="0"/>
+                </Grid>
+            </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

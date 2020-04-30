@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.Lugares">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME"  Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="          " />
+
+        
+
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="Fill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout Padding="90,0,80,20">
+                <StackLayout
+            Padding="300,20,300,0">
+                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        
+
+                        <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Center"
+			                Text="LUGARES" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+
+                    </Grid>
+                    <StackLayout Padding="200,70,200,20">
+                        <ScrollView>
+                            <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected"  BackgroundColor="Gray" HeightRequest="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Grid ColumnSpacing="10">
+                                                    <Grid.ColumnDefinitions>
+
+                                                        <ColumnDefinition Width="220"/>
+                                                       
+
+
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label  Text="{Binding Lugar}" TextColor="White" Grid.Column="0"/>
+                                                    
+
+                                                    
+
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollView>
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="Center" >
+                        <Label Text="INGRESAR NUEVO LUGAR"
+                               TextColor="White"
+                               FontFamily="Montserrat-Bold"
+                               FontAttributes="Bold"/>
+                        <Entry x:Name="tbLugar" Placeholder="Ingrese lugar deseado"
+                               BackgroundColor="Gray"
+                               PlaceholderColor="Black"
+                               TextColor="Black"/>
+                        <Button ImageSource="baceptar.png"
+                                Clicked="Button_Clicked"/>
+                    </StackLayout>
+
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

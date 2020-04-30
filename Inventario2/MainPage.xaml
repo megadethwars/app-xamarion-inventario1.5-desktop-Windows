@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.MainPage"        
+             >
+
+    <AbsoluteLayout VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand">
+        <Image x:Name="fondo" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="Fill"/>
+        <StackLayout
+		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout Padding="210,20,210,50">
+                <StackLayout
+                    Padding="0,20,0,170">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions />
+                        <Image Source="iniciar.png"
+                               />
+                                             
+                    </Grid>                     
+                </StackLayout>
+
+        <StackLayout 
+			Orientation="Vertical">
+            <Label
+                 FontFamily="Montserrat-Bold"
+				Text="USUARIO:"
+				FontAttributes="Bold"
+                FontSize="Large"
+                CharacterSpacing="4"
+                TextColor="White"/>
+        </StackLayout>
+        <StackLayout Padding="40,0,20,0">
+            
+            <Entry
+                
+                x:Name="nameEntry"
+                BackgroundColor="Gray"
+                PlaceholderColor="White"
+				HorizontalOptions="FillAndExpand"
+				Placeholder="Nombre o ID"
+                TextColor="White"
+                />
+                
+        </StackLayout>
+
+        <StackLayout 
+			Orientation="Vertical"
+			Padding="0,50,0,0">
+            <Label
+                 FontFamily="Montserrat-Bold"
+                FontSize="Large"
+				Text="CONTRASEÑA:"
+                CharacterSpacing="4"
+				FontAttributes="Bold"
+                TextColor="White"/>
+        </StackLayout>
+        <StackLayout
+            Padding="40,0,20,20">
+            <Entry
+                x:Name="passEntry"
+				HorizontalOptions="FillAndExpand"
+                BackgroundColor="Gray"
+                PlaceholderColor="White"
+				Placeholder="Contraseña"
+                TextColor="White"
+				IsPassword= "True"
+                Completed="OnEnterPressed"
+                />
+        </StackLayout>
+
+        <StackLayout
+            VerticalOptions="Center"
+			HorizontalOptions="End">
+            <Button
+				HeightRequest="92"
+                WidthRequest="180"
+				Clicked="IniciarSesion"
+                BackgroundColor="Transparent"
+                ImageSource="baceptar.png"
+				HorizontalOptions="End"
+				
+				/>
+        </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>
