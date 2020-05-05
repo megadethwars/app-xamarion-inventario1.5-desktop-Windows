@@ -179,7 +179,7 @@
                                                 <Label Text="{Binding codigo}" BackgroundColor="Gray" TextColor="White" Grid.Column="3"/>
                                                 <Label Text="{Binding marca}" BackgroundColor="Gray" TextColor="White" Grid.Column="4"/>
                                                 <Label Text="{Binding modelo}" BackgroundColor="Gray" TextColor="White" Grid.Column="5"/>
-                                                <Label Text="{Binding lugar}" BackgroundColor="Gray" TextColor="White" Grid.Column="6"/>
+                                                <Label Text="{Binding Lugar}" BackgroundColor="Gray" TextColor="White" Grid.Column="6"/>
                                                 <Label Text="{Binding fechamovimiento}" BackgroundColor="Gray" TextColor="White" Grid.Column="7"/>
                                                 
                                                 
