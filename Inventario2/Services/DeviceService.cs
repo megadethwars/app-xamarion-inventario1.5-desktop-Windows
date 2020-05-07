@@ -294,6 +294,20 @@ namespace Inventario2.Services
         }
 
 
+        public static async Task<StatusMessage> deleteDevice(int id)
+        {
+            try
+            {
+                var status = await HttpMethods.delete(Global.url + "deldevice/" + $"{id}");
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public static async Task<StatusMessage> putdevice(int id1, string objeto)
         {
             try

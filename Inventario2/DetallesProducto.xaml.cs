@@ -8,6 +8,7 @@ using Microsoft.WindowsAzure.Storage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Inventario2.Models;
+using Inventario2.Services;
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -54,22 +55,41 @@ namespace Inventario2
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            string res = await DisplayActionSheet("¡Estas a punto de eliminar un Producto!, ¿Deseas continuar?", "Cancelar", null, "Eliminar Producto");
+            string res = await DisplayActionSheet("¡Estas a punto de eliminar un Producto!, ¿Deseas continuar?", "Cancelar", "Eliminar Producto");
             switch (res)
             {
                 case "Eliminar Producto":
                     //Eliminar empleado
                     try
                     {
+                        if (n.IDlugar != 1)
+                        {
+                            await DisplayAlert("Error", "No se puede eliminar un producto fuera del almacen", "Aceptar");
+                            return;
+                        }
+
                         //await App.MobileService.GetTable<InventDB>().DeleteAsync(n);
-                        //var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
-                       // var client = account.CreateCloudBlobClient();
-                       // var container = client.GetContainerReference("fotosinventario");
-                       // await container.CreateIfNotExistsAsync();
-                       // var block = container.GetBlockBlobReference($"{n.foto}");
-                       // await block.DeleteIfExistsAsync();
-                       // await DisplayAlert("Hecho", "Producto borrado exitosamente", "Aceptar");
-                       // await Navigation.PopAsync();
+                        var status = await DeleteDevice(n.ID);
+                        if (status)
+                        {
+                            try
+                            {
+                                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=inventarioavs;AccountKey=wO8R0xJGc9+VleJHkKEL2AHLmZOEUvLcZg0M1KaMNI2lB9Jd27SShyHhlgeCGEQLOs7SCgYffIx4OI6TBABFPg==;EndpointSuffix=core.windows.net");
+                                var client = account.CreateCloudBlobClient();
+                                var container = client.GetContainerReference("fotosinventario");
+                                await container.CreateIfNotExistsAsync();
+                                var block = container.GetBlockBlobReference($"{n.foto}");
+                                await block.DeleteIfExistsAsync();
+                                
+                            }
+                            catch(Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                            await DisplayAlert("Hecho", "Producto borrado exitosamente", "Aceptar");
+                            await Navigation.PopAsync();
+                        }
+                        
                     }
                     catch (MobileServiceInvalidOperationException ms)
                     {
@@ -81,6 +101,54 @@ namespace Inventario2
                         break;
                     
             }
+        }
+
+
+        private async Task<bool> DeleteDevice(int id)
+        {
+            try
+            {
+                var deluser = await DeviceService.deleteDevice(id);
+
+                if (deluser == null)
+                {
+                    await DisplayAlert("Error", "Error de conexion al servidor", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 500)
+                {
+                    await DisplayAlert("Error", "Error interno en el servidor", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 404)
+                {
+                    await DisplayAlert("Error", "No encontrado", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 409)
+                {
+                    await DisplayAlert("Error", "Conflicto al borrar Usuario", "Aceptar");
+                    return false;
+                }
+
+                if (deluser.statuscode == 200 || deluser.statuscode == 201)
+                {
+                    
+                    return true;
+                }
+
+
+                //var tablainventario = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == movimiento.codigo).ToListAsync();
+
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
         }
 
         void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
