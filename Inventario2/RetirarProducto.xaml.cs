@@ -212,12 +212,29 @@ namespace Inventario2
             moves.serie = device.serie;
             moves.modelo = device.modelo;
             moves.codigo = device.codigo;
-            movimientos.Add(moves);
+            Boolean s = true;
+            for (int x=0;x<movimientos.Count;x++)
+            {
+                
+                if (movimientos[x].codigo == moves.codigo)
+                {
+                    DisplayAlert("Error", "El producto ya esta agregado", "Aceptar");
+                    s = false;
+                    break;
+                }
+                
+            }
+            if (s == true)
+            {
+                movimientos.Add(moves);
 
-            
-            f2.Add(f);
-            f1.Add(f);
-            f = null;
+
+                f2.Add(f);
+                f1.Add(f);
+                f = null;
+            }
+
+
         }
 
 

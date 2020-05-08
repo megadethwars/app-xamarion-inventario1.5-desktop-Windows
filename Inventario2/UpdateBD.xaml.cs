@@ -133,7 +133,7 @@ namespace Inventario2
                         devices[0].observaciones = worksheet.GetText(row, 9);
                         devices[0].origen = worksheet.GetText(row, 7);
                         devices[0].pertenece = worksheet.GetText(row, 10);
-                        devices[0].serie = (string)worksheet.GetValueRowCol(row, 1);
+                        devices[0].serie = (string)worksheet.GetValueRowCol(row, 2);
                         devices[0].IDlugar = 1;
                         devices[0].serie = devices[0].serie.Replace('\x22', '\0');
                         await DeviceService.putdevice(devices[0].ID, JsonConvert.SerializeObject(devices[0]));
@@ -142,7 +142,7 @@ namespace Inventario2
 
 
 
-                    porcent.Text = worksheet.GetText(row, 1) + "  " + (row * 100 / 1576).ToString() + "%";
+                    porcent.Text = worksheet.GetText(row, 1) + "  " + (row * 100 / 1642).ToString() + "%";
                     row = row + 1;
                 }
                 row = 2;
