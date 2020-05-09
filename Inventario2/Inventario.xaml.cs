@@ -22,10 +22,12 @@ namespace Inventario2
         public List<InventDB> users;
         public string stringcode;
         public int cont = 0;
+        public ModelUser us;
         public string tipoBusqueda;
-        public Inventario()
+        public Inventario(ModelUser u)
         {
             InitializeComponent();
+            us = u;
             
         }
         protected override async void OnAppearing()
@@ -99,7 +101,7 @@ namespace Inventario2
             {
                 var selectedPost = postListView.SelectedItem as ModelDevice;
                 if (selectedPost != null)
-                    Navigation.PushAsync(new DetallesProducto(selectedPost));
+                    Navigation.PushAsync(new DetallesProducto(selectedPost,us));
             }
             catch
             {
@@ -408,22 +410,37 @@ namespace Inventario2
             {
                 case "Agregar Nuevo Producto":
                     //Abrir vista/pagina Detalles del Producto
-                    await Navigation.PushAsync(new NuevoProducto());
-                    
+                    if(us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
+                        await Navigation.PushAsync(new NuevoProducto());
+                    else
+                        await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
+
                     break;
                 case "Reingresar Producto":
                     //Abrir vista/pagina Ingresar Producto
-                    await Navigation.PushAsync(new IngresarProducto(  ));
+                    if (us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
+                        await Navigation.PushAsync(new IngresarProducto(  ));
+                     else
+                        await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
                     break;
                 case "Salida":
                     //Abrir vista/pagina Retirar Producto
-                    await Navigation.PushAsync(new RetirarProducto(this));
+                    if (us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
+                        await Navigation.PushAsync(new RetirarProducto(this));
+                     else
+                        await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
                     break;
                 case "Actualizar BD":
-                    await Navigation.PushAsync(new UpdateBD());
+                    if (us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
+                        await Navigation.PushAsync(new UpdateBD());
+                     else
+                        await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
                     break;
                 case "Editar Lugares":
-                    await Navigation.PushAsync(new Lugares());
+                    if (us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
+                        await Navigation.PushAsync(new Lugares());
+                     else
+                        await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
                     break;
 
 

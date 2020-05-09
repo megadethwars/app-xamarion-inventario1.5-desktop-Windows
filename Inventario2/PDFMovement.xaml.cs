@@ -489,12 +489,12 @@ namespace Inventario2
 
         private async void OnAccept(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Inventario());
+            await Navigation.PushAsync(new Inventario(null));
         }
 
         private async void OnCancel(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Inventario());
+            await Navigation.PushAsync(new Inventario(null));
 
         }
 

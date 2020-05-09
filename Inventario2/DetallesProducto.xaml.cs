@@ -16,10 +16,12 @@ namespace Inventario2
     public partial class DetallesProducto : ContentPage
     {
         public ModelDevice n;
-        public DetallesProducto(ModelDevice db)
+        public ModelUser us;
+        public DetallesProducto(ModelDevice db,ModelUser u)
         {
             InitializeComponent();
             this.n = db;
+            us = u;
 
         }
         protected override void OnAppearing()
@@ -172,7 +174,8 @@ namespace Inventario2
 
         void Button_Clicked_1(System.Object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new EditarProducto(this));
+            if(us.IDtipoUsuario == 1 || us.IDtipoUsuario==2 )
+                Navigation.PushAsync(new EditarProducto(this));
         }
     }
 }

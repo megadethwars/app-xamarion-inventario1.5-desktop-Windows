@@ -137,14 +137,20 @@ namespace Inventario2
 
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedPost = postListView.SelectedItem as ModelUser;
-            if (selectedPost != null)
-                Navigation.PushAsync(new DetallesEmpleado(selectedPost));
+            if (us.IDtipoUsuario == 1)
+            {
+                var selectedPost = postListView.SelectedItem as ModelUser;
+                if (selectedPost != null)
+                    Navigation.PushAsync(new DetallesEmpleado(selectedPost));
+            }
         }
 
         private void AgregarEmp(object sender, EventArgs e)
         { 
-            Navigation.PushAsync(new AgregarEmpleado());
+            if (us.IDtipoUsuario == 1)
+                Navigation.PushAsync(new AgregarEmpleado());
+            else
+                DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
 
         }
 

@@ -34,8 +34,10 @@ namespace Inventario2
 
         private void Ir_Inventario(object sender, EventArgs e)
         {
-            if (user.IDtipoUsuario == 1 || user.IDtipoUsuario == 2)
-                Navigation.PushAsync(new Inventario());
+            if (user.IDtipoUsuario == 1 || user.IDtipoUsuario == 2 || user.IDtipoUsuario == 3)
+                Navigation.PushAsync(new Inventario(user));
+            else
+                DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
         }
 
         private void Ir_Historial(object sender, EventArgs e)
@@ -43,17 +45,18 @@ namespace Inventario2
           //tipo=
           //if (tipo==usuario)
           //Navigation.PushAsync(new HistorialUsuario());
-            Navigation.PushAsync(new HistorialCompleto());
+           
+                Navigation.PushAsync(new HistorialCompleto());
         }
 
         private void Ir_Empleados(object sender, EventArgs e)
         { //Hacer validacion y si es administrador accede, si no no realiza nada
           //tipo=
           //if (tipo==administrador)
-            if (user.IDtipoUsuario == 1)
+            if (user.IDtipoUsuario == 1 || user.IDtipoUsuario == 2 || user.IDtipoUsuario == 3)
                 Navigation.PushAsync(new Empleado(user));
-            //else
-            //DisplayAlert("Advertencia", "No Puedes acceder, no eres administrador", "OK");
+            else
+                DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
         }
 
         private void Ir_Reporte(object sender, EventArgs e)
