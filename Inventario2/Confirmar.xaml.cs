@@ -12,6 +12,10 @@ using Inventario2.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
+using ZXing.QrCode;
+using ZXing.Net.Mobile.Forms;
+using ZXing;
+using System.Drawing;
 
 namespace Inventario2
 {
@@ -35,11 +39,14 @@ namespace Inventario2
             pdf = new GeneratePDF();
             CurrentDevice = new ModelDevice();
         }
-
+       
 
 
         protected override async void OnAppearing()
         {
+
+             
+
             base.OnAppearing();
 
             var lugares = await LugaresService.getlugares();
