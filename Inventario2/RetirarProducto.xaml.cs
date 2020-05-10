@@ -19,7 +19,7 @@ namespace Inventario2
         public List<Plugin.Media.Abstractions.MediaFile> f1 = new List<Plugin.Media.Abstractions.MediaFile>();
         public List<Plugin.Media.Abstractions.MediaFile> f2 = new List<Plugin.Media.Abstractions.MediaFile>();
         Plugin.Media.Abstractions.MediaFile f = null;
-        string p;
+        string uid;
         public int cont;
         List<InventDB> users1;
         List<ModelDevice> devices;
@@ -55,7 +55,7 @@ namespace Inventario2
             }
             BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
             
-            p = Guid.NewGuid().ToString("D");
+            uid = Guid.NewGuid().ToString("D");
             
 
         }
