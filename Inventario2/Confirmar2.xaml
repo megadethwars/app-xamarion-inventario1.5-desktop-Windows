@@ -21,9 +21,9 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		Padding="90,20,80,20">
+		Padding="90,20,80,50">
                 <StackLayout
-            Padding="0,20,0,200">
+            Padding="0,20,0,40">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions/>
                         <Image Source="CONFIRMAR.png"/>
@@ -32,111 +32,113 @@
 
 
                 </StackLayout>
-                <StackLayout VerticalOptions="Center"
+                <ScrollView HorizontalOptions="Center">
+                    <StackLayout 
                              HorizontalOptions="Center">
 
-                    <StackLayout
+                        <StackLayout
                 HorizontalOptions="CenterAndExpand" 
                 VerticalOptions="CenterAndExpand" >
-                        <Label Text="Usuario"
+                            <Label Text="Usuario"
                                FontFamily="Montserrat-Bold"
                        TextColor="White"
                    FontAttributes="Bold"/>
-                        <Entry x:Name="Usuario"
+                            <Entry x:Name="Usuario"
                                BackgroundColor="Gray"
                                PlaceholderColor="White"
                                TextColor="White"
                        Placeholder="Ingrese el usuario"/>
-                        <Label Text="Contraseña"
+                            <Label Text="Contraseña"
                                FontFamily="Montserrat-Bold"
                        TextColor="White"
                    FontAttributes="Bold"/>
-                        <Entry x:Name="Contra"
+                            <Entry x:Name="Contra"
                                BackgroundColor="Gray"
                                PlaceholderColor="White"
                                TextColor="White"
                        IsPassword="True"
                        Placeholder="Ingrese la Contraseña"/>
-                        
-                        <Button Clicked="Button_Clicked"
+
+                            <Button Clicked="Button_Clicked"
                                 BackgroundColor="Transparent"
                         TextColor="Red"
                         ImageSource="baceptar.png"></Button>
 
 
-                        
 
-                        
 
-                    </StackLayout>
 
-                    <ScrollView
+
+                        </StackLayout>
+
+                        <ScrollView
 			                HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
-                        <StackLayout VerticalOptions="FillAndExpand">
-                            <ListView x:Name="postListView"  BackgroundColor="Gray" HeightRequest="570">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                        <ColumnDefinition Width="210"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label 
+                            <StackLayout VerticalOptions="FillAndExpand">
+                                <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected" BackgroundColor="Gray" HeightRequest="200">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                            <ColumnDefinition Width="210"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label 
                                                             Text="{Binding producto}" 
                                                             TextColor="White" 
                                                             Grid.Column="0"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding marca}" 
                                                             TextColor="White"  
                                                             Grid.Column="1"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding codigo}" 
                                                             TextColor="White" 
                                                             Grid.Column="2"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding modelo}" 
                                                             TextColor="White" 
                                                             Grid.Column="3"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding serie}" 
                                                             TextColor="White" 
                                                             Grid.Column="4"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding Lugar}" 
                                                             TextColor="White" 
                                                             Grid.Column="5"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding pertenece}" 
                                                             TextColor="White" 
                                                             Grid.Column="6"/>
-                                                    <Label 
+                                                        <Label 
                                                             Text="{Binding Lugar}" 
                                                             TextColor="White" 
                                                             Grid.Column="7"/>
-                                                </Grid>
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
-                    </ScrollView>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </ScrollView>
 
-                    <Button Clicked="On_home"
+                        <Button Clicked="On_home"
                                 BackgroundColor="Transparent"
                         TextColor="Red"
                         ImageSource="baceptar.png"></Button>
 
-                </StackLayout>
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
         </StackLayout>
     </AbsoluteLayout>

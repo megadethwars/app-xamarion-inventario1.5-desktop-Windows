@@ -457,5 +457,11 @@ namespace Inventario2
             return true;
         }
 
+        private void postListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var selectedPost = postListView.SelectedItem as ModelDevice;
+            if (selectedPost != null)
+                Navigation.PushAsync(new DetallesProducto2(selectedPost));
+        }
     }
 }
