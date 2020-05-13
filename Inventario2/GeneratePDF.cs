@@ -63,7 +63,7 @@ namespace Inventario2
                 //Load the image from the disk.
                 PdfBitmap image = new PdfBitmap(imageStream);
                 //Draw the image
-                RectangleF bounds = new RectangleF(0, 0, 110, 110);
+                RectangleF bounds = new RectangleF(0, 0, 80, 80);
                 //Draws the image to the PDF page
                 page.Graphics.DrawImage(image, bounds);
 

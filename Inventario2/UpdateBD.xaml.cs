@@ -146,7 +146,7 @@ namespace Inventario2
                     row = row + 1;
                 }
                 row = 2;
-                porcent.Text = "terminado";
+                //porcent.Text = "terminado";
 
                 /*
                 for (int x = 2; x < 1577; x++)
