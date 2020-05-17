@@ -52,21 +52,30 @@ namespace Inventario2
 
                 //Access first worksheet from the workbook.
                 IWorksheet worksheet = workbook.Worksheets[1];
-               
 
-                
+                int y = 2;
+                while (!worksheet.GetValueRowCol(y,3).Equals("") && worksheet.GetValueRowCol(y, 2) != null)
+                {
+                    y++;
+                    
+                }
+                //porcent.Text = y.ToString();
                 //Filas.
                 int row = 2;
-               
+                y = y - 1;
+                bool t = await DisplayAlert("Advertencia", "Este archivo contiene " + y.ToString() + "productos, Desea Continuar?", "Si", "No");
                 while (!worksheet.GetValueRowCol(row, 2).Equals("") && worksheet.GetValueRowCol(row, 2)!= null)
                 {
+                    
 
                     if (isStopped)
                     {
                         porcent.Text = "Detenido";
                         break;
                     }
-
+                    
+                    if (t == false)
+                        break;
                     //columnas
 
                     var strs = worksheet.GetText(row, 1);
@@ -142,11 +151,11 @@ namespace Inventario2
 
 
 
-                    porcent.Text = worksheet.GetText(row, 1) + "  " + (row * 100 / 1642).ToString() + "%";
+                    porcent.Text = worksheet.GetText(row, 1) + "  " + (row * 100 / (y)).ToString() + "%";
                     row = row + 1;
                 }
                 row = 2;
-                //porcent.Text = "terminado";
+                porcent.Text = "terminado";
 
                 /*
                 for (int x = 2; x < 1577; x++)
