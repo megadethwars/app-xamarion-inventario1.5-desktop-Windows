@@ -160,12 +160,22 @@ namespace Inventario2
                         header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
                 }
 
+
+                for (int introw = 0; introw < invoiceDetails.Rows.Count; introw++)
+                {
+                    PdfGridRow rows = grid.Rows[introw];
+                    for (int intcolumn = 0; intcolumn < rows.Cells.Count; intcolumn++)
+                    {
+                        rows.Cells[intcolumn].StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+                    }
+                }
+
                 //Applies the header style
                 header.ApplyStyle(headerStyle);
                 cellStyle.Borders.Bottom = new PdfPen(new PdfColor(217, 217, 217), 0.70f);
                 cellStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 10f);
                 cellStyle.TextBrush = new PdfSolidBrush(new PdfColor(131, 130, 136));
-                cellStyle.StringFormat.Alignment = PdfTextAlignment.Center;
+      
                 //Creates the layout format for grid
                 PdfGridLayoutFormat layoutFormat = new PdfGridLayoutFormat();
                 // Creates layout format settings to allow the table pagination
