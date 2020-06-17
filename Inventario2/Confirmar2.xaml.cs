@@ -123,6 +123,7 @@ namespace Inventario2
 
                         }
 
+                        
                         bool res = await UpdateLocations(rp.re.movimientos, 1);
 
                         if (!res){

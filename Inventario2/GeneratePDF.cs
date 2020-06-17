@@ -155,9 +155,9 @@ namespace Inventario2
                 for (int i = 0; i < header.Cells.Count; i++)
                 {
                     if (i == 0 || i == 1)
-                        header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
+                        header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
                     else
-                        header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
+                        header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
                 }
 
                 //Applies the header style
@@ -165,10 +165,13 @@ namespace Inventario2
                 cellStyle.Borders.Bottom = new PdfPen(new PdfColor(217, 217, 217), 0.70f);
                 cellStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 10f);
                 cellStyle.TextBrush = new PdfSolidBrush(new PdfColor(131, 130, 136));
+                cellStyle.StringFormat.Alignment = PdfTextAlignment.Center;
                 //Creates the layout format for grid
                 PdfGridLayoutFormat layoutFormat = new PdfGridLayoutFormat();
                 // Creates layout format settings to allow the table pagination
                 layoutFormat.Layout = PdfLayoutType.Paginate;
+                
+                
 
                 //Draws the grid to the PDF page.
                 PdfGridLayoutResult gridResult = grid.Draw(page, new RectangleF(new PointF(0, result.Bounds.Bottom + 150), new SizeF(graphics.ClientSize.Width, graphics.ClientSize.Height - 100)), layoutFormat);
@@ -280,7 +283,7 @@ namespace Inventario2
                     correo = Model.CurrentUser.correo;
                 }
 
-                tablacarrito.Columns.Add("CANT", typeof(string));
+                
                 tablacarrito.Columns.Add("CODIGO", typeof(string));
                 tablacarrito.Columns.Add("DESCRP", typeof(string));
                 tablacarrito.Columns.Add("MARCA", typeof(string));
@@ -292,7 +295,7 @@ namespace Inventario2
                 foreach (ModelMovements mov in lista)
                 {
 
-                    tablacarrito.Rows.Add(mov.cantidad, mov.codigo, mov.producto, mov.marca, mov.modelo, mov.serie);
+                    tablacarrito.Rows.Add( mov.codigo, mov.producto, mov.marca, mov.modelo, mov.serie);
                 }
 
 

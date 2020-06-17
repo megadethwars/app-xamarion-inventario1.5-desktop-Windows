@@ -112,20 +112,21 @@
 				                FontAttributes="Bold"
                                 Grid.Column="4"/>
                             <Label
-                                Text="ORIGEN:" 
+                                Text="UBICACION:" 
                                 TextColor="White"
 				                FontAttributes="Bold"
                                 Grid.Column="5"/>
-                            <Label
-                                Text="ACCESORIO DE:" 
+                                <Label
+                                Text="DESTINO:" 
                                 TextColor="White"
 				                FontAttributes="Bold"
                                 Grid.Column="6"/>
-                            <Label
-                                Text="LUGAR:" 
+                                <Label
+                                Text="ACCESORIO DE:" 
                                 TextColor="White"
 				                FontAttributes="Bold"
                                 Grid.Column="7"/>
+                            
                         </Grid>
 
                         <ScrollView
@@ -173,11 +174,11 @@
                                                             TextColor="White" 
                                                             Grid.Column="5"/>
                                                         <Label 
-                                                            Text="{Binding pertenece}" 
+                                                            Text="{Binding Lugar}" 
                                                             TextColor="White" 
                                                             Grid.Column="6"/>
                                                         <Label 
-                                                            Text="{Binding Lugar}" 
+                                                            Text="{Binding pertenece}" 
                                                             TextColor="White" 
                                                             Grid.Column="7"/>
                                                     </Grid>
