@@ -25,8 +25,17 @@ namespace Inventario2
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            f = await CrossFilePicker.Current.PickFile();
-            nombre.Text = f.FileName;
+            try
+            {
+                
+                f = await CrossFilePicker.Current.PickFile();
+                nombre.Text = f.FileName;
+                                
+            }
+            catch(Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
 
