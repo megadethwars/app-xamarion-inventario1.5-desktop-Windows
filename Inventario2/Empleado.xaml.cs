@@ -141,7 +141,7 @@ namespace Inventario2
             {
                 var selectedPost = postListView.SelectedItem as ModelUser;
                 if (selectedPost != null)
-                    Navigation.PushAsync(new DetallesEmpleado(selectedPost));
+                    Navigation.PushAsync(new DetallesEmpleado(selectedPost,us));
             }
         }
 

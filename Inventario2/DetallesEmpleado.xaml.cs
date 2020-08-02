@@ -18,10 +18,12 @@ namespace Inventario2
     public partial class DetallesEmpleado : ContentPage
     {
         ModelUser usuario;
-        public DetallesEmpleado(ModelUser user)
+        ModelUser u;
+        public DetallesEmpleado(ModelUser user, ModelUser us)
         {
             InitializeComponent();
             this.usuario = user;
+            u = us;
             nameEmp.Text = usuario.nombre + " " + usuario.apellido_paterno + " " + usuario.apellido_materno;
 
             fechaCont.Text = usuario.fecha;
@@ -44,29 +46,34 @@ namespace Inventario2
             {
                 case "Eliminar Empleado":
                     //Eliminar empleado
-                    try
+                    if (u.IDtipoUsuario == 1)
                     {
-                        //await App.MobileService.GetTable<Usuario>().DeleteAsync(usuario);
-                        //var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
-                        //var client = account.CreateCloudBlobClient();
-                        //var container = client.GetContainerReference("fotosempleados");
-                        //await container.CreateIfNotExistsAsync();
-                        //var foto = usuario.ID + ".jpg";
-                        //var block = container.GetBlockBlobReference($"{foto}");
-                        //await block.DeleteIfExistsAsync();
+                        try
+                        {
+                            //await App.MobileService.GetTable<Usuario>().DeleteAsync(usuario);
+                            //var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
+                            //var client = account.CreateCloudBlobClient();
+                            //var container = client.GetContainerReference("fotosempleados");
+                            //await container.CreateIfNotExistsAsync();
+                            //var foto = usuario.ID + ".jpg";
+                            //var block = container.GetBlockBlobReference($"{foto}");
+                            //await block.DeleteIfExistsAsync();
 
-                        bool resp = await Deleteuser(usuario.ID);
+                            bool resp = await Deleteuser(usuario.ID);
 
-                        //await DisplayAlert("Hecho", "Usuario borrado exitosamente", "Aceptar");
-                        await Navigation.PopAsync();
+                            //await DisplayAlert("Hecho", "Usuario borrado exitosamente", "Aceptar");
+                            await Navigation.PopAsync();
+                        }
+                        catch (MobileServiceInvalidOperationException ms)
+                        {
+
+
+                            await DisplayAlert("Error", "Error al borrar el producto", "Aceptar");
+
+                        }
                     }
-                    catch (MobileServiceInvalidOperationException ms)
-                    {
-
-
-                        await DisplayAlert("Error", "Error al borrar el producto", "Aceptar");
-
-                    }
+                    else
+                        DisplayAlert("Error", "Faltan permisos de administrador", "Aceptar");
                     break;
 
             }

@@ -329,8 +329,8 @@
                     <StackLayout>
                         <Image
             x:Name="imagen"
-            WidthRequest="150"
-            HeightRequest="100"/>
+            WidthRequest="60"
+            HeightRequest="40"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="Center">

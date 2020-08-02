@@ -108,48 +108,53 @@ namespace Inventario2
 
         private async Task<bool> DeleteDevice(int id)
         {
-            try
+            if (us.IDtipoUsuario == 1)
             {
-                var deluser = await DeviceService.deleteDevice(id);
-
-                if (deluser == null)
+                try
                 {
-                    await DisplayAlert("Error", "Error de conexion al servidor", "Aceptar");
+                    var deluser = await DeviceService.deleteDevice(id);
+
+                    if (deluser == null)
+                    {
+                        await DisplayAlert("Error", "Error de conexion al servidor", "Aceptar");
+                        return false;
+                    }
+
+                    if (deluser.statuscode == 500)
+                    {
+                        await DisplayAlert("Error", "Error interno en el servidor", "Aceptar");
+                        return false;
+                    }
+
+                    if (deluser.statuscode == 404)
+                    {
+                        await DisplayAlert("Error", "No encontrado", "Aceptar");
+                        return false;
+                    }
+
+                    if (deluser.statuscode == 409)
+                    {
+                        await DisplayAlert("Error", "Conflicto al borrar Usuario", "Aceptar");
+                        return false;
+                    }
+
+                    if (deluser.statuscode == 200 || deluser.statuscode == 201)
+                    {
+
+                        return true;
+                    }
+
+
+                    //var tablainventario = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == movimiento.codigo).ToListAsync();
+
+                }
+                catch
+                {
                     return false;
                 }
-
-                if (deluser.statuscode == 500)
-                {
-                    await DisplayAlert("Error", "Error interno en el servidor", "Aceptar");
-                    return false;
-                }
-
-                if (deluser.statuscode == 404)
-                {
-                    await DisplayAlert("Error", "No encontrado", "Aceptar");
-                    return false;
-                }
-
-                if (deluser.statuscode == 409)
-                {
-                    await DisplayAlert("Error", "Conflicto al borrar Usuario", "Aceptar");
-                    return false;
-                }
-
-                if (deluser.statuscode == 200 || deluser.statuscode == 201)
-                {
-                    
-                    return true;
-                }
-
-
-                //var tablainventario = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == movimiento.codigo).ToListAsync();
-
             }
-            catch
-            {
-                return false;
-            }
+            else
+                DisplayAlert("Error", "Faltan permisos de administrador", "Aceptar");
             return false;
         }
 
