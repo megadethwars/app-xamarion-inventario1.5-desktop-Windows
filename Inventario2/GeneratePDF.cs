@@ -128,7 +128,7 @@ namespace Inventario2
                 fecha.Brush = PdfBrushes.Black;
                 PdfLayoutResult resfecha = fecha.Draw(page, new PointF(bounds.Left + 40, bounds.Top + 16));
 
-                PdfTextElement folio = new PdfTextElement(movimientos.ID, campofont);
+                PdfTextElement folio = new PdfTextElement(movimientos.IDmovimiento, campofont);
                 folio.Brush = PdfBrushes.Black;
                 PdfLayoutResult resfolio = folio.Draw(page, new PointF(bounds.Left + 40, bounds.Top + 32));
 
