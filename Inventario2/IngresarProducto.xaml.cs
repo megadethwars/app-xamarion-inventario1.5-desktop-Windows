@@ -21,6 +21,8 @@ namespace Inventario2
         public int cont;
         List<InventDB> users1;
         public List<ModelMovements> movimientos = new List<ModelMovements>();
+        string first_order="";
+        bool isFirst = true;
 
         public string text;
         public IngresarProducto()
@@ -116,7 +118,26 @@ namespace Inventario2
                         serietxt.Text = devices[0].serie;
                         pertenece.Text = devices[0].pertenece;
                         origentxt.Text = devices[0].origen;
-                        Llenar(devices[0]);
+                        if (isFirst)
+                        {
+                            first_order = devices[0].IDmov;
+                            isFirst = false;
+                            Llenar(devices[0]);
+                        }
+                        else
+                        {
+                            if (first_order.Equals(devices[0].IDmov))
+                            {
+                                Llenar(devices[0]);
+                            }
+                            else
+                            {
+                                await DisplayAlert("Buscando", "El producto o pertenece a la orden de movimiento "+first_order, "OK");
+                                return;
+                            }
+                        }
+                        
+                        
                         BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
                     }
 
@@ -156,7 +177,24 @@ namespace Inventario2
                        
                         if (!(devices[0].foto == ""))
                             foto.Source = devices[0].foto;
-                        Llenar(devices[0]);
+                        if (isFirst)
+                        {
+                            first_order = devices[0].IDmov;
+                            isFirst = false;
+                            Llenar(devices[0]);
+                        }
+                        else
+                        {
+                            if (first_order.Equals(devices[0].IDmov))
+                            {
+                                Llenar(devices[0]);
+                            }
+                            else
+                            {
+                                await DisplayAlert("Buscando", "El producto o pertenece a la orden de movimiento " + first_order, "OK");
+                                return;
+                            }
+                        }
                         BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
                     }
 
