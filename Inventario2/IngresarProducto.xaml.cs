@@ -132,7 +132,7 @@ namespace Inventario2
                             }
                             else
                             {
-                                await DisplayAlert("Buscando", "El producto o pertenece a la orden de movimiento "+first_order, "OK");
+                                await DisplayAlert("Buscando", "El producto no pertenece a la orden de movimiento "+first_order, "OK");
                                 return;
                             }
                         }
@@ -191,7 +191,7 @@ namespace Inventario2
                             }
                             else
                             {
-                                await DisplayAlert("Buscando", "El producto o pertenece a la orden de movimiento " + first_order, "OK");
+                                await DisplayAlert("Buscando", "El producto no pertenece a la orden de movimiento " + first_order, "OK");
                                 return;
                             }
                         }
