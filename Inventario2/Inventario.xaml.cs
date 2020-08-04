@@ -405,7 +405,7 @@ namespace Inventario2
 
         private async void MenuOp(object sender, EventArgs e)
         { //Despegar menu de  3 opciones Ingresar, Retirar, Detalles
-            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida","Actualizar BD","Editar Lugares");
+            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida","Actualizar BD","Editar Lugares", "Editar Movimiento");
             switch (res)
             {
                 case "Agregar Nuevo Producto":
@@ -440,6 +440,12 @@ namespace Inventario2
                     if (us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
                         await Navigation.PushAsync(new Lugares());
                      else
+                        await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
+                    break;
+                case "Editar Movimiento":
+                    if (us.IDtipoUsuario == 1 || us.IDtipoUsuario == 2)
+                        await Navigation.PushAsync(new EditarMovimiento());
+                    else
                         await DisplayAlert("Advertencia", "No Puedes acceder, no tienes permisos", "OK");
                     break;
 

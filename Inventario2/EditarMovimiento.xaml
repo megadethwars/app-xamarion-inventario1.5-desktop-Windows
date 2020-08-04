@@ -1,0 +1,333 @@
+﻿<!--<?xml version="1.0" encoding="utf-8" ?>-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+           
+             mc:Ignorable="d"
+             x:Class="Inventario2.EditarMovimiento">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="                " />
+        <ToolbarItem Text="                " />
+
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="Fill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
+                <StackLayout
+		        Padding="80,0,80,10">
+                    <StackLayout
+                    Padding="0,20,0,10">
+                        <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions/>
+
+                            <Image Source="INVENTARIO.png"/>
+
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Padding="0,0,0,0">
+                        <SearchBar
+                        x:Name="search"
+			            Placeholder="Buscar"
+			            CancelButtonColor="Red"
+                        BackgroundColor="Gray"
+                        PlaceholderColor="White"
+                        
+                        TextColor="Black"
+			            SearchButtonPressed="search_SearchButtonPressed" />
+                    </StackLayout>
+                    <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand">
+
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label
+                                Text="PRODUCTO:" 
+				                FontAttributes="Bold"
+                                TextColor="White"
+                                Grid.Column="0"/>
+                                    <Label
+                                Text="MARCA:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="1"/>
+                                    <Label
+                                Text="CODIGO QR:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="2"/>
+                                    <Label
+                                Text="MODELO:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="3"/>
+                                    <Label
+                                Text="SERIE:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="4"/>
+                                    <Label
+                                Text="UBICACION:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="5"/>
+                                    <Label
+                                Text="ID MOVIMIENTO:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="6"/>
+                                    <Label
+                                Text="ELIMINAR:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="7"/>
+
+                                </Grid>
+
+                                <ScrollView
+			                HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                                    <StackLayout VerticalOptions="FillAndExpand">
+                                        <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected"  BackgroundColor="Gray" HeightRequest="350">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label 
+                                                            Text="{Binding producto}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="0"/>
+                                                                <Label 
+                                                            Text="{Binding marca}" 
+                                                            TextColor="White"  
+                                                            Grid.Column="1"/>
+                                                                <Label 
+                                                            Text="{Binding codigo}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="2"/>
+                                                                <Label 
+                                                            Text="{Binding modelo}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="3"/>
+                                                                <Label 
+                                                            Text="{Binding serie}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="4"/>
+                                                                <Label 
+                                                            Text="{Binding ubicacion}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="5"/>
+                                                                <Label 
+                                                            Text="{Binding idMove}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="6"/>
+                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="Button_Clicked"  Grid.Column="5"/>
+                                                            </Grid>
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackLayout>
+                                </ScrollView>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout Padding="0,0,0,0">
+                        <Label Text="Añadir Nuevo Producto" FontSize="Title" HorizontalOptions="Center" TextColor="White"/>
+                        <SearchBar
+                        x:Name="searching"
+			            Placeholder="Buscar"
+			            CancelButtonColor="Red"
+                        BackgroundColor="Gray"
+                        PlaceholderColor="White"
+                        
+                        TextColor="Black"
+			            SearchButtonPressed="searching_SearchButtonPressed" />
+                    </StackLayout>
+                    <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand">
+
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                        <ColumnDefinition Width="210"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label
+                                Text="PRODUCTO:" 
+				                FontAttributes="Bold"
+                                TextColor="White"
+                                Grid.Column="0"/>
+                                    <Label
+                                Text="MARCA:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="1"/>
+                                    <Label
+                                Text="CODIGO QR:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="2"/>
+                                    <Label
+                                Text="MODELO:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="3"/>
+                                    <Label
+                                Text="SERIE:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="4"/>
+                                    <Label
+                                Text="UBICACION:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="5"/>
+                                    <Label
+                                Text="ID MOVIMIENTO:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="6"/>
+                                    <Label
+                                Text="ELIMINAR:" 
+                                TextColor="White"
+				                FontAttributes="Bold"
+                                Grid.Column="7"/>
+
+                                </Grid>
+
+                                <ScrollView
+			                HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                                    <StackLayout VerticalOptions="FillAndExpand">
+                                        <ListView x:Name="postListView2"  BackgroundColor="Gray" HeightRequest="350">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                    <ColumnDefinition Width="210"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label 
+                                                            Text="{Binding producto}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="0"/>
+                                                                <Label 
+                                                            Text="{Binding marca}" 
+                                                            TextColor="White"  
+                                                            Grid.Column="1"/>
+                                                                <Label 
+                                                            Text="{Binding codigo}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="2"/>
+                                                                <Label 
+                                                            Text="{Binding modelo}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="3"/>
+                                                                <Label 
+                                                            Text="{Binding serie}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="4"/>
+                                                                <Label 
+                                                            Text="{Binding ubicacion}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="5"/>
+                                                                <Label 
+                                                            Text="{Binding idMove}" 
+                                                            TextColor="White" 
+                                                            Grid.Column="6"/>
+                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="Button_Clicked_1"  Grid.Column="5"/>
+                                                            </Grid>
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackLayout>
+                                </ScrollView>
+                            </StackLayout>
+                            
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout 
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center">
+                        <Button
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        WidthRequest="180"
+                        HeightRequest="92"
+			            ImageSource="baceptar.png"
+			            Clicked="Button_Clicked_3"
+			            StyleId="Ok"/>
+                        <Button
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        WidthRequest="180"
+                        HeightRequest="92"
+			            ImageSource="beliminar.png"
+			            Clicked="Button_Clicked_2"
+			            StyleId="Ok"/>
+
+                    </StackLayout>
+                </StackLayout>
+                
+            </ScrollView>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>
