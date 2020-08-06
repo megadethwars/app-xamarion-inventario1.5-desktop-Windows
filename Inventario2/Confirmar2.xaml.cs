@@ -25,10 +25,12 @@ namespace Inventario2
         private ModelUser usuarioentrada;
         public int idlugar;
         private GeneratePDF pdf;
+        private PDFfaltantes pf;
         private string CUrrentIDmovimiento="";
         public Confirmar2(Carrito2 x)
         {
             pdf = new GeneratePDF();
+            pf = new PDFfaltantes();
             CurrentDevice = new ModelDevice();
             InitializeComponent();
             rp = x;
@@ -195,6 +197,7 @@ namespace Inventario2
                                 if (tablemissing.Count != 0)
                                 {
                                     postListView.ItemsSource = tablemissing;
+                                    await pf.InitPDFAsync(uid, tablemissing);
                                 }
                                     
                                 
