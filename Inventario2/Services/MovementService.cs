@@ -97,5 +97,39 @@ namespace Inventario2.Services
         }
 
 
+        public static async Task<List<ModelMovements>> getmovementsbyid(string id)
+        {
+
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "moves/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelMovements>>(status.message);
+                    foreach (ModelMovements usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelMovements> listerror = new List<ModelMovements>();
+                    listerror.Add(new ModelMovements());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
+
     }
 }

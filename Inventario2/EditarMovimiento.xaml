@@ -42,6 +42,9 @@
                         TextColor="Black"
 			            SearchButtonPressed="search_SearchButtonPressed" />
                     </StackLayout>
+
+                    
+
                     <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="CenterAndExpand">
@@ -178,6 +181,35 @@
                         TextColor="Black"
 			            SearchButtonPressed="searching_SearchButtonPressed" />
                     </StackLayout>
+
+                    <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand">
+
+                        <StackLayout Padding="0,9,50,8">
+                            <Picker x:Name="pickerBuscar"
+                            TitleColor="Red"
+                            Title="TIPO DE BUSQUEDA"
+                            TextColor="Red"
+                            FontFamily="Montserrat-Bold"
+                            WidthRequest="200"
+                            HeightRequest="55"
+                            BackgroundColor="Transparent"
+                            SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
+
+                                <Picker.Items>
+                                    <x:String>QR</x:String>
+                                    <x:String>producto</x:String>
+                                    <x:String>marca</x:String>
+                                    <x:String>modelo</x:String>
+                                    <x:String>proveedor</x:String>
+                                    <x:String>serie</x:String>
+                                </Picker.Items>
+                                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                            </Picker>
+                        </StackLayout>
+                    </StackLayout>
+
                     <StackLayout
                     Orientation="Horizontal"
                     HorizontalOptions="CenterAndExpand">
