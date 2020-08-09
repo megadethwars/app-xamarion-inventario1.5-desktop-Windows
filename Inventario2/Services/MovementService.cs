@@ -96,7 +96,18 @@ namespace Inventario2.Services
 
         }
 
-
+        public static async Task<StatusMessage> deletemovement(string id)
+        {
+            try
+            {
+                var status = await HttpMethods.delete(Global.url + "delmove/" + id);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public static async Task<List<ModelMovements>> getmovementsbyid(string id)
         {
 

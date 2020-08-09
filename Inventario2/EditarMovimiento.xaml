@@ -113,7 +113,7 @@
 			                HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
                                     <StackLayout VerticalOptions="FillAndExpand">
-                                        <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected"  BackgroundColor="Gray" HeightRequest="350">
+                                        <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected"  BackgroundColor="Gray" HeightRequest="250">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <ViewCell>
@@ -278,7 +278,7 @@
 			                HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
                                     <StackLayout VerticalOptions="FillAndExpand">
-                                        <ListView x:Name="postListView2"  BackgroundColor="Gray" HeightRequest="350">
+                                        <ListView x:Name="postListView2"  BackgroundColor="Gray" HeightRequest="250">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <ViewCell>
@@ -322,7 +322,8 @@
                                                             Text="{Binding idMove}" 
                                                             TextColor="White" 
                                                             Grid.Column="6"/>
-                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="Button_Clicked_1"  Grid.Column="5"/>
+                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="btdeletedevice"  Grid.Column="5"/>
+                                                                <Button Text="Agregar" BackgroundColor="Transparent" TextColor="Red" Clicked="btacceptDevice"  Grid.Column="4"/>
                                                             </Grid>
                                                         </StackLayout>
                                                     </ViewCell>
@@ -344,7 +345,7 @@
                         WidthRequest="180"
                         HeightRequest="92"
 			            ImageSource="baceptar.png"
-			            Clicked="Button_Clicked_3"
+			            Clicked="btAceptar"
 			            StyleId="Ok"/>
                         <Button
                         BackgroundColor="Transparent"

@@ -7,7 +7,7 @@ using Inventario2.Services;
 using Inventario2.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Newtonsoft.Json;
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,19 +15,25 @@ namespace Inventario2
     {
         string currentIDmovement = "";
         List<ModelMovements> listamoves;
+        List<ModelMovements> listaidmmovementsDel;
+        List<ModelDevice> listadevices;
+
         public string tipoBusqueda;
         public EditarMovimiento()
         {
             listamoves = new List<ModelMovements>();
+            listaidmmovementsDel = new List<ModelMovements>();
+            listadevices = new List<ModelDevice>();
+            
             InitializeComponent();
         }
 
-        protected override  void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-          
+
             tipoBusqueda = pickerBuscar.SelectedItem as String;
-            
+
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -47,7 +53,16 @@ namespace Inventario2
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            var but = (Button)sender;
+            ModelMovements movement = (ModelMovements)but.BindingContext;
+            Grid grid = (Grid)but.Parent;
+            //registrar id para eliminar
+            if (!listaidmmovementsDel.Contains(movement))
+            {
+                listaidmmovementsDel.Add(movement);
+            }
 
+            DataSourceMovements.collection.Remove(movement);
         }
 
         private void searching_SearchButtonPressed(object sender, EventArgs e)
@@ -55,9 +70,18 @@ namespace Inventario2
             buscar();
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private void btdeletedevice(object sender, EventArgs e)
         {
+            var but = (Button)sender;
+            ModelDevice device = (ModelDevice)but.BindingContext;
+            
+            //registrar id para eliminar
+            if (listadevices.Contains(device))
+            {
+                listadevices.Remove(device);
+            }
 
+            DataSourceDevices.collection.Remove(device);
         }
 
         private void Button_Clicked_2(object sender, EventArgs e)
@@ -65,9 +89,9 @@ namespace Inventario2
 
         }
 
-        private void Button_Clicked_3(object sender, EventArgs e)
+        private void btAceptar(object sender, EventArgs e)
         {
-
+            actualizar();
         }
 
         private async Task searchmovementsAsync(string id)
@@ -101,9 +125,13 @@ namespace Inventario2
                         if (busqueda.Count != 0)
                         {
                             postListView.ItemsSource = busqueda;
+
+                            DataSourceMovements.initializeData(busqueda);
+                            postListView.ItemsSource = DataSourceMovements.collection;
+
                             currentIDmovement = busqueda[0].IDmovimiento;
                         }
-                          
+
                     }
                 }
             }
@@ -111,7 +139,7 @@ namespace Inventario2
             {
 
             }
-            
+
         }
 
         private void Agregarproducto(ModelMovements producto)
@@ -131,6 +159,38 @@ namespace Inventario2
 
         private void actualizar()
         {
+            eliminarHistorial(listaidmmovementsDel);
+        }
+
+        private async void eliminarHistorial(List<ModelMovements> lista)
+        {
+            try
+            {
+                foreach (ModelMovements movement in lista)
+                {
+                    var res = await MovementService.deletemovement(movement.ID);
+
+                    if (res.statuscode == 200 || res.statuscode == 201)
+                    {
+                        var device = await DeviceService.getdevicebyid(movement.IDdevice);
+
+                        if (device[0].statuscode == 200 || device[0].statuscode == 201)
+                        {
+                            device[0].IDlugar = 1;
+                            device[0].IDmov = "";
+                            await DeviceService.putdevice(device[0].ID, JsonConvert.SerializeObject(device[0]));
+                        }
+
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
 
         }
 
@@ -138,6 +198,20 @@ namespace Inventario2
         {
             tipoBusqueda = pickerBuscar.SelectedItem as string;
         }
+
+
+        private void btacceptDevice(object sender, EventArgs e)
+        {
+            var but = (Button)sender;
+            ModelDevice device = (ModelDevice)but.BindingContext;
+            //registrar id para eliminar
+            if (listadevices.Contains(device))
+            {
+                listadevices.Add(device);
+            }
+          
+        }
+
         public async void buscar()
         {
             string cadena = "";
@@ -170,11 +244,10 @@ namespace Inventario2
                 }
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
-                {
-                    postListView.ItemsSource = devices;
+                {                    
+                    DataSourceDevices.initializeData(devices);
+                    postListView2.ItemsSource = DataSourceDevices.collection;
                 }
-
-
 
             }
             if (tipoBusqueda == "QR")
@@ -202,7 +275,8 @@ namespace Inventario2
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                 {
-                    postListView.ItemsSource = devices;
+                    DataSourceDevices.initializeData(devices);
+                    postListView2.ItemsSource = DataSourceDevices.collection;
                 }
 
             }
@@ -230,7 +304,8 @@ namespace Inventario2
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                 {
-                    postListView.ItemsSource = devices;
+                    DataSourceDevices.initializeData(devices);
+                    postListView2.ItemsSource = DataSourceDevices.collection;
                 }
             }
 
@@ -259,7 +334,8 @@ namespace Inventario2
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                 {
-                    postListView.ItemsSource = devices;
+                    DataSourceDevices.initializeData(devices);
+                    postListView2.ItemsSource = DataSourceDevices.collection;
                 }
             }
 
@@ -289,7 +365,8 @@ namespace Inventario2
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                 {
-                    postListView.ItemsSource = devices;
+                    DataSourceDevices.initializeData(devices);
+                    postListView2.ItemsSource = DataSourceDevices.collection;
                 }
             }
             if (tipoBusqueda == "serie")
@@ -317,7 +394,8 @@ namespace Inventario2
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                 {
-                    postListView2.ItemsSource = devices;
+                    DataSourceDevices.initializeData(devices);
+                    postListView2.ItemsSource = DataSourceDevices.collection;
                 }
             }
         }
