@@ -45,7 +45,7 @@ namespace Inventario2
         protected override async void OnAppearing()
         {
 
-             
+            Contra.IsEnabled = false;
 
             base.OnAppearing();
 
@@ -86,6 +86,16 @@ namespace Inventario2
             logus.nombre = user;
             logus.password = password;
 
+            if (Usuario.Text == "")
+            {
+                await DisplayAlert("Error", "No se ingreso un nombre", "Aceptar");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            /////////quitar temporalmente la validacion por contraseña
             var status = await UserService.loginAsync(JsonConvert.SerializeObject(logus));
 
             if (status==null)
@@ -140,7 +150,7 @@ namespace Inventario2
             {
                 Boolean v = true;
             
-                if (Usuario.Text != null && Contra.Text != null)
+                if (Usuario.Text != null)
                 {
                     bool status = await verifyuser(Usuario.Text, Contra.Text);
 

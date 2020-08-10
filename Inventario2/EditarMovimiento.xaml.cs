@@ -14,17 +14,18 @@ namespace Inventario2
     public partial class EditarMovimiento : ContentPage
     {
         string currentIDmovement = "";
-        List<ModelMovements> listamoves;
+        
         List<ModelMovements> listaidmmovementsDel;
         List<ModelDevice> listadevices;
-
+        List<ModelMovements> currentmoves;
+        GeneratePDF pdf;
         public string tipoBusqueda;
         public EditarMovimiento()
         {
-            listamoves = new List<ModelMovements>();
+            currentmoves = new List<ModelMovements>();
             listaidmmovementsDel = new List<ModelMovements>();
             listadevices = new List<ModelDevice>();
-            
+            pdf = new GeneratePDF();
             InitializeComponent();
         }
 
@@ -51,18 +52,24 @@ namespace Inventario2
 
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Btdeletemove(object sender, EventArgs e)
         {
             var but = (Button)sender;
             ModelMovements movement = (ModelMovements)but.BindingContext;
             Grid grid = (Grid)but.Parent;
             //registrar id para eliminar
-            if (!listaidmmovementsDel.Contains(movement))
+            string res = await DisplayActionSheet("¡Estas a punto de eliminar un producto del movimiento!, ¿Deseas continuar?", "Cancelar", "Eliminar producto");
+            if (res.Equals("Eliminar producto"))
             {
-                listaidmmovementsDel.Add(movement);
-            }
+                if (!listaidmmovementsDel.Contains(movement))
+                {
+                    listaidmmovementsDel.Add(movement);
+                }
 
-            DataSourceMovements.collection.Remove(movement);
+                DataSourceMovements.collection.Remove(movement);
+            }
+            
+            
         }
 
         private void searching_SearchButtonPressed(object sender, EventArgs e)
@@ -86,12 +93,23 @@ namespace Inventario2
 
         private void Button_Clicked_2(object sender, EventArgs e)
         {
-
+            Navigation.PopAsync();
         }
 
-        private void btAceptar(object sender, EventArgs e)
+        private async void btAceptar(object sender, EventArgs e)
         {
-            actualizar();
+            if (!currentIDmovement.Equals(""))
+            {
+                actualizar();
+            }
+            else
+            {
+                await DisplayAlert("Error", "no hay algun movimiento consultado", "Aceptar");
+            }
+
+            
+        
+        
         }
 
         private async Task searchmovementsAsync(string id)
@@ -128,7 +146,7 @@ namespace Inventario2
 
                             DataSourceMovements.initializeData(busqueda);
                             postListView.ItemsSource = DataSourceMovements.collection;
-
+                            currentmoves = busqueda;
                             currentIDmovement = busqueda[0].IDmovimiento;
                         }
 
@@ -142,24 +160,51 @@ namespace Inventario2
 
         }
 
-        private void Agregarproducto(ModelMovements producto)
+        private async void Agregarproductos(List<ModelDevice> productos)
         {
+            if (productos!=null)
+            {
+                if (productos.Count != 0)
+                {
+                    foreach (ModelDevice device in productos)
+                    {
+                        ModelMovements movement = new ModelMovements()
+                        {
+                            IDmovimiento =currentIDmovement ,
+                            IDtipomov = 2,
+                            IDusuario = Model.CurrentUser.ID,
+                            IDdevice = device.ID,
+                            observacionesMov = "OK",
+                            producto = device.producto,
+                            marca = device.marca,
+                            serie = device.serie,
+                            modelo = device.modelo,
+                            codigo = device.codigo
+                        };
 
+                        var status = await MovementService.postmovement(JsonConvert.SerializeObject(movement));
+
+                        if (status != null)
+                        {
+                            if (status.statuscode != 201)
+                            {
+                                await DisplayAlert("Actualizando", "error de actualizacion del producto", "OK");
+                            }
+                        }
+                      
+                    }
+
+                    await pdf.InitPDFAsync(currentIDmovement);
+                    await Navigation.PopAsync();
+                }
+            }
         }
 
-        private void buscarproducto()
-        {
-
-        }
-
-        private void eliminarproducto(int id)
-        {
-
-        }
-
+          
         private void actualizar()
         {
             eliminarHistorial(listaidmmovementsDel);
+            Agregarproductos(listadevices);
         }
 
         private async void eliminarHistorial(List<ModelMovements> lista)
@@ -181,9 +226,7 @@ namespace Inventario2
                             await DeviceService.putdevice(device[0].ID, JsonConvert.SerializeObject(device[0]));
                         }
 
-
                     }
-
 
                 }
             }
@@ -200,16 +243,43 @@ namespace Inventario2
         }
 
 
-        private void btacceptDevice(object sender, EventArgs e)
+        private async void btacceptDevice(object sender, EventArgs e)
         {
             var but = (Button)sender;
             ModelDevice device = (ModelDevice)but.BindingContext;
             //registrar id para eliminar
-            if (listadevices.Contains(device))
+            bool isInlist = false;
+            bool isOutside = false;
+            if (currentmoves.Count != 0)
             {
-                listadevices.Add(device);
+                foreach (ModelMovements move in currentmoves)
+                {
+                    if (move.IDdevice == device.ID)
+                    {
+                        isInlist = true;
+                        continue;                   
+                    }
+                }
             }
-          
+
+            if (device.IDlugar != 1)
+            {
+                isOutside = true;
+            }
+
+            if (isInlist || isOutside)
+            {
+                await DisplayAlert("Buscando", "el producto ya esta en el historial, o en otro destino", "OK");
+            }
+            else
+            {
+                if (!listadevices.Contains(device))
+                {
+                    listadevices.Add(device);
+                }
+            }
+
+
         }
 
         public async void buscar()
@@ -304,7 +374,7 @@ namespace Inventario2
 
                 if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
                 {
-                    DataSourceDevices.initializeData(devices);
+                    DataSourceDevices.initializeData(devices);                  
                     postListView2.ItemsSource = DataSourceDevices.collection;
                 }
             }
