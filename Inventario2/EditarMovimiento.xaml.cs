@@ -33,8 +33,8 @@ namespace Inventario2
         {
             base.OnAppearing();
 
-            tipoBusqueda = pickerBuscar.SelectedItem as String;
-
+            //tipoBusqueda = pickerBuscar.SelectedItem as String;
+            tipoBusqueda = "QR";
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace Inventario2
 
         }
 
-        private async void Agregarproductos(List<ModelDevice> productos)
+        private async void Agregarproductos(List<ModelDevice> productos,bool isdeleted)
         {
             if (productos!=null)
             {
@@ -197,52 +197,70 @@ namespace Inventario2
                     await pdf.InitPDFAsync(currentIDmovement);
                     await Navigation.PopAsync();
                 }
+                else
+                {
+                    if (isdeleted)
+                    {
+                        await pdf.InitPDFAsync(currentIDmovement);
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        await Navigation.PopAsync();
+                    }
+                   
+                }
             }
         }
 
           
-        private void actualizar()
+        private async void actualizar()
         {
-            eliminarHistorial(listaidmmovementsDel);
-            Agregarproductos(listadevices);
+            bool res = await eliminarHistorial(listaidmmovementsDel);
+            Agregarproductos(listadevices,res);
         }
 
-        private async void eliminarHistorial(List<ModelMovements> lista)
+        private async Task<bool> eliminarHistorial(List<ModelMovements> lista)
         {
             try
             {
-                foreach (ModelMovements movement in lista)
+                if (lista.Count != 0)
                 {
-                    var res = await MovementService.deletemovement(movement.ID);
-
-                    if (res.statuscode == 200 || res.statuscode == 201)
+                    foreach (ModelMovements movement in lista)
                     {
-                        var device = await DeviceService.getdevicebyid(movement.IDdevice);
+                        var res = await MovementService.deletemovement(movement.ID);
 
-                        if (device[0].statuscode == 200 || device[0].statuscode == 201)
+                        if (res.statuscode == 200 || res.statuscode == 201)
                         {
-                            device[0].IDlugar = 1;
-                            device[0].IDmov = "";
-                            await DeviceService.putdevice(device[0].ID, JsonConvert.SerializeObject(device[0]));
+                            var device = await DeviceService.getdevicebyid(movement.IDdevice);
+
+                            if (device[0].statuscode == 200 || device[0].statuscode == 201)
+                            {
+                                device[0].IDlugar = 1;
+                                device[0].IDmov = "";
+                                var resput = await DeviceService.putdevice(device[0].ID, JsonConvert.SerializeObject(device[0]));
+                            }
+
                         }
 
                     }
-
+                    return true;
                 }
+                else
+                {
+                    return false;
+                }
+
+                
             }
             catch (Exception ex)
             {
-
+                return false;
             }
 
         }
 
-        private void pickerBuscar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tipoBusqueda = pickerBuscar.SelectedItem as string;
-        }
-
-
+        
         private async void btacceptDevice(object sender, EventArgs e)
         {
             var but = (Button)sender;
@@ -347,6 +365,37 @@ namespace Inventario2
                 {
                     DataSourceDevices.initializeData(devices);
                     postListView2.ItemsSource = DataSourceDevices.collection;
+
+                    bool isInlist = false;
+                    bool isOutside = false;
+                    if (currentmoves.Count != 0)
+                    {
+                        foreach (ModelMovements move in currentmoves)
+                        {
+                            if (move.IDdevice == devices[0].ID)
+                            {
+                                isInlist = true;
+                                continue;
+                            }
+                        }
+                    }
+
+                    if (devices[0].IDlugar != 1)
+                    {
+                        isOutside = true;
+                    }
+
+                    if (isInlist || isOutside)
+                    {
+                        await DisplayAlert("Buscando", "el producto ya esta en el historial, o en otro destino", "OK");
+                    }
+                    else
+                    {
+                        if (!listadevices.Contains(devices[0]))
+                        {
+                            listadevices.Add(devices[0]);
+                        }
+                    }
                 }
 
             }
