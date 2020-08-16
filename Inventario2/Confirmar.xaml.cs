@@ -85,7 +85,7 @@ namespace Inventario2
             LoginUser logus = new LoginUser();
             logus.nombre = user;
             logus.password = password;
-
+            Otheruser.nombre = user;
             if (Usuario.Text == "")
             {
                 await DisplayAlert("Error", "No se ingreso un nombre", "Aceptar");
@@ -171,7 +171,7 @@ namespace Inventario2
                             {
                                 rp.re.movimientos[y].IDmovimiento = uid;
                                 rp.re.movimientos[y].IDtipomov = 2;
-                                rp.re.movimientos[y].IDusuario = usuariosalida.ID;
+                                rp.re.movimientos[y].IDusuario = CurrentUser.ID;
                                 rp.re.movimientos[y].IDlugar = idlugar;
                                 rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
                                 rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";

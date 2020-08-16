@@ -220,7 +220,7 @@ namespace Inventario2
 
                 //texto de quien recibe
                 PdfFont usuariofont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12);
-                PdfTextElement lbusuario = new PdfTextElement(User.nombre + " " + User.apellido_paterno, usuariofont);
+                PdfTextElement lbusuario = new PdfTextElement(Model.Otheruser.nombre, usuariofont);
                 lbusuario.Brush = PdfBrushes.Black;
                 PdfLayoutResult reslbusuario = lbusuario.Draw(gridResult.Page, new PointF(350.0f + (linePenfinal.Width / 2.0f), startPoint.Y - 20));
 
