@@ -38,6 +38,8 @@ namespace Inventario2
             uid = Guid.NewGuid().ToString("D");
             pdf = new GeneratePDF();
             CurrentDevice = new ModelDevice();
+            Contra.IsVisible = false;
+           
         }
        
 
@@ -146,113 +148,120 @@ namespace Inventario2
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!isToggled)
-            {
-                Boolean v = true;
-            
-                if (Usuario.Text != null)
+            try {
+                if (!isToggled)
                 {
-                    bool status = await verifyuser(Usuario.Text, Contra.Text);
+                    Boolean v = true;
 
-
-                    //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
-                    
-                    
-                    if (status)
+                    if (Usuario.Text != null)
                     {
-                        isToggled = true;
-                       
+                        bool status = await verifyuser(Usuario.Text, Contra.Text);
 
-                        await UpdateLocations(rp.re.movimientos, idlugar);
 
-                        for (int y = 0; y < rp.re.movimientos.Count(); y++)
+                        //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
+
+
+                        if (status)
                         {
-                            try
+                            isToggled = true;
+
+
+                            await UpdateLocations(rp.re.movimientos, idlugar);
+
+                            for (int y = 0; y < rp.re.movimientos.Count(); y++)
                             {
-                                rp.re.movimientos[y].IDmovimiento = uid;
-                                rp.re.movimientos[y].IDtipomov = 2;
-                                rp.re.movimientos[y].IDusuario = CurrentUser.ID;
-                                rp.re.movimientos[y].IDlugar = idlugar;
-                                rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
-                                rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
-
-                                v = true;
-                                string url1 = "N/A";
-                                string url2 = "N/A";
-                                if (rp.re.f1[y] != null)
+                                try
                                 {
-                                    url1 = await UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
+                                    rp.re.movimientos[y].IDmovimiento = uid;
+                                    rp.re.movimientos[y].IDtipomov = 2;
+                                    rp.re.movimientos[y].IDusuario = CurrentUser.ID;
+                                    rp.re.movimientos[y].IDlugar = idlugar;
+                                    rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
+                                    rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
+
+                                    v = true;
+                                    string url1 = "N/A";
+                                    string url2 = "N/A";
+                                    if (rp.re.f1[y] != null)
+                                    {
+                                        url1 = await UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
+
+                                    }
+                                    if (rp.re.f2[y] != null)
+                                    {
+                                        url2 = await UploadFile(rp.re.f2[y].GetStream(), rp.re.movimientos[y].fotomov2);
+
+                                    }
+
+                                    rp.re.movimientos[y].fotomov1 = url1;
+                                    rp.re.movimientos[y].fotomov2 = url2;
+
+                                    var statusmove = await MovementService.postmovement(JsonConvert.SerializeObject(rp.re.movimientos[y]));
+
+                                    if (statusmove == null)
+                                    {
+                                        await DisplayAlert("Error", "error de conexion", "Aceptar");
+                                        break;
+                                    }
+
+                                    if (statusmove.statuscode == 500)
+                                    {
+                                        await DisplayAlert("Error", "interno del servidor", "Aceptar");
+                                        break;
+                                    }
+
+                                    if (statusmove.statuscode != 201)
+                                    {
+                                        break;
+                                    }
+
+
+
 
                                 }
-                                if (rp.re.f2[y] != null)
+                                catch (MobileServiceInvalidOperationException ms)
                                 {
-                                    url2 = await UploadFile(rp.re.f2[y].GetStream(), rp.re.movimientos[y].fotomov2);
-
-                                }
-
-                                rp.re.movimientos[y].fotomov1 = url1;
-                                rp.re.movimientos[y].fotomov2 = url2;
-
-                                var statusmove =await  MovementService.postmovement(JsonConvert.SerializeObject(rp.re.movimientos[y]));
-
-                                if (statusmove == null)
-                                {
-                                    await DisplayAlert("Error", "error de conexion", "Aceptar");
+                                    var response = await ms.Response.Content.ReadAsStringAsync();
+                                    await DisplayAlert("Error", response, "Aceptar");
+                                    v = false;
                                     break;
                                 }
-
-                                if (statusmove.statuscode == 500)
-                                {
-                                    await DisplayAlert("Error", "interno del servidor", "Aceptar");
-                                    break;
-                                }
-
-                                if (statusmove.statuscode != 201) {
-                                    break;
-                                }
-
-                          
-                                
-
                             }
-                            catch (MobileServiceInvalidOperationException ms)
+                            if (v)
                             {
-                                var response = await ms.Response.Content.ReadAsStringAsync();
-                                await DisplayAlert("Error", response, "Aceptar");
-                                v = false;
-                                break;
+                                //agregar el pdf
+                                rp.re.movimientos.Clear();
+                                rp.re.f1.Clear();
+                                rp.re.f2.Clear();
+                                await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
+                                //await Navigation.PushAsync(new PDFMovement(p));
+                                await pdf.InitPDFAsync(uid);
+                                ToolbarItem_Clicked(null, null);
+                                //await Navigation.PopAsync();
                             }
+
                         }
-                        if (v)
+                        else
                         {
-                            //agregar el pdf
-                            rp.re.movimientos.Clear();
-                            rp.re.f1.Clear();
-                            rp.re.f2.Clear();
-                            await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
-                            //await Navigation.PushAsync(new PDFMovement(p));
-                            await pdf.InitPDFAsync(uid);
-                            ToolbarItem_Clicked(null, null);
-                            //await Navigation.PopAsync();
+                            return;
                         }
 
                     }
                     else
                     {
-                        return;
-                    }                  
-                  
+                        await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
+                    }
+
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
+                    await DisplayAlert("Alerta", "Ya se han actualizado los productos de salida", "Aceptar");
                 }
-                
             }
-            else
-            {
-                await DisplayAlert("Alerta", "Ya se han actualizado los productos de salida", "Aceptar");
+            catch (Exception ex) {
+                await DisplayAlert("Error",ex.Message, "Aceptar");
             }
+            
 
             
 

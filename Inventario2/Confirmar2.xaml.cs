@@ -35,6 +35,7 @@ namespace Inventario2
             InitializeComponent();
             rp = x;
             uid = Guid.NewGuid().ToString("D");
+            Contra.IsVisible = false;
         }
 
         protected override  void OnAppearing()
@@ -113,137 +114,146 @@ namespace Inventario2
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!isToggled)
+            try
             {
-                Boolean v = true;
-                bool password = false;
-                if (Usuario.Text != null && Contra.Text != null)
+                if (!isToggled)
                 {
-                    bool status = await verifyuser(Usuario.Text, Contra.Text);
-
-
-                    //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
-                    
-
-                    if (status)
+                    Boolean v = true;
+                    bool password = false;
+                    if (Usuario.Text != null)
                     {
-                        isToggled = true;
-                        password = true;
+                        bool status = await verifyuser(Usuario.Text, Contra.Text);
 
-                        bool statusbatchdevice = await VerifyDevicePlace(rp.re.movimientos);
 
-                        if (!statusbatchdevice)
+                        //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
+
+
+                        if (status)
+                        {
+                            isToggled = true;
+                            password = true;
+
+                            bool statusbatchdevice = await VerifyDevicePlace(rp.re.movimientos);
+
+                            if (!statusbatchdevice)
+                            {
+                                return;
+
+                            }
+
+
+                            bool res = await UpdateLocations(rp.re.movimientos, 1);
+
+                            if (!res)
+                            {
+                                return;
+                            }
+
+
+
+                            for (int y = 0; y < rp.re.movimientos.Count(); y++)
+                            {
+                                try
+                                {
+                                    rp.re.movimientos[y].IDmovimiento = uid;
+                                    rp.re.movimientos[y].IDtipomov = 1;
+                                    rp.re.movimientos[y].IDusuario = CurrentUser.ID;
+                                    rp.re.movimientos[y].IDlugar = 1;
+                                    rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
+                                    rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
+
+
+
+                                    var statusmove = await MovementService.postmovement(JsonConvert.SerializeObject(rp.re.movimientos[y]));
+
+                                    if (statusmove == null)
+                                    {
+                                        await DisplayAlert("Error", "error de conexion", "Aceptar");
+
+                                        break;
+                                    }
+
+                                    if (statusmove.statuscode == 500)
+                                    {
+                                        await DisplayAlert("Error", "interno del servidor", "Aceptar");
+                                        break;
+                                    }
+
+                                    if (statusmove.statuscode != 201)
+                                    {
+                                        break;
+                                    }
+
+
+                                    v = true;
+                                    if (rp.re.f1[y] != null)
+                                        UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
+                                    if (rp.re.f2[y] != null)
+                                        UploadFile(rp.re.f2[y].GetStream(), rp.re.movimientos[y].fotomov2);
+
+                                }
+                                catch (MobileServiceInvalidOperationException ms)
+                                {
+                                    var response = await ms.Response.Content.ReadAsStringAsync();
+                                    await DisplayAlert("Error", response, "Aceptar");
+                                    v = false;
+                                    break;
+                                }
+                            }
+                            if (v)
+                            {
+                                //agregar el pdf
+                                rp.re.movimientos.Clear();
+                                rp.re.f1.Clear();
+                                rp.re.f2.Clear();
+
+                                await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
+                                var tablemissing = await SearchMissing(CUrrentIDmovimiento);
+                                if (tablemissing != null)
+                                {
+                                    if (tablemissing.Count != 0)
+                                    {
+                                        postListView.ItemsSource = tablemissing;
+                                        await pf.InitPDFAsync(uid, tablemissing);
+                                    }
+
+
+                                }
+
+                                //await Navigation.PushAsync(new PDFMovement(p));
+                                await pdf.InitPDFAsync(uid);
+
+                                if (tablemissing == null)
+                                {
+                                    ToolbarItem_Clicked(null, null);
+                                }
+
+                                //await Navigation.PopAsync();
+                            }
+
+                        }
+                        else
                         {
                             return;
-
-                        }
-
-                        
-                        bool res = await UpdateLocations(rp.re.movimientos, 1);
-
-                        if (!res){
-                            return;
-                        }
-
-
-
-                        for (int y = 0; y < rp.re.movimientos.Count(); y++)
-                        {
-                            try
-                            {
-                                rp.re.movimientos[y].IDmovimiento = uid;
-                                rp.re.movimientos[y].IDtipomov = 1;
-                                rp.re.movimientos[y].IDusuario = CurrentUser.ID;
-                                rp.re.movimientos[y].IDlugar = 1;
-                                rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
-                                rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
-
-
-
-                                var statusmove = await MovementService.postmovement(JsonConvert.SerializeObject(rp.re.movimientos[y]));
-
-                                if (statusmove == null)
-                                {
-                                    await DisplayAlert("Error", "error de conexion", "Aceptar");
-
-                                    break;
-                                }
-
-                                if (statusmove.statuscode == 500)
-                                {
-                                    await DisplayAlert("Error", "interno del servidor", "Aceptar");
-                                    break;
-                                }
-
-                                if (statusmove.statuscode != 201)
-                                {
-                                    break;
-                                }
-
-
-                                v = true;
-                                if (rp.re.f1[y] != null)
-                                    UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
-                                if (rp.re.f2[y] != null)
-                                    UploadFile(rp.re.f2[y].GetStream(), rp.re.movimientos[y].fotomov2);
-
-                            }
-                            catch (MobileServiceInvalidOperationException ms)
-                            {
-                                var response = await ms.Response.Content.ReadAsStringAsync();
-                                await DisplayAlert("Error", response, "Aceptar");
-                                v = false;
-                                break;
-                            }
-                        }
-                        if (v)
-                        {
-                            //agregar el pdf
-                            rp.re.movimientos.Clear();
-                            rp.re.f1.Clear();
-                            rp.re.f2.Clear();
-                            
-                            await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
-                            var tablemissing = await SearchMissing(CUrrentIDmovimiento);
-                            if(tablemissing != null)
-                            {
-                                if (tablemissing.Count != 0)
-                                {
-                                    postListView.ItemsSource = tablemissing;
-                                    await pf.InitPDFAsync(uid, tablemissing);
-                                }
-                                    
-                                
-                            }
-
-                            //await Navigation.PushAsync(new PDFMovement(p));
-                            await pdf.InitPDFAsync(uid);
-
-                            if (tablemissing == null)
-                            {
-                                ToolbarItem_Clicked(null, null);
-                            }
-                            
-                            //await Navigation.PopAsync();
                         }
 
                     }
                     else
                     {
-                        return;
+                        await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
                     }
 
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
+                    await DisplayAlert("Alerta", "Ya se han actualizado los productos de salida", "Aceptar");
                 }
+            }
+            catch (Exception ex) {
+                await DisplayAlert("Error", ex.Message, "Aceptar");
+            }
 
-            }
-            else
-            {
-                await DisplayAlert("Alerta", "Ya se han actualizado los productos de salida", "Aceptar");
-            }
+            
 
 
         }
