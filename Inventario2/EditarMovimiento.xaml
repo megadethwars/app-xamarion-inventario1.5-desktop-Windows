@@ -157,7 +157,7 @@
                                                             Text="{Binding idMove}" 
                                                             TextColor="White" 
                                                             Grid.Column="6"/>
-                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="Btdeletemove"  Grid.Column="5"/>
+                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="Btdeletemove"  Grid.Column="7"/>
                                                             </Grid>
                                                         </StackLayout>
                                                     </ViewCell>
@@ -296,7 +296,7 @@
                                                             Text="{Binding idMove}" 
                                                             TextColor="White" 
                                                             Grid.Column="6"/>
-                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="btdeletedevice"  Grid.Column="5"/>
+                                                                <Button Text="ELIMINAR" BackgroundColor="Transparent" TextColor="Red" Clicked="btdeletedevice"  Grid.Column="7"/>
                                                                 
                                                             </Grid>
                                                         </StackLayout>
